@@ -55,4 +55,8 @@ public abstract class Piece implements CellListener {
     public Colour getColour() {
         return colour;
     }
+
+    public Board getBoard() {
+        return board;
+    }
 }
