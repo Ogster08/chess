@@ -1,5 +1,6 @@
 package com.example.chessengine;
 
+import com.example.chessengine.UCI.Board;
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
@@ -16,6 +17,8 @@ public class HelloApplication extends Application {
         stage.setTitle("Chess");
         stage.setScene(scene);
         stage.show();
+
+        Board board = new Board();
     }
 
     public static void main(String[] args) {

@@ -15,8 +15,8 @@ public class HelloController {
             for (int j = 0; j < 8; j++) {
                 Pane square = new Pane();
                 square.setPrefSize(100, 100);
-                if ((i+ j) % 2 == 0) square.setStyle("-fx-background-color: #FFFFFF");
-                else square.setStyle("-fx-background-color: #000000");
+                if ((i+ j) % 2 == 0) square.setStyle("-fx-background-color: #F0D9B5");
+                else square.setStyle("-fx-background-color: #B58863");
 
                 ChessGrid.add(square, i, j);
             }

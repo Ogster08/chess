@@ -7,4 +7,6 @@ module com.example.chessengine {
 
     opens com.example.chessengine to javafx.fxml;
     exports com.example.chessengine;
+    exports com.example.chessengine.UCI;
+    opens com.example.chessengine.UCI to javafx.fxml;
 }
