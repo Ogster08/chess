@@ -18,8 +18,19 @@ public class Cell {
     }
 
     public void setPiece(Piece newPiece){
-        notifyListeners(piece, newPiece);
+        Piece  oldPiece = this.piece;
         piece = newPiece;
+        Colour oldColour = oldPiece != null ? oldPiece.getColour() : null;
+        Colour newColour = newPiece != null ? newPiece.getColour() : null;
+        notifyListeners(oldColour, newColour);
+
+    }
+
+    public int getRow() {
+        return row;
+    }
+    public int getCol() {
+        return col;
     }
 
     public void addListener(CellListener l){
@@ -30,9 +41,9 @@ public class Cell {
         Listener.remove(l);
     }
 
-    public void notifyListeners(Piece oldPiece, Piece newPiece) {
+    public void notifyListeners(Colour oldColour, Colour newColour) {
         for(CellListener l : Listener){
-            l.CellChanged(row, col, oldPiece, newPiece);
+            l.CellChanged(row, col, oldColour, newColour);
         }
     }
 }

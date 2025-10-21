@@ -5,8 +5,8 @@ import java.util.List;
 public abstract class Piece implements CellListener {
     private final Board board;
     private int row, col;
-    private final List<Cell> cellsList;
-    private List<Cell> movesList;
+    protected final List<Cell> cellsList;
+    protected List<Cell> movesList;
     private final Colour colour;
 
     public Piece(Board board, int row, int col, Colour colour){
@@ -37,12 +37,13 @@ public abstract class Piece implements CellListener {
     }
 
     @Override
-    public void CellChanged(int row, int col, Piece oldPiece, Piece newPiece) {
-        CalculateValidMoves();
+    public void CellChanged(int row, int col, Colour oldColour, Colour newColour) {
+        ReCalculateValidMoves(row, col, oldColour, newColour);
     }
 
     protected abstract List<Cell> TheoreticalReachableCells();
     protected abstract void CalculateValidMoves();
+    protected abstract void ReCalculateValidMoves(int row, int col, Colour oldColour, Colour newColour);
 
     public int getRow() {
         return row;
