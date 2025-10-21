@@ -4,20 +4,11 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class Pawn extends Piece {
-    boolean firstRank = false;
+    boolean firstRank;
 
     public Pawn(Board board, int row, int col, Colour colour) {
         super(board, row, col, colour);
-        if (colour == Colour.WHITE) {
-            if (row == 1) {
-                firstRank = true;
-            }
-        }
-        else if (colour == Colour.BLACK) {
-            if (row == 7) {
-                firstRank = true;
-            }
-        }
+        firstRank = (getColour() == Colour.WHITE && row == 1) || (getColour() == Colour.BLACK && row == 6);
     }
 
     @Override
@@ -37,7 +28,7 @@ public class Pawn extends Piece {
         }
         else if (getColour() == Colour.BLACK) {
             cells.add(getBoard().getCell(getRow() - 1, getCol()));
-            if (firstRank) {cells.add(getBoard().getCell(5, getCol()));}
+            if (firstRank) {cells.add(getBoard().getCell(4, getCol()));}
             if (getCol() > 0) {cells.add(getBoard().getCell(getRow() - 1, getCol() - 1));}
             if (getCol() < 7) {cells.add(getBoard().getCell(getRow() - 1, getCol() + 1));}
 /*
@@ -53,9 +44,11 @@ public class Pawn extends Piece {
     @Override
     protected void CalculateValidMoves() {
         for (Cell cell : cellsList) {
-            if (cell.getRow() == getRow() && cell.getPiece() != null){
+            Piece piece = cell.getPiece();
+
+            if (cell.getCol() == getCol() && cell.getPiece() != null){
                     movesList.add(cell);
-            } else if (cell.getPiece() != null && cell.getPiece().getColour() != getColour()) {
+            } else if (piece != null && piece.getColour() != getColour()) {
                 movesList.add(cell);
             }
         }
@@ -63,32 +56,27 @@ public class Pawn extends Piece {
 
     @Override
     protected void ReCalculateValidMoves(int row, int col, Colour oldColour, Colour newColour) {
-        boolean alreadyAMove = movesList.contains(getBoard().getCell(row, col));
         Cell cell = getBoard().getCell(row, col);
-        if (getCol() == col){
-            if (newColour != getColour() && newColour != null) {
-                if (!alreadyAMove) {
-                    movesList.add(cell);
-                    return;
-                }
-            }
-            if (alreadyAMove){
-                movesList.remove(cell);
-                return;
-            }
-        }
-        if (newColour == null){
+        movesList.remove(cell);
+        if (getCol() == col && newColour == null){
             movesList.add(cell);
             if(firstRank){
                 if(getColour() == Colour.WHITE){
                     cellsList.add(getBoard().getCell(3, col));
+                    return;
                 }
-                cellsList.add(getBoard().getCell(5, col));
+                cellsList.add(getBoard().getCell(4, col));
             }
-            return;
+        }else if (Math.abs(getCol() - col) == 1 &&
+                newColour != getColour() &&
+                newColour != null){
+            movesList.add(cell);
         }
-        if (alreadyAMove){
-            movesList.remove(cell);
-        }
+    }
+
+    @Override
+    protected void setRow(int row) {
+        super.setRow(row);
+        firstRank = (getColour() == Colour.WHITE && row == 1) || (getColour() == Colour.BLACK && row == 7);
     }
 }

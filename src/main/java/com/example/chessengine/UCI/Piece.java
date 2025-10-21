@@ -19,8 +19,8 @@ public abstract class Piece implements CellListener {
     }
 
     public void move(int newRow, int newCol){
-        row = newRow;
-        col = newCol;
+        setRow(newRow);
+        setCol(newCol);
 
         for(Cell c : cellsList){
             c.removeListener(this);
@@ -59,5 +59,13 @@ public abstract class Piece implements CellListener {
 
     public Board getBoard() {
         return board;
+    }
+
+    protected void setRow(int row){
+        this.row = row;
+    }
+
+    protected void setCol(int col){
+        this.col = col;
     }
 }
