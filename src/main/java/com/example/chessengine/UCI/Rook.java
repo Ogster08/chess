@@ -5,10 +5,10 @@ import java.util.List;
 
 public class Rook extends Piece {
     private boolean canCastle; //the Board will deal with castling
-    private List<Cell> upMovesList = new ArrayList<>();
-    private List<Cell> downMovesList  = new ArrayList<>();
-    private List<Cell> leftMovesList = new ArrayList<>();
-    private List<Cell> rightMovesList  = new ArrayList<>();
+    private final List<Cell> upMovesList = new ArrayList<>();
+    private final List<Cell> downMovesList  = new ArrayList<>();
+    private final List<Cell> leftMovesList = new ArrayList<>();
+    private final List<Cell> rightMovesList  = new ArrayList<>();
 
     public Rook(Board board, int row, int col, Colour colour,  boolean canCastle) {
         super(board, row, col, colour);
