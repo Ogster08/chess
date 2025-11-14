@@ -92,60 +92,6 @@ public class Rook extends Piece {
         movesList.addAll(rightMovesList);
         movesList.addAll(downMovesList);
         movesList.addAll(upMovesList);
-
-//        if (movesList.contains(cell)) {
-//            if (newColour == null) {
-//                // now free, so now not blocked, so new possible cells
-//                if (getRow() - row > 0) {
-//                    for (int i = row + 1; i < 8; i++) {
-//                        if (hitPiece(i, col)) return;
-//                    }
-//                } else if (getRow() - row < 0) {
-//                    for (int i = row - 1; i > 0; i--) {
-//                        if (hitPiece(i, col)) return;
-//                    }
-//                } else if (getCol() - col > 0) {
-//                    for (int i = col + 1; i < 8; i++) {
-//                        if (hitPiece(i, col)) return;
-//                    }
-//                } else if (getCol() - col < 0) {
-//                    for (int i = col - 1; i > 0; i--) {
-//                        if (hitPiece(i, col)) return;
-//                    }
-//                }
-//                return;
-//            }
-//            if (newColour == getColour()) movesList.remove(cell);
-//            Consumer<Cell> method;
-//            if (getRow() - row > 0) method = (c) -> {};
-//            for (Cell move :  movesList) {
-//
-//                }
-//        } else {
-//            if (newColour != getColour()) {
-//                if (getRow() - row == 1) {
-//                    movesList.add(cell);
-//                    for (int i = row + 1; i < 8; i++) {
-//                        if (hitPiece(i, col)) return;
-//                    }
-//                } else if (getRow() - row == -1) {
-//                    movesList.add(cell);
-//                    for (int i = row - 1; i > 0; i--) {
-//                        if (hitPiece(i, col)) return;
-//                    }
-//                } else if (getCol() - col == 1) {
-//                    movesList.add(cell);
-//                    for (int i = col + 1; i < 8; i++) {
-//                        if (hitPiece(i, col)) return;
-//                    }
-//                } else if (getCol() - col == -1) {
-//                    movesList.add(cell);
-//                    for (int i = col - 1; i > 0; i--) {
-//                        if (hitPiece(i, col)) return;
-//                    }
-//                }
-//            }
-//        }
     }
 
     @Override

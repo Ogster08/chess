@@ -4,12 +4,8 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="5ecba770-62e4-41d3-b203-db736912793c" name="Changes" comment="it changed">
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/example/chessengine/UCI/Rook.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/chessengine/UCI/King.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/chessengine/UCI/King.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/chessengine/UCI/Pawn.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/chessengine/UCI/Pawn.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/chessengine/UCI/Piece.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/chessengine/UCI/Piece.java" afterDir="false" />
+    <list default="true" id="5ecba770-62e4-41d3-b203-db736912793c" name="Changes" comment="fixed not clearing movesList">
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/chessengine/UCI/Rook.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/chessengine/UCI/Rook.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -127,7 +123,7 @@
       <workItem from="1762247937654" duration="1354000" />
       <workItem from="1762531124163" duration="5949000" />
       <workItem from="1763037748537" duration="801000" />
-      <workItem from="1763110690307" duration="3876000" />
+      <workItem from="1763110690307" duration="3995000" />
     </task>
     <task id="LOCAL-00001" summary="Generated JavaFX base code">
       <option name="closed" value="true" />
@@ -177,7 +173,23 @@
       <option name="project" value="LOCAL" />
       <updated>1761086262974</updated>
     </task>
-    <option name="localTasksCounter" value="7" />
+    <task id="LOCAL-00007" summary="Added rook piece">
+      <option name="closed" value="true" />
+      <created>1763114664448</created>
+      <option name="number" value="00007" />
+      <option name="presentableId" value="LOCAL-00007" />
+      <option name="project" value="LOCAL" />
+      <updated>1763114664448</updated>
+    </task>
+    <task id="LOCAL-00008" summary="fixed not clearing movesList">
+      <option name="closed" value="true" />
+      <created>1763114689392</created>
+      <option name="number" value="00008" />
+      <option name="presentableId" value="LOCAL-00008" />
+      <option name="project" value="LOCAL" />
+      <updated>1763114689392</updated>
+    </task>
+    <option name="localTasksCounter" value="9" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -190,7 +202,9 @@
     <MESSAGE value="fixed Pawn move" />
     <MESSAGE value="added King class" />
     <MESSAGE value="it changed" />
-    <option name="LAST_COMMIT_MESSAGE" value="it changed" />
+    <MESSAGE value="Added rook piece" />
+    <MESSAGE value="fixed not clearing movesList" />
+    <option name="LAST_COMMIT_MESSAGE" value="fixed not clearing movesList" />
   </component>
   <component name="XSLT-Support.FileAssociations.UIState">
     <expand />
