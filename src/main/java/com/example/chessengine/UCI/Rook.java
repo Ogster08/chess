@@ -2,7 +2,6 @@ package com.example.chessengine.UCI;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.function.Consumer;
 
 public class Rook extends Piece {
     private boolean canCastle; //the Board will deal with castling

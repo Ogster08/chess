@@ -4,7 +4,7 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="5ecba770-62e4-41d3-b203-db736912793c" name="Changes" comment="fixed not clearing movesList">
+    <list default="true" id="5ecba770-62e4-41d3-b203-db736912793c" name="Changes" comment="removed unused commented code">
       <change beforePath="$PROJECT_DIR$/src/main/java/com/example/chessengine/UCI/Rook.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/chessengine/UCI/Rook.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -123,7 +123,7 @@
       <workItem from="1762247937654" duration="1354000" />
       <workItem from="1762531124163" duration="5949000" />
       <workItem from="1763037748537" duration="801000" />
-      <workItem from="1763110690307" duration="3995000" />
+      <workItem from="1763110690307" duration="4115000" />
     </task>
     <task id="LOCAL-00001" summary="Generated JavaFX base code">
       <option name="closed" value="true" />
@@ -189,7 +189,15 @@
       <option name="project" value="LOCAL" />
       <updated>1763114689392</updated>
     </task>
-    <option name="localTasksCounter" value="9" />
+    <task id="LOCAL-00009" summary="removed unused commented code">
+      <option name="closed" value="true" />
+      <created>1763114776654</created>
+      <option name="number" value="00009" />
+      <option name="presentableId" value="LOCAL-00009" />
+      <option name="project" value="LOCAL" />
+      <updated>1763114776654</updated>
+    </task>
+    <option name="localTasksCounter" value="10" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -204,7 +212,8 @@
     <MESSAGE value="it changed" />
     <MESSAGE value="Added rook piece" />
     <MESSAGE value="fixed not clearing movesList" />
-    <option name="LAST_COMMIT_MESSAGE" value="fixed not clearing movesList" />
+    <MESSAGE value="removed unused commented code" />
+    <option name="LAST_COMMIT_MESSAGE" value="removed unused commented code" />
   </component>
   <component name="XSLT-Support.FileAssociations.UIState">
     <expand />
