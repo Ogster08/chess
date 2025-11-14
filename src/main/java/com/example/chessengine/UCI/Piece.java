@@ -1,11 +1,12 @@
 package com.example.chessengine.UCI;
 
+import java.util.ArrayList;
 import java.util.List;
 
 public abstract class Piece implements CellListener {
     private final Board board;
     private int row, col;
-    protected final List<Cell> cellsList;
+    protected final List<Cell> cellsList =  new ArrayList<>();
     protected List<Cell> movesList;
     private final Colour colour;
 
@@ -14,7 +15,14 @@ public abstract class Piece implements CellListener {
         this.row = row;
         this.col = col;
         this.colour = colour;
-        cellsList = TheoreticalReachableCells();
+
+        for(Cell c : TheoreticalReachableCells()){
+            c.addListener(this);
+            cellsList.add(c);
+        }
+
+        CalculateValidMoves();
+
 
     }
 
