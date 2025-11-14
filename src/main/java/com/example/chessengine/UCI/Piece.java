@@ -44,6 +44,12 @@ public abstract class Piece implements CellListener {
 
     }
 
+    public void removePiece(){
+        for(Cell c : cellsList){
+            c.removeListener(this);
+        }
+    }
+
     @Override
     public void CellChanged(int row, int col, Colour oldColour, Colour newColour) {
         ReCalculateValidMoves(row, col, oldColour, newColour);

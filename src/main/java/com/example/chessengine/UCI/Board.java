@@ -41,6 +41,7 @@ public class Board{
         if (p.getColour() == Colour.WHITE){ whiteBitBoard &= mask; }
         else if (p.getColour() == Colour.BLACK){ blackBitBoard &= mask; }
 
+        p.removePiece();
         cells[row][col].setPiece(null);
     }
 
