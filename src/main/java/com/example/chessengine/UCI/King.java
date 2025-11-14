@@ -25,6 +25,7 @@ public class King extends Piece {
 
     @Override
     protected void CalculateValidMoves() {
+        movesList.clear();
         for (Cell cell : cellsList) {
             if (cell.getPiece() != null && cell.getPiece().getColour() != getColour()) {
                 movesList.add(cell);
@@ -34,6 +35,17 @@ public class King extends Piece {
 
     @Override
     protected void ReCalculateValidMoves(int row, int col, Colour oldColour, Colour newColour) {
+        Cell cell = getBoard().getCell(row, col);
+        movesList.remove(cell);
+        if (newColour != getColour()) {
+            movesList.add(cell);
+        }
+    }
 
+    @Override
+    public void move(int newRow, int newCol) {
+        castleLeft = false;
+        castleRight = false;
+        super.move(newRow, newCol);
     }
 }

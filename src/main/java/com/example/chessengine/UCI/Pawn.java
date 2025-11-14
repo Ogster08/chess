@@ -43,13 +43,33 @@ public class Pawn extends Piece {
 
     @Override
     protected void CalculateValidMoves() {
+        movesList.clear();
         for (Cell cell : cellsList) {
             Piece piece = cell.getPiece();
 
-            if (cell.getCol() == getCol() && cell.getPiece() != null){
+            if (Math.abs(getCol() - cell.getCol()) == 1 && cell.getPiece() != null){
                     movesList.add(cell);
             } else if (piece != null && piece.getColour() != getColour()) {
-                movesList.add(cell);
+                if (!firstRank){
+                    movesList.add(cell);
+                }
+                else {
+                    if (Math.abs(getRow() - cell.getRow()) == 1){
+                        movesList.add(cell);
+                    }
+                    else {
+                        if (getColour() == Colour.WHITE){
+                            if(getBoard().getCell(getRow() + 1, getCol()) == null){
+                                movesList.add(cell);
+                            }
+                        }
+                        else {
+                            if(getBoard().getCell(getRow() - 1, getCol()) == null){
+                                movesList.add(cell);
+                            }
+                        }
+                    }
+                }
             }
         }
     }

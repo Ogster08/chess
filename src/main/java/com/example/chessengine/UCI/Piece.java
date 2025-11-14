@@ -68,4 +68,12 @@ public abstract class Piece implements CellListener {
     protected void setCol(int col){
         this.col = col;
     }
+
+    public List<Cell> getMovesList() {
+        return movesList;
+    }
+
+    protected void setMovesList(List<Cell> movesList) {
+        this.movesList = movesList;
+    }
 }
