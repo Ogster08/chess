@@ -5,10 +5,10 @@ import java.util.List;
 
 public class Rook extends Piece {
     private boolean canCastle; //the Board will deal with castling
-    private List<Cell> upMovesList;
-    private List<Cell> downMovesList;
-    private List<Cell> leftMovesList;
-    private List<Cell> rightMovesList;
+    private List<Cell> upMovesList = new ArrayList<>();
+    private List<Cell> downMovesList  = new ArrayList<>();
+    private List<Cell> leftMovesList = new ArrayList<>();
+    private List<Cell> rightMovesList  = new ArrayList<>();
 
     public Rook(Board board, int row, int col, Colour colour,  boolean canCastle) {
         super(board, row, col, colour);
@@ -33,18 +33,27 @@ public class Rook extends Piece {
 
     @Override
     protected void CalculateValidMoves() {
+        upMovesList.clear();
+        downMovesList.clear();
+        leftMovesList.clear();
+        rightMovesList.clear();
         for (int i = getRow() - 1; i >= 0; i--) {
-            if (hitPiece(i, getCol(), leftMovesList)) break;
+            if (hitPiece(i, getCol(), downMovesList)) break;
         }
         for (int i = getRow() + 1; i < 8; i++) {
-            if (hitPiece(i, getCol(), rightMovesList)) break;
+            if (hitPiece(i, getCol(), upMovesList)) break;
         }
         for (int i = getCol() - 1; i >= 0; i--) {
-            if (hitPiece(getRow(), i, downMovesList)) break;
+            if (hitPiece(getRow(), i, leftMovesList)) break;
         }
-        for (int i = getRow() + 1; i < 8; i++) {
-            if (hitPiece(getRow(), i, upMovesList)) break;
+        for (int i = getCol() + 1; i < 8; i++) {
+            if (hitPiece(getRow(), i, rightMovesList)) break;
         }
+        movesList.clear();
+        movesList.addAll(leftMovesList);
+        movesList.addAll(rightMovesList);
+        movesList.addAll(downMovesList);
+        movesList.addAll(upMovesList);
     }
 
     private boolean hitPiece(int row, int col, List<Cell> cells) {
@@ -63,27 +72,27 @@ public class Rook extends Piece {
         Cell cell = getBoard().getCell(row, col);
 
         if (getRow() - row > 0){
-            leftMovesList.clear();
+            downMovesList.clear();
             for (int i = getRow() - 1; i >= 0; i--) {
-                if (hitPiece(i, getCol(), leftMovesList)) break;
+                if (hitPiece(i, getCol(), downMovesList)) break;
             }
         }
         if (getRow() - row < 0){
-            rightMovesList.clear();
+            upMovesList.clear();
             for (int i = getRow() + 1; i < 8; i++) {
-                if (hitPiece(i, getCol(), rightMovesList)) break;
+                if (hitPiece(i, getCol(), upMovesList)) break;
             }
         }
         if (getCol() - col > 0){
-            downMovesList.clear();
+            leftMovesList.clear();
             for (int i = getCol() - 1; i >= 0; i--) {
-                if (hitPiece(getRow(), i, downMovesList)) break;
+                if (hitPiece(getRow(), i, leftMovesList)) break;
             }
         }
         if (getCol() - col < 0){
-            upMovesList.clear();
-            for (int i = getRow() + 1; i < 8; i++) {
-                if (hitPiece(getRow(), i, upMovesList)) break;
+            rightMovesList.clear();
+            for (int i = getCol() + 1; i < 8; i++) {
+                if (hitPiece(getRow(), i, rightMovesList)) break;
             }
         }
         movesList.clear();
