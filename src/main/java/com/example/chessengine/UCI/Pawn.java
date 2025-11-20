@@ -3,14 +3,31 @@ package com.example.chessengine.UCI;
 import java.util.ArrayList;
 import java.util.List;
 
+/**
+ * The class for the pawn chess piece
+ */
 public class Pawn extends Piece {
+    /**
+     * If the pawn is still on its first rank, allowing it to move 2 squares forward
+     */
     boolean firstRank;
 
+    /**
+     * The constructor for a pawn piece being added to a chessboard, also checking if the pawn is on its first rank
+     * @param board The board the piece is being added to
+     * @param row must be between 0 and 7 inclusive
+     * @param col must be between 0 and 7 inclusive
+     * @param colour The colour of the new piece
+     */
     public Pawn(Board board, int row, int col, Colour colour) {
         super(board, row, col, colour);
         firstRank = (getColour() == Colour.WHITE && row == 1) || (getColour() == Colour.BLACK && row == 6);
     }
 
+    /**
+     * Calculates all the squares the pawn can move to apart from en passant as that is done by the board
+     * @return A list of all the cells on the board that the pawn could reach if the board was empty
+     */
     @Override
     protected List<Cell> TheoreticalReachableCells() {
         List<Cell> cells = new ArrayList<Cell>();
@@ -41,6 +58,9 @@ public class Pawn extends Piece {
         return cells;
     }
 
+    /**
+     * Calculates all the pseudolegal moves in the current position by seeing if there is a piece to take there or the pawn can move there, apart from en passant as the board deals with that
+     */
     @Override
     protected void CalculateValidMoves() {
         movesList.clear();
@@ -74,6 +94,13 @@ public class Pawn extends Piece {
         }
     }
 
+    /**
+     * updates the pseudolegal moves based on the change
+     * @param row  must be between 0 and 7 inclusive
+     * @param col must be between 0 and 7 inclusive
+     * @param oldColour the colour of the old piece
+     * @param newColour the colour of the new piece
+     */
     @Override
     protected void ReCalculateValidMoves(int row, int col, Colour oldColour, Colour newColour) {
         Cell cell = getBoard().getCell(row, col);
@@ -94,9 +121,13 @@ public class Pawn extends Piece {
         }
     }
 
+    /**
+     * updates whether the pawn is on the first rank, while the row is updated
+     * @param row The new row of the moved piece (0 to 7 inclusive)
+     */
     @Override
     protected void setRow(int row) {
         super.setRow(row);
-        firstRank = (getColour() == Colour.WHITE && row == 1) || (getColour() == Colour.BLACK && row == 7);
+        firstRank = (getColour() == Colour.WHITE && row == 1) || (getColour() == Colour.BLACK && row == 6);
     }
 }
