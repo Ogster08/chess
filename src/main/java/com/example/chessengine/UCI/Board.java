@@ -14,7 +14,7 @@ public class Board{
     private long blackBitBoard = 0;
 
     /**
-     * Constructor to create a new empty baord
+     * Constructor to create a new empty board
      */
     public Board() {
         for(int i = 0; i < 8; i++){

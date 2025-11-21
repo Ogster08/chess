@@ -36,12 +36,36 @@ public class Bishop extends Piece {
     }
 
     /**
-     * Calculates all the squares the rook could move to if the board was empty
-     * @return A list of all the cells on the board that the pawn could reach if the board was empty
+     * Calculates all the squares the bishop could move to if the board was empty
+     * @return A list of all the cells on the board that the bishop could reach if the board was empty
      */
     @Override
     protected List<Cell> TheoreticalReachableCells() {
-        return List.of();
+        List<Cell> cells = new ArrayList<>();
+        WalkDiagonal(1,1, cells);
+        WalkDiagonal(-1,1, cells);
+        WalkDiagonal(1,-1, cells);
+        WalkDiagonal(-1,-1, cells);
+        return cells;
+    }
+
+    protected void WalkDiagonal(int rowD, int colD, List<Cell> cells) {
+        int row = getRow() + rowD;
+        int col = getCol() + colD;
+        while (row <= 7 && col <= 7 && row >= 0 && col >= 0) {
+            cells.add(getBoard().getCell(row, col));
+            row += rowD;
+            col += colD;
+        }
+    }
+
+    protected void WalkDiagonalUntilHit(int rowD, int colD, List<Cell> cells) {
+        int row = getRow() + rowD;
+        int col = getCol() + colD;
+        while (row <= 7 && col <= 7 && row >= 0 && col >= 0 && !hitPiece(row, col, cells)) {
+            row += rowD;
+            col += colD;
+        }
     }
 
     /**
@@ -49,7 +73,19 @@ public class Bishop extends Piece {
      */
     @Override
     protected void CalculateValidMoves() {
-
+        upLeftMovesList.clear();
+        upRightMovesList.clear();
+        downLeftMovesList.clear();
+        downRightMovesList.clear();
+        WalkDiagonalUntilHit(1,-1, upLeftMovesList);
+        WalkDiagonalUntilHit(1,1, upRightMovesList);
+        WalkDiagonalUntilHit(-1,-1, downLeftMovesList);
+        WalkDiagonalUntilHit(-1,1, downRightMovesList);
+        movesList.clear();
+        movesList.addAll(upLeftMovesList);
+        movesList.addAll(upRightMovesList);
+        movesList.addAll(downLeftMovesList);
+        movesList.addAll(downRightMovesList);
     }
 
     /**
@@ -78,6 +114,26 @@ public class Bishop extends Piece {
      */
     @Override
     protected void ReCalculateValidMoves(int row, int col, Colour oldColour, Colour newColour) {
+        if (getRow() - row < 0){
+            if (getCol() - col > 0){
+                upLeftMovesList.clear();
+                WalkDiagonalUntilHit(1,-1, upLeftMovesList);
+            }
+            upRightMovesList.clear();
+            WalkDiagonalUntilHit(1,1, upRightMovesList);
+        }else  if (getCol() - col > 0){
+            downLeftMovesList.clear();
+            WalkDiagonalUntilHit(-1,-1, downLeftMovesList);
+        }
+        else {
+            downRightMovesList.clear();
+            WalkDiagonalUntilHit(-1,1, downRightMovesList);
+        }
 
+        movesList.clear();
+        movesList.addAll(upLeftMovesList);
+        movesList.addAll(upRightMovesList);
+        movesList.addAll(downLeftMovesList);
+        movesList.addAll(downRightMovesList);
     }
 }

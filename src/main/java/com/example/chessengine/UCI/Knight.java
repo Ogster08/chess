@@ -19,7 +19,7 @@ public class Knight extends Piece {
     /**
      * Calculates all the squares the knight can move to
      *
-     * @return A list of all the cells on the board that the piece could reach if the board was empty
+     * @return A list of all the cells on the board that the knight could reach if the board was empty
      */
     @Override
     protected List<Cell> TheoreticalReachableCells() {

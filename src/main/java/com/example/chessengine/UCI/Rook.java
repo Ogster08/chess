@@ -42,7 +42,7 @@ public class Rook extends Piece {
 
     /**
      * Calculates all the squares the rook could move to if the board was empty
-     * @return A list of all the cells on the board that the pawn could reach if the board was empty
+     * @return A list of all the cells on the board that the rook could reach if the board was empty
      */
     @Override
     protected List<Cell> TheoreticalReachableCells() {
@@ -114,8 +114,6 @@ public class Rook extends Piece {
      */
     @Override
     protected void ReCalculateValidMoves(int row, int col, Colour oldColour, Colour newColour) {
-        Cell cell = getBoard().getCell(row, col);
-
         if (getRow() - row > 0){
             downMovesList.clear();
             for (int i = getRow() - 1; i >= 0; i--) {
