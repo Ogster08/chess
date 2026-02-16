@@ -156,4 +156,8 @@ public class Rook extends Piece {
         canCastle = false;
         super.move(newRow, newCol);
     }
+
+    public boolean isCanCastle() {
+        return canCastle;
+    }
 }
