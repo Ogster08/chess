@@ -8,13 +8,9 @@ import java.util.List;
  */
 public class King extends Piece {
     /**
-     * If the king can still castle to the left
+     * If the king can still castle (independent of if the rooks can castle with the king)
      */
-    boolean castleLeft;
-    /**
-     * If the king can still castle to the right
-     */
-    boolean castleRight;
+    boolean canCastle;
 
     /**
      * The constructor for a new king being added to a chessboard
@@ -22,13 +18,11 @@ public class King extends Piece {
      * @param row must be between 0 and 7 inclusive
      * @param col must be between 0 and 7 inclusive
      * @param colour The colour of the new piece
-     * @param castleLeft If the king can still castle to the left
-     * @param castleRight If the king can still castle to the right
+     * @param castle if the king can castle (independent of the rooks)
      */
-    public King(Board board, int row, int col, Colour colour, boolean castleLeft, boolean castleRight) {
+    public King(Board board, int row, int col, Colour colour, boolean castle) {
         super(board, row, col, colour);
-        this.castleLeft = castleLeft;
-        this.castleRight = castleRight;
+        this.canCastle = castle;
     }
 
     /**
@@ -38,10 +32,10 @@ public class King extends Piece {
     @Override
     protected List<Cell> TheoreticalReachableCells() {
         List<Cell> cells = new ArrayList<Cell>();
-        if (getRow() > 0) cells.add(new Cell(getRow() - 1, getCol()));
-        if (getRow() < 7) cells.add(new Cell(getRow() + 1, getCol()));
-        if (getCol() > 0) cells.add(new Cell(getRow(), getCol() - 1));
-        if (getCol() < 7) cells.add(new Cell(getRow(), getCol() + 1));
+        if (getRow() > 0) cells.add(getBoard().getCell(getRow() - 1, getCol()));
+        if (getRow() < 7) cells.add(getBoard().getCell(getRow() + 1, getCol()));
+        if (getCol() > 0) cells.add(getBoard().getCell(getRow(), getCol() - 1));
+        if (getCol() < 7) cells.add(getBoard().getCell(getRow(), getCol() + 1));
         return cells;
     }
 
@@ -52,7 +46,7 @@ public class King extends Piece {
     protected void CalculateValidMoves() {
         movesList.clear();
         for (Cell cell : cellsList) {
-            if (cell.getPiece() != null && cell.getPiece().getColour() != getColour()) {
+            if (cell.getPiece() == null || cell.getPiece().getColour() != getColour()) {
                 movesList.add(cell);
             }
         }
@@ -82,8 +76,7 @@ public class King extends Piece {
      */
     @Override
     public void move(int newRow, int newCol) {
-        castleLeft = false;
-        castleRight = false;
+        canCastle = false;
         super.move(newRow, newCol);
     }
 }

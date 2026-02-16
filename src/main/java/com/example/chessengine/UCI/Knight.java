@@ -51,7 +51,7 @@ public class Knight extends Piece {
     protected void CalculateValidMoves() {
         movesList.clear();
         for (Cell cell : cellsList) {
-            if (cell.getPiece() != null && cell.getPiece().getColour() != getColour()) {
+            if (cell.getPiece() != null || cell.getPiece().getColour() != getColour()) {
                 movesList.add(cell);
             }
         }
