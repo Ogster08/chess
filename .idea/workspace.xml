@@ -4,19 +4,8 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="5ecba770-62e4-41d3-b203-db736912793c" name="Changes" comment="Knight piece added and finished">
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/example/chessengine/UCI/CastlingMove.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/example/chessengine/UCI/EnPassantMove.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/example/chessengine/UCI/Move.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/chessengine/UCI/Bishop.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/chessengine/UCI/Bishop.java" afterDir="false" />
+    <list default="true" id="5ecba770-62e4-41d3-b203-db736912793c" name="Changes" comment="removed unused commented out code, as hopefully fixed checking which moves are valid (both functions), but they aren't tested">
       <change beforePath="$PROJECT_DIR$/src/main/java/com/example/chessengine/UCI/Board.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/chessengine/UCI/Board.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/chessengine/UCI/Cell.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/chessengine/UCI/Cell.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/chessengine/UCI/King.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/chessengine/UCI/King.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/chessengine/UCI/Knight.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/chessengine/UCI/Knight.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/chessengine/UCI/Pawn.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/chessengine/UCI/Pawn.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/chessengine/UCI/Queen.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/chessengine/UCI/Queen.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/chessengine/UCI/Rook.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/chessengine/UCI/Rook.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -157,7 +146,7 @@
       <workItem from="1768314292160" duration="53000" />
       <workItem from="1769601796204" duration="5792000" />
       <workItem from="1770041669969" duration="1819000" />
-      <workItem from="1771158765280" duration="21320000" />
+      <workItem from="1771158765280" duration="22042000" />
     </task>
     <task id="LOCAL-00001" summary="Generated JavaFX base code">
       <option name="closed" value="true" />
@@ -295,7 +284,63 @@
       <option name="project" value="LOCAL" />
       <updated>1763719575587</updated>
     </task>
-    <option name="localTasksCounter" value="18" />
+    <task id="LOCAL-00018" summary="Added move classes, for simple move validation">
+      <option name="closed" value="true" />
+      <created>1771256966878</created>
+      <option name="number" value="00018" />
+      <option name="presentableId" value="LOCAL-00018" />
+      <option name="project" value="LOCAL" />
+      <updated>1771256966878</updated>
+    </task>
+    <task id="LOCAL-00019" summary="Added piece being removed functionality to cell class, so it deals with it rather than the board">
+      <option name="closed" value="true" />
+      <created>1771257048709</created>
+      <option name="number" value="00019" />
+      <option name="presentableId" value="LOCAL-00019" />
+      <option name="project" value="LOCAL" />
+      <updated>1771257048709</updated>
+    </task>
+    <task id="LOCAL-00020" summary="added Move classes, this should be earlier, and has changes from several commits">
+      <option name="closed" value="true" />
+      <created>1771257139779</created>
+      <option name="number" value="00020" />
+      <option name="presentableId" value="LOCAL-00020" />
+      <option name="project" value="LOCAL" />
+      <updated>1771257139779</updated>
+    </task>
+    <task id="LOCAL-00021" summary="changed how checking castling works, so the king only checks if it can at all. ALso, fixed creating new cells in TheoreticalReachableCella and wrong boolean logic when calculating valid moves (in knight as well)">
+      <option name="closed" value="true" />
+      <created>1771257344498</created>
+      <option name="number" value="00021" />
+      <option name="presentableId" value="LOCAL-00021" />
+      <option name="project" value="LOCAL" />
+      <updated>1771257344498</updated>
+    </task>
+    <task id="LOCAL-00022" summary="Added boolean getter of if the rook can castle, as castling functionality changed">
+      <option name="closed" value="true" />
+      <created>1771257441604</created>
+      <option name="number" value="00022" />
+      <option name="presentableId" value="LOCAL-00022" />
+      <option name="project" value="LOCAL" />
+      <updated>1771257441604</updated>
+    </task>
+    <task id="LOCAL-00023" summary="fixed WalkDiagonalUntilHit functions not adding the valid cells to the list taken as a parameter">
+      <option name="closed" value="true" />
+      <created>1771257529212</created>
+      <option name="number" value="00023" />
+      <option name="presentableId" value="LOCAL-00023" />
+      <option name="project" value="LOCAL" />
+      <updated>1771257529212</updated>
+    </task>
+    <task id="LOCAL-00024" summary="removed unused commented out code, as hopefully fixed checking which moves are valid (both functions), but they aren't tested">
+      <option name="closed" value="true" />
+      <created>1771257576285</created>
+      <option name="number" value="00024" />
+      <option name="presentableId" value="LOCAL-00024" />
+      <option name="project" value="LOCAL" />
+      <updated>1771257576285</updated>
+    </task>
+    <option name="localTasksCounter" value="25" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -313,7 +358,6 @@
     </option>
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="Generated JavaFX base code" />
     <MESSAGE value="Added chess board" />
     <MESSAGE value="Added abstract classes for generating moves" />
     <MESSAGE value="fixed Pawn move" />
@@ -332,7 +376,14 @@
     <MESSAGE value="Knight piece added and finished" />
     <MESSAGE value="Queen piece added and finished" />
     <MESSAGE value="minor fixes" />
-    <option name="LAST_COMMIT_MESSAGE" value="minor fixes" />
+    <MESSAGE value="Added move classes, for simple move validation" />
+    <MESSAGE value="Added piece being removed functionality to cell class, so it deals with it rather than the board" />
+    <MESSAGE value="added Move classes, this should be earlier, and has changes from several commits" />
+    <MESSAGE value="changed how checking castling works, so the king only checks if it can at all. ALso, fixed creating new cells in TheoreticalReachableCella and wrong boolean logic when calculating valid moves (in knight as well)" />
+    <MESSAGE value="Added boolean getter of if the rook can castle, as castling functionality changed" />
+    <MESSAGE value="fixed WalkDiagonalUntilHit functions not adding the valid cells to the list taken as a parameter" />
+    <MESSAGE value="removed unused commented out code, as hopefully fixed checking which moves are valid (both functions), but they aren't tested" />
+    <option name="LAST_COMMIT_MESSAGE" value="removed unused commented out code, as hopefully fixed checking which moves are valid (both functions), but they aren't tested" />
   </component>
   <component name="XSLT-Support.FileAssociations.UIState">
     <expand />
