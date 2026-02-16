@@ -47,6 +47,7 @@ public class Cell {
     public void setPiece(Piece newPiece){
         Piece  oldPiece = this.piece;
         piece = newPiece;
+        if (oldPiece != null) oldPiece.removePiece();
         Colour oldColour = oldPiece != null ? oldPiece.getColour() : null;
         Colour newColour = newPiece != null ? newPiece.getColour() : null;
         notifyListeners(oldColour, newColour);
