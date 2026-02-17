@@ -94,4 +94,13 @@ public class Cell {
             l.CellChanged(row, col, oldColour, newColour);
         }
     }
+
+    /**
+     * Makes a string out of the cell object, with its row and column
+     * @return The string representation of the object
+     */
+    @Override
+    public String toString(){
+        return "Cell[" + row + ", " + col + "]";
+    }
 }
