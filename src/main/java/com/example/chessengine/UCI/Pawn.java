@@ -65,20 +65,17 @@ public class Pawn extends Piece {
                     movesList.add(cell); // For moving forward 1 square when not on the first rank
                 } else {
                     if (Math.abs(getRow() - cell.getRow()) == 1){
-                        System.out.println("forward first rank");
                         movesList.add(cell); // For moving forward 1 square when on the first rank
                     }
                     else {
                         if (getColour() == Colour.WHITE){
                             System.out.println("test");
                             if(getBoard().getCell(getRow() + 1, getCol()).getPiece() == null){
-                                System.out.println("forward 2 first rank white");
                                 movesList.add(cell); // For moving forward 2 squares when on the first rank
                             }
                         }
                         else {
                             if(getBoard().getCell(getRow() - 1, getCol()).getPiece() == null){
-                                System.out.println("forward 2 first rank black");
                                 movesList.add(cell); // For moving forward 2 squares when on the first rank
                             }
                         }
