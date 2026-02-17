@@ -38,6 +38,7 @@ public class Rook extends Piece {
     public Rook(Board board, int row, int col, Colour colour,  boolean canCastle) {
         super(board, row, col, colour);
         this.canCastle = canCastle;
+        init();
     }
 
     /**

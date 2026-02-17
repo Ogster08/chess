@@ -22,7 +22,7 @@ public abstract class Piece implements CellListener {
     /**
      * The list of all pseudolegal moves the piece can do based on the current position on the board
      */
-    protected List<Cell> movesList;
+    protected final List<Cell> movesList = new ArrayList<>();
     /**
      * The colour of the Piece (WHITE or BLACK)
      */
@@ -40,15 +40,15 @@ public abstract class Piece implements CellListener {
         this.row = row;
         this.col = col;
         this.colour = colour;
+    }
 
+    protected void init(){
         for(Cell c : TheoreticalReachableCells()){
             c.addListener(this);
             cellsList.add(c);
         }
 
         CalculateValidMoves();
-
-
     }
 
     /**
@@ -156,5 +156,10 @@ public abstract class Piece implements CellListener {
      */
     protected void setCol(int col){
         this.col = col;
+    }
+
+    @Override
+    public String toString(){
+        return "Piece " + getClass().getSimpleName() + "at [" + row + ", " + col + "]";
     }
 }

@@ -21,7 +21,8 @@ public class Pawn extends Piece {
      */
     public Pawn(Board board, int row, int col, Colour colour) {
         super(board, row, col, colour);
-        firstRank = (getColour() == Colour.WHITE && row == 1) || (getColour() == Colour.BLACK && row == 6);
+        firstRank = (colour == Colour.WHITE && row == 1) || (colour == Colour.BLACK && row == 6);
+        init();
     }
 
     /**
@@ -55,24 +56,29 @@ public class Pawn extends Piece {
         for (Cell cell : cellsList) {
             Piece piece = cell.getPiece();
 
-            if (Math.abs(getCol() - cell.getCol()) == 1 && piece != null && piece.getColour() !=  getColour()){
+            if (Math.abs(getCol() - cell.getCol()) == 1){
+                if (piece != null && piece.getColour() !=  getColour()) {
                     movesList.add(cell); // For diagonal captures
+                }
             } else if (piece == null) {
                 if (!firstRank){
                     movesList.add(cell); // For moving forward 1 square when not on the first rank
-                }
-                else {
+                } else {
                     if (Math.abs(getRow() - cell.getRow()) == 1){
+                        System.out.println("forward first rank");
                         movesList.add(cell); // For moving forward 1 square when on the first rank
                     }
                     else {
                         if (getColour() == Colour.WHITE){
+                            System.out.println("test");
                             if(getBoard().getCell(getRow() + 1, getCol()).getPiece() == null){
+                                System.out.println("forward 2 first rank white");
                                 movesList.add(cell); // For moving forward 2 squares when on the first rank
                             }
                         }
                         else {
                             if(getBoard().getCell(getRow() - 1, getCol()).getPiece() == null){
+                                System.out.println("forward 2 first rank black");
                                 movesList.add(cell); // For moving forward 2 squares when on the first rank
                             }
                         }

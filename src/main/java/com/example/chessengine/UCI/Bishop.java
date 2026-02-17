@@ -33,6 +33,7 @@ public class Bishop extends Piece {
      */
     public Bishop(Board board, int row, int col, Colour colour) {
         super(board, row, col, colour);
+        init();
     }
 
     /**

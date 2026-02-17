@@ -14,6 +14,7 @@ public class Knight extends Piece {
      */
     public Knight(Board board, int row, int col, Colour colour) {
         super(board, row, col, colour);
+        init();
     }
 
     /**

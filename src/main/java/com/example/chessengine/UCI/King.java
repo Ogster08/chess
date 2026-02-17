@@ -23,6 +23,7 @@ public class King extends Piece {
     public King(Board board, int row, int col, Colour colour, boolean castle) {
         super(board, row, col, colour);
         this.canCastle = castle;
+        init();
     }
 
     /**
