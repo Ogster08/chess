@@ -4,9 +4,19 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="5ecba770-62e4-41d3-b203-db736912793c" name="Changes" comment="Fixed chessboard scaling, and added function to update the GUI from a board object">
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/chessengine/HelloApplication.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/chessengine/HelloApplication.java" afterDir="false" />
+    <list default="true" id="5ecba770-62e4-41d3-b203-db736912793c" name="Changes" comment="testing GUI and move calculations">
+      <change afterPath="$PROJECT_DIR$/src/main/resources/images/black bishop.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/resources/images/black king.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/resources/images/black knight.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/resources/images/black pawn.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/resources/images/black queen.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/resources/images/black rook.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/resources/images/white bishop.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/resources/images/white king.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/resources/images/white knight.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/resources/images/white pawn.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/resources/images/white queen.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/resources/images/white rook.png" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -149,7 +159,7 @@
       <workItem from="1769601796204" duration="5792000" />
       <workItem from="1770041669969" duration="1819000" />
       <workItem from="1771158765280" duration="22552000" />
-      <workItem from="1771320978843" duration="17372000" />
+      <workItem from="1771320978843" duration="17687000" />
     </task>
     <task id="LOCAL-00001" summary="Generated JavaFX base code">
       <option name="closed" value="true" />
@@ -391,7 +401,15 @@
       <option name="project" value="LOCAL" />
       <updated>1771339550568</updated>
     </task>
-    <option name="localTasksCounter" value="31" />
+    <task id="LOCAL-00031" summary="testing GUI and move calculations">
+      <option name="closed" value="true" />
+      <created>1771339641385</created>
+      <option name="number" value="00031" />
+      <option name="presentableId" value="LOCAL-00031" />
+      <option name="project" value="LOCAL" />
+      <updated>1771339641385</updated>
+    </task>
+    <option name="localTasksCounter" value="32" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -409,7 +427,6 @@
     </option>
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="fixed not clearing movesList" />
     <MESSAGE value="removed unused commented code" />
     <MESSAGE value="removed unused import" />
     <MESSAGE value="fixed initialising lists and corrected move calculation loops" />
@@ -434,7 +451,8 @@
     <MESSAGE value="Added toString method for debug purpose" />
     <MESSAGE value="Fixed getPseudolegalMoves to add the target cell when creating a move, and looping through pieces every move" />
     <MESSAGE value="Fixed chessboard scaling, and added function to update the GUI from a board object" />
-    <option name="LAST_COMMIT_MESSAGE" value="Fixed chessboard scaling, and added function to update the GUI from a board object" />
+    <MESSAGE value="testing GUI and move calculations" />
+    <option name="LAST_COMMIT_MESSAGE" value="testing GUI and move calculations" />
   </component>
   <component name="XSLT-Support.FileAssociations.UIState">
     <expand />
