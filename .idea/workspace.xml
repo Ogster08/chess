@@ -4,8 +4,9 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="5ecba770-62e4-41d3-b203-db736912793c" name="Changes" comment="removed unused commented out code, as hopefully fixed checking which moves are valid (both functions), but they aren't tested">
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/chessengine/UCI/Board.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/chessengine/UCI/Board.java" afterDir="false" />
+    <list default="true" id="5ecba770-62e4-41d3-b203-db736912793c" name="Changes" comment="Fixed chessboard scaling, and added function to update the GUI from a board object">
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/chessengine/HelloApplication.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/chessengine/HelloApplication.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -58,32 +59,32 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent"><![CDATA[{
-  "keyToString": {
-    "Application.HelloApplication.executor": "Run",
-    "Application.Main.executor": "Run",
-    "OverrideImplement.generate.javadoc": "true",
-    "RunOnceActivity.ShowReadmeOnStart": "true",
-    "RunOnceActivity.TerminalTabsStorage.copyFrom.TerminalArrangementManager.252": "true",
-    "RunOnceActivity.git.unshallow": "true",
-    "SHARE_PROJECT_CONFIGURATION_FILES": "true",
-    "com.intellij.testIntegration.createTest.CreateTestDialog.defaultLibrary": "JUnit5",
-    "com.intellij.testIntegration.createTest.CreateTestDialog.defaultLibrarySuperClass.JUnit5": "",
-    "git-widget-placeholder": "main",
-    "kotlin-language-version-configured": "true",
-    "node.js.detected.package.eslint": "true",
-    "node.js.detected.package.tslint": "true",
-    "node.js.selected.package.eslint": "(autodetect)",
-    "node.js.selected.package.tslint": "(autodetect)",
-    "nodejs_package_manager_path": "npm",
-    "project.structure.last.edited": "Project",
-    "project.structure.proportion": "0.0",
-    "project.structure.side.proportion": "0.0",
-    "run.code.analysis.last.selected.profile": "pProject Default",
-    "settings.editor.selected.configurable": "reference.settings.ide.settings.uml",
-    "vue.rearranger.settings.migration": "true"
+  <component name="PropertiesComponent">{
+  &quot;keyToString&quot;: {
+    &quot;Application.HelloApplication.executor&quot;: &quot;Run&quot;,
+    &quot;Application.Main.executor&quot;: &quot;Run&quot;,
+    &quot;OverrideImplement.generate.javadoc&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.TerminalTabsStorage.copyFrom.TerminalArrangementManager.252&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.git.unshallow&quot;: &quot;true&quot;,
+    &quot;SHARE_PROJECT_CONFIGURATION_FILES&quot;: &quot;true&quot;,
+    &quot;com.intellij.testIntegration.createTest.CreateTestDialog.defaultLibrary&quot;: &quot;JUnit5&quot;,
+    &quot;com.intellij.testIntegration.createTest.CreateTestDialog.defaultLibrarySuperClass.JUnit5&quot;: &quot;&quot;,
+    &quot;git-widget-placeholder&quot;: &quot;main&quot;,
+    &quot;kotlin-language-version-configured&quot;: &quot;true&quot;,
+    &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
+    &quot;node.js.detected.package.tslint&quot;: &quot;true&quot;,
+    &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
+    &quot;node.js.selected.package.tslint&quot;: &quot;(autodetect)&quot;,
+    &quot;nodejs_package_manager_path&quot;: &quot;npm&quot;,
+    &quot;project.structure.last.edited&quot;: &quot;Project&quot;,
+    &quot;project.structure.proportion&quot;: &quot;0.0&quot;,
+    &quot;project.structure.side.proportion&quot;: &quot;0.0&quot;,
+    &quot;run.code.analysis.last.selected.profile&quot;: &quot;pProject Default&quot;,
+    &quot;settings.editor.selected.configurable&quot;: &quot;reference.settings.ide.settings.uml&quot;,
+    &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
   }
-}]]></component>
+}</component>
   <component name="RecentsManager">
     <key name="CreateClassDialog.RecentsKey">
       <recent name="com.example.chessengine" />
@@ -92,6 +93,7 @@
       <recent name="" />
     </key>
     <key name="MoveFile.RECENT_KEYS">
+      <recent name="C:\Users\olive\OneDrive - Minerva Learning Trust\A-level work\computer science\Coding Projects\ChessEngine\src\main\resources" />
       <recent name="C:\Users\olive\OneDrive - Minerva Learning Trust\A-level work\computer science\Coding Projects\ChessEngine\Javadoc" />
     </key>
     <key name="CreateTestDialog.RecentsKey">
@@ -146,7 +148,8 @@
       <workItem from="1768314292160" duration="53000" />
       <workItem from="1769601796204" duration="5792000" />
       <workItem from="1770041669969" duration="1819000" />
-      <workItem from="1771158765280" duration="22042000" />
+      <workItem from="1771158765280" duration="22552000" />
+      <workItem from="1771320978843" duration="17372000" />
     </task>
     <task id="LOCAL-00001" summary="Generated JavaFX base code">
       <option name="closed" value="true" />
@@ -340,7 +343,55 @@
       <option name="project" value="LOCAL" />
       <updated>1771257576285</updated>
     </task>
-    <option name="localTasksCounter" value="25" />
+    <task id="LOCAL-00025" summary="Removed unused bit boards, added variable for which colour is currently moving, and updated constructor accordingly, while adding a new one, which defaults to white starting first, added lists for different move types, updated remove piece, with functionality going to the cell the piece is in, changed the move function to use the new move classes and accounts for resulting en passant moves from any double pawn moves, and finally a function to return all the pseudolegal moves in the current position by the current colour to move">
+      <option name="closed" value="true" />
+      <created>1771258001509</created>
+      <option name="number" value="00025" />
+      <option name="presentableId" value="LOCAL-00025" />
+      <option name="project" value="LOCAL" />
+      <updated>1771258001509</updated>
+    </task>
+    <task id="LOCAL-00026" summary="it changed">
+      <option name="closed" value="true" />
+      <created>1771258046382</created>
+      <option name="number" value="00026" />
+      <option name="presentableId" value="LOCAL-00026" />
+      <option name="project" value="LOCAL" />
+      <updated>1771258046382</updated>
+    </task>
+    <task id="LOCAL-00027" summary="Fixed initialisation needing to happen at the end of subclass constructors, rather than in the super method">
+      <option name="closed" value="true" />
+      <created>1771338620469</created>
+      <option name="number" value="00027" />
+      <option name="presentableId" value="LOCAL-00027" />
+      <option name="project" value="LOCAL" />
+      <updated>1771338620469</updated>
+    </task>
+    <task id="LOCAL-00028" summary="Added toString method for debug purpose">
+      <option name="closed" value="true" />
+      <created>1771338672581</created>
+      <option name="number" value="00028" />
+      <option name="presentableId" value="LOCAL-00028" />
+      <option name="project" value="LOCAL" />
+      <updated>1771338672581</updated>
+    </task>
+    <task id="LOCAL-00029" summary="Fixed getPseudolegalMoves to add the target cell when creating a move, and looping through pieces every move">
+      <option name="closed" value="true" />
+      <created>1771338744197</created>
+      <option name="number" value="00029" />
+      <option name="presentableId" value="LOCAL-00029" />
+      <option name="project" value="LOCAL" />
+      <updated>1771338744197</updated>
+    </task>
+    <task id="LOCAL-00030" summary="Fixed chessboard scaling, and added function to update the GUI from a board object">
+      <option name="closed" value="true" />
+      <created>1771339550568</created>
+      <option name="number" value="00030" />
+      <option name="presentableId" value="LOCAL-00030" />
+      <option name="project" value="LOCAL" />
+      <updated>1771339550568</updated>
+    </task>
+    <option name="localTasksCounter" value="31" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -358,12 +409,6 @@
     </option>
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="Added chess board" />
-    <MESSAGE value="Added abstract classes for generating moves" />
-    <MESSAGE value="fixed Pawn move" />
-    <MESSAGE value="added King class" />
-    <MESSAGE value="it changed" />
-    <MESSAGE value="Added rook piece" />
     <MESSAGE value="fixed not clearing movesList" />
     <MESSAGE value="removed unused commented code" />
     <MESSAGE value="removed unused import" />
@@ -383,7 +428,13 @@
     <MESSAGE value="Added boolean getter of if the rook can castle, as castling functionality changed" />
     <MESSAGE value="fixed WalkDiagonalUntilHit functions not adding the valid cells to the list taken as a parameter" />
     <MESSAGE value="removed unused commented out code, as hopefully fixed checking which moves are valid (both functions), but they aren't tested" />
-    <option name="LAST_COMMIT_MESSAGE" value="removed unused commented out code, as hopefully fixed checking which moves are valid (both functions), but they aren't tested" />
+    <MESSAGE value="Removed unused bit boards, added variable for which colour is currently moving, and updated constructor accordingly, while adding a new one, which defaults to white starting first, added lists for different move types, updated remove piece, with functionality going to the cell the piece is in, changed the move function to use the new move classes and accounts for resulting en passant moves from any double pawn moves, and finally a function to return all the pseudolegal moves in the current position by the current colour to move" />
+    <MESSAGE value="it changed" />
+    <MESSAGE value="Fixed initialisation needing to happen at the end of subclass constructors, rather than in the super method" />
+    <MESSAGE value="Added toString method for debug purpose" />
+    <MESSAGE value="Fixed getPseudolegalMoves to add the target cell when creating a move, and looping through pieces every move" />
+    <MESSAGE value="Fixed chessboard scaling, and added function to update the GUI from a board object" />
+    <option name="LAST_COMMIT_MESSAGE" value="Fixed chessboard scaling, and added function to update the GUI from a board object" />
   </component>
   <component name="XSLT-Support.FileAssociations.UIState">
     <expand />
