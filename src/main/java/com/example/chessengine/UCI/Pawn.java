@@ -69,7 +69,6 @@ public class Pawn extends Piece {
                     }
                     else {
                         if (getColour() == Colour.WHITE){
-                            System.out.println("test");
                             if(getBoard().getCell(getRow() + 1, getCol()).getPiece() == null){
                                 movesList.add(cell); // For moving forward 2 squares when on the first rank
                             }
