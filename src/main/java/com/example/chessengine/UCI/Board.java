@@ -144,7 +144,10 @@ public class Board{
         for (Cell[] row : cells) {
             for (Cell cell : row) {
                 if (cell.getPiece() != null && cell.getPiece().getColour() == getColourToMove()) {
-                    moves.add(new Move(cell.getPiece(), cell));
+                    Piece p = cell.getPiece();
+                    for (Cell moveCell: p.movesList){
+                        moves.add(new Move(cell.getPiece(), moveCell));
+                    }
                     if (cell.getPiece().getClass() == King.class){
                         King king = (King) cell.getPiece();
                         if (king.canCastle) {
