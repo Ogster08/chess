@@ -154,8 +154,14 @@ public class Board{
                             Arrays.stream(cells).forEach(r -> {
                                 Arrays.stream(r).filter(c -> {
                                     if (c.getPiece() != null && c.getPiece().getColour() == getColourToMove() && c.getPiece().getClass() == Rook.class){
-                                        Rook rook = (Rook) c.getPiece();
-                                        return rook.isCanCastle();
+                                        if (((Rook)c.getPiece()).isCanCastle()){
+                                            for (int i = Math.min(c.getCol(), king.getCol()); i < Math.max(c.getCol(), king.getCol()); i++) {
+                                                if (cells[king.getRow()][i].getPiece() != null){
+                                                    return false;
+                                                }
+                                            }
+                                            return true;
+                                        }
                                     }
                                     return false;
                                 }).forEach(c -> {
