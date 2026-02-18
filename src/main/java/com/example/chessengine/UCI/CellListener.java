@@ -3,6 +3,7 @@ package com.example.chessengine.UCI;
 /**
  * interface to define the method to link cell changes and pieces updating valid moves
  */
+@FunctionalInterface
 public interface CellListener {
     /**
      * Method called when a cell is changed. It is implemented by all pieces, and is used to update pseudolegal moves.
