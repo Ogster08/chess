@@ -103,13 +103,13 @@ public class Pawn extends Piece {
             if (Math.abs(getRow() - row) == 1){
                 movesList.add(cell); // For moving forward 1 square while on the first rank
                 if(getColour() == Colour.WHITE && getBoard().getCell(3, col).getPiece() == null){
-                    cellsList.add(getBoard().getCell(3, col)); // For moving forward 2 squares while on the first rank as the square in between is now clear
+                    movesList.add(getBoard().getCell(3, col)); // For moving forward 2 squares while on the first rank as the square in between is now clear
                 } else if (getBoard().getCell(4, col).getPiece() == null) {
-                    cellsList.add(getBoard().getCell(4, col)); // For moving forward 2 squares while on the first rank as the square in between is now clear
+                    movesList.add(getBoard().getCell(4, col)); // For moving forward 2 squares while on the first rank as the square in between is now clear
                 }
                 return;
             }
-            if(getBoard().getCell(getRow() + getRow() - row, col).getPiece() == null){
+            if(getBoard().getCell(Math.abs(getRow() - row), col).getPiece() == null){
                 movesList.add(cell); // For moving forward 2 squares while on the first rank
             }
         }else if (Math.abs(getCol() - col) == 1 &&
