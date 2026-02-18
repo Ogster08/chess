@@ -4,10 +4,14 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="5ecba770-62e4-41d3-b203-db736912793c" name="Changes" comment="removing unused debug statement">
+    <list default="true" id="5ecba770-62e4-41d3-b203-db736912793c" name="Changes" comment="fixed index outside bounds error, when ReCalculatingValidMoves on  move forward 2 spaces cell, and using cellsList instead of movesList in 2 instances">
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/example/chessengine/UCI/MoveHandler.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/com/example/chessengine/HelloApplication.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/chessengine/HelloApplication.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/chessengine/HelloController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/chessengine/HelloController.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/com/example/chessengine/UCI/Board.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/chessengine/UCI/Board.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/chessengine/UCI/CastlingMove.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/chessengine/UCI/CastlingMove.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/chessengine/UCI/EnPassantMove.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/chessengine/UCI/EnPassantMove.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -17,11 +21,11 @@
   <component name="FileTemplateManagerImpl">
     <option name="RECENT_TEMPLATES">
       <list>
-        <option value="Interface" />
         <option value="Enum" />
         <option value="JUnit5 Test Class" />
         <option value="Record" />
         <option value="Class" />
+        <option value="Interface" />
       </list>
     </option>
   </component>
@@ -150,7 +154,7 @@
       <workItem from="1769601796204" duration="5792000" />
       <workItem from="1770041669969" duration="1819000" />
       <workItem from="1771158765280" duration="22552000" />
-      <workItem from="1771320978843" duration="20263000" />
+      <workItem from="1771320978843" duration="30554000" />
     </task>
     <task id="LOCAL-00001" summary="Generated JavaFX base code">
       <option name="closed" value="true" />
@@ -432,7 +436,55 @@
       <option name="project" value="LOCAL" />
       <updated>1771340785764</updated>
     </task>
-    <option name="localTasksCounter" value="36" />
+    <task id="LOCAL-00036" summary="fixed castling moves not requiring space">
+      <option name="closed" value="true" />
+      <created>1771342870695</created>
+      <option name="number" value="00036" />
+      <option name="presentableId" value="LOCAL-00036" />
+      <option name="project" value="LOCAL" />
+      <updated>1771342870695</updated>
+    </task>
+    <task id="LOCAL-00037" summary="added method to generate the board at the start of a game">
+      <option name="closed" value="true" />
+      <created>1771342892876</created>
+      <option name="number" value="00037" />
+      <option name="presentableId" value="LOCAL-00037" />
+      <option name="project" value="LOCAL" />
+      <updated>1771342892876</updated>
+    </task>
+    <task id="LOCAL-00038" summary="added annotation for clarity">
+      <option name="closed" value="true" />
+      <created>1771444539045</created>
+      <option name="number" value="00038" />
+      <option name="presentableId" value="LOCAL-00038" />
+      <option name="project" value="LOCAL" />
+      <updated>1771444539045</updated>
+    </task>
+    <task id="LOCAL-00039" summary="made toString method better">
+      <option name="closed" value="true" />
+      <created>1771444623213</created>
+      <option name="number" value="00039" />
+      <option name="presentableId" value="LOCAL-00039" />
+      <option name="project" value="LOCAL" />
+      <updated>1771444623213</updated>
+    </task>
+    <task id="LOCAL-00040" summary="removed unused line for cleaner code">
+      <option name="closed" value="true" />
+      <created>1771444648514</created>
+      <option name="number" value="00040" />
+      <option name="presentableId" value="LOCAL-00040" />
+      <option name="project" value="LOCAL" />
+      <updated>1771444648514</updated>
+    </task>
+    <task id="LOCAL-00041" summary="fixed index outside bounds error, when ReCalculatingValidMoves on  move forward 2 spaces cell, and using cellsList instead of movesList in 2 instances">
+      <option name="closed" value="true" />
+      <created>1771444775678</created>
+      <option name="number" value="00041" />
+      <option name="presentableId" value="LOCAL-00041" />
+      <option name="project" value="LOCAL" />
+      <updated>1771444775678</updated>
+    </task>
+    <option name="localTasksCounter" value="42" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -450,12 +502,6 @@
     </option>
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="added Bishop piece, without logic" />
-    <MESSAGE value="fixed not adding the piece as a listener to reachable cells in the constructor and not generating valid moves in the constructor" />
-    <MESSAGE value="added functionality for removing piece being a listener for the cells it can reach" />
-    <MESSAGE value="added Javadoc" />
-    <MESSAGE value="Knight piece added and finished" />
-    <MESSAGE value="Queen piece added and finished" />
     <MESSAGE value="minor fixes" />
     <MESSAGE value="Added move classes, for simple move validation" />
     <MESSAGE value="Added piece being removed functionality to cell class, so it deals with it rather than the board" />
@@ -475,7 +521,13 @@
     <MESSAGE value="removed debug statements" />
     <MESSAGE value="fixed boolean in CalculateValidMoves" />
     <MESSAGE value="removing unused debug statement" />
-    <option name="LAST_COMMIT_MESSAGE" value="removing unused debug statement" />
+    <MESSAGE value="fixed castling moves not requiring space" />
+    <MESSAGE value="added method to generate the board at the start of a game" />
+    <MESSAGE value="added annotation for clarity" />
+    <MESSAGE value="made toString method better" />
+    <MESSAGE value="removed unused line for cleaner code" />
+    <MESSAGE value="fixed index outside bounds error, when ReCalculatingValidMoves on  move forward 2 spaces cell, and using cellsList instead of movesList in 2 instances" />
+    <option name="LAST_COMMIT_MESSAGE" value="fixed index outside bounds error, when ReCalculatingValidMoves on  move forward 2 spaces cell, and using cellsList instead of movesList in 2 instances" />
   </component>
   <component name="XSLT-Support.FileAssociations.UIState">
     <expand />
