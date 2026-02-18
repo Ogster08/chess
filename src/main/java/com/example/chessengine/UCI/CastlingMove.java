@@ -15,9 +15,9 @@ public final class CastlingMove extends Move {
      * @param r The rook piece being moved
      */
     public CastlingMove(King k, Rook r) {
-        super(k, k.getBoard().getCell(k.getRow(), k.getCol() + 2 * Integer.signum(k.getCol() - r.getCol())));
+        super(k, k.getBoard().getCell(k.getRow(), k.getCol() + 2 * Integer.signum(r.getCol() - k.getCol())));
         this.r = r;
-        this.rookCell = k.getBoard().getCell(k.getRow(), k.getCol() + Integer.signum(k.getCol() - r.getCol()));
+        this.rookCell = k.getBoard().getCell(k.getRow(), k.getCol() + Integer.signum(r.getCol() - k.getCol()));
     }
 
     /**
@@ -36,7 +36,12 @@ public final class CastlingMove extends Move {
      */
     @Override
     public String toString() {
-        return "CastlingMove[]";
+        return "CastlingMove[" +
+                "k= " + p() + ", " +
+                "k cell= " + cell() + ", " +
+                "r = " + r + ", " +
+                "r cell = " + rookCell +
+                "]";
     }
 
     /**

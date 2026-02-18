@@ -111,11 +111,19 @@ public class Board{
 
         if (p.getClass() == Pawn.class){
             if (Math.abs(p.getRow() - move.cell().getRow()) == 2) {
-                if (move.cell().getCol() >= 1 && getCell(move.cell().getRow(), move.cell().getCol() - 1).getPiece() != null && getCell(move.cell().getRow(), move.cell().getCol() - 1).getPiece().getClass() == Pawn.class && getCell(move.cell().getRow(), move.cell().getCol() - 1).getPiece().getColour() != p.getColour()) {
-                    enPassantMoves.add(new EnPassantMove((Pawn) getCell(move.cell().getRow(), move.cell().getCol() - 1).getPiece(), getCell((move.cell().getRow() + move.p().getRow()) / 2, move.cell().getCol())));
+                if (move.cell().getCol() >= 1 &&
+                        getCell(move.cell().getRow(), move.cell().getCol() - 1).getPiece() != null &&
+                        getCell(move.cell().getRow(), move.cell().getCol() - 1).getPiece().getClass() == Pawn.class &&
+                        getCell(move.cell().getRow(), move.cell().getCol() - 1).getPiece().getColour() != p.getColour()) {
+                    enPassantMoves.add(new EnPassantMove((Pawn) getCell(move.cell().getRow(), move.cell().getCol() - 1).getPiece(),
+                            getCell((move.cell().getRow() + move.p().getRow()) / 2, move.cell().getCol())));
                 }
-                if (move.cell().getCol() <= 6 && getCell(move.cell().getRow(), move.cell().getCol() + 1).getPiece() != null && getCell(move.cell().getRow(), move.cell().getCol() + 1).getPiece().getClass() == Pawn.class && getCell(move.cell().getRow(), move.cell().getCol() + 1).getPiece().getColour() != p.getColour()){
-                    enPassantMoves.add(new EnPassantMove((Pawn) getCell(move.cell().getRow(), move.cell().getCol() + 1).getPiece(), getCell((move.cell().getRow() + move.p().getRow()) / 2, move.cell().getCol())));
+                if (move.cell().getCol() <= 6 &&
+                        getCell(move.cell().getRow(), move.cell().getCol() + 1).getPiece() != null &&
+                        getCell(move.cell().getRow(), move.cell().getCol() + 1).getPiece().getClass() == Pawn.class &&
+                        getCell(move.cell().getRow(), move.cell().getCol() + 1).getPiece().getColour() != p.getColour()){
+                    enPassantMoves.add(new EnPassantMove((Pawn) getCell(move.cell().getRow(), move.cell().getCol() + 1).getPiece(),
+                            getCell((move.cell().getRow() + move.p().getRow()) / 2, move.cell().getCol())));
                 }
             }
         }
@@ -124,13 +132,18 @@ public class Board{
         p.move(move.cell().getRow(), move.cell().getCol());
         if (move.getClass() == EnPassantMove.class){
             EnPassantMove enPassantMove = (EnPassantMove) move;
-            enPassantMove.targetPawnCell().setPiece(null);
+            enPassantMove.getTargetPawnCell().setPiece(null);
         } else if (move.getClass() == CastlingMove.class) {
             CastlingMove castlingMove = (CastlingMove) move;
             Rook rook = castlingMove.getR();
             castlingMove.getRookCell().setPiece(rook);
             cells[rook.getRow()][rook.getCol()].setPiece(null);
             rook.move(castlingMove.getRookCell().getRow(), castlingMove.getRookCell().getCol());
+        }
+
+        switch (colourToMove){
+            case WHITE -> colourToMove = Colour.BLACK;
+            case BLACK -> colourToMove = Colour.WHITE;
         }
     }
 
@@ -141,6 +154,7 @@ public class Board{
      */
     public List<Move> getPseudolegalMoves() {
         List<Move> moves = new ArrayList<>();
+        castlingMoves.clear();
         for (Cell[] row : cells) {
             for (Cell cell : row) {
                 if (cell.getPiece() != null && cell.getPiece().getColour() == getColourToMove()) {
@@ -155,7 +169,7 @@ public class Board{
                                 Arrays.stream(r).filter(c -> {
                                     if (c.getPiece() != null && c.getPiece().getColour() == getColourToMove() && c.getPiece().getClass() == Rook.class){
                                         if (((Rook)c.getPiece()).isCanCastle()){
-                                            for (int i = Math.min(c.getCol(), king.getCol()); i < Math.max(c.getCol(), king.getCol()); i++) {
+                                            for (int i = Math.min(c.getCol(), king.getCol()) + 1; i < Math.max(c.getCol(), king.getCol()); i++) {
                                                 if (cells[king.getRow()][i].getPiece() != null){
                                                     return false;
                                                 }
@@ -165,8 +179,9 @@ public class Board{
                                     }
                                     return false;
                                 }).forEach(c -> {
-                                    castlingMoves.add(new CastlingMove(king, (Rook) c.getPiece()));
-                                    moves.add(new CastlingMove(king, (Rook) c.getPiece()));
+                                    CastlingMove cm = new CastlingMove(king, (Rook) c.getPiece());
+                                    castlingMoves.add(cm);
+                                    moves.add(cm);
                                 });
                             });
                         }
