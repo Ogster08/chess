@@ -7,22 +7,24 @@ import javafx.geometry.Pos;
 import javafx.scene.Node;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
+import javafx.scene.input.ClipboardContent;
+import javafx.scene.input.Dragboard;
+import javafx.scene.input.TransferMode;
 import javafx.scene.layout.GridPane;
 import javafx.scene.layout.StackPane;
 
-import java.lang.reflect.Type;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.Objects;
 
-public class HelloController {
+public class HelloController{
     @FXML public GridPane ChessGrid;
     @FXML public StackPane BoardContainer;
 
-    private Runnable onReadyCallback;
+    private MoveHandler moveHandler;
 
-    public void setOnReadyCallback(Runnable callback){
-        this.onReadyCallback = callback;
+    public void setMoveHandler(MoveHandler moveHandler){
+        this.moveHandler = moveHandler;
     }
 
     public void initialize(){
@@ -34,14 +36,37 @@ public class HelloController {
                 if ((i+ j) % 2 == 0) square.setStyle("-fx-background-color: #F0D9B5");
                 else square.setStyle("-fx-background-color: #B58863");
                 ChessGrid.add(square, i, j);
+
                 square.prefWidthProperty().bind(Bindings.min(ChessGrid.widthProperty().divide(8), ChessGrid.heightProperty().divide(8)));
                 square.prefHeightProperty().bind(Bindings.min(ChessGrid.widthProperty().divide(8), ChessGrid.heightProperty().divide(8)));
+
+                square.setOnDragOver(dragEvent -> {
+                    if (dragEvent.getGestureSource() != square && dragEvent.getDragboard().hasString()){
+                        dragEvent.acceptTransferModes(TransferMode.MOVE);
+                    }
+                    dragEvent.consume();
+                });
+
+                // row and column conversion and temp variables needed
+                int finalI = 7 - j;
+                int finalJ = i;
+                square.setOnDragDropped(dragEvent -> {
+                    Dragboard dragboard = dragEvent.getDragboard();
+                    if (dragboard.hasString()){
+                        String[] parts = dragboard.getString().split(",");
+                        int row = Integer.parseInt(parts[0]);
+                        int col = Integer.parseInt(parts[1]);
+                        if (moveHandler != null){
+                            moveHandler.handleMove(row, col, finalI, finalJ);
+                        }
+                        dragEvent.setDropCompleted(true);
+                    }
+                    dragEvent.consume();
+                });
             }
         }
 
         addPiece("/images/white queen.png", 1, 2);
-
-        if (onReadyCallback != null) onReadyCallback.run();
     }
 
     private void addPiece(String imagePath, int row, int col){
@@ -55,13 +80,20 @@ public class HelloController {
         piece.fitHeightProperty().bind(square.heightProperty().multiply(0.9));
         piece.setPreserveRatio(true);
 
+        piece.setOnDragDetected(mouseEvent -> {
+            Dragboard dragboard = piece.startDragAndDrop(TransferMode.MOVE);
+            ClipboardContent content = new ClipboardContent();
+            content.putString(row + "," + col);
+            dragboard.setContent(content);
+            mouseEvent.consume();
+        });
 
         square.getChildren().add(piece);
         StackPane.setAlignment(piece, Pos.CENTER);
     }
 
     private StackPane getSquare(int row, int col){
-        // row and column conversion
+        // row conversion
         row = 7 - row;
         for (Node node: ChessGrid.getChildren()){
             if (GridPane.getRowIndex(node) == row && GridPane.getColumnIndex(node) == col){

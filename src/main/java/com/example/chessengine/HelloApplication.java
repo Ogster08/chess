@@ -10,7 +10,10 @@ import javafx.stage.Stage;
 import java.io.IOException;
 import java.util.EventListener;
 
-public class HelloApplication extends Application {
+public class HelloApplication extends Application implements MoveHandler {
+
+    private Board board;
+    private HelloController controller;
 
     @Override
     public void start(Stage stage) throws IOException {
@@ -20,13 +23,14 @@ public class HelloApplication extends Application {
         stage.setScene(scene);
         stage.show();
 
-        HelloController controller = fxmlLoader.getController();
+        controller = fxmlLoader.getController();
+        controller.setMoveHandler(this);
 
-        Board board = createStartingChessboard();
+        board = createStartingChessboard();
 
         controller.updatePosition(board);
-        System.out.println(board.getPseudolegalMoves().size());
-        System.out.println(board.getPseudolegalMoves());
+        //System.out.println(board.getPseudolegalMoves().size());
+        //System.out.println(board.getPseudolegalMoves());
     }
 
     public static void main(String[] args) {
@@ -66,5 +70,23 @@ public class HelloApplication extends Application {
         board.addPiece(new King(board, 7, 4, Colour.BLACK, true));
 
         return board;
+    }
+
+    /**
+     * @param sourceRow
+     * @param sourceColumn
+     * @param targetRow
+     * @param targetColumn
+     * @return
+     */
+    @Override
+    public void handleMove(int sourceRow, int sourceColumn, int targetRow, int targetColumn) {
+        for (Move move: board.getPseudolegalMoves()){
+            if (move.p().getRow() == sourceRow && move.p().getCol() == sourceColumn && move.cell().getRow() == targetRow && move.cell().getCol() == targetColumn){
+                board.movePiece(move);
+                controller.updatePosition(board);
+                return;
+            }
+        }
     }
 }
