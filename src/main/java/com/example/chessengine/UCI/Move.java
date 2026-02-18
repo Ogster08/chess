@@ -98,8 +98,8 @@ public class Move {
     @Override
     public String toString() {
         return "Move[" +
-                "p=" + p + ", " +
-                "cell=" + cell + ']';
+                "p= " + p + ", " +
+                "cell= " + cell + ']';
     }
 
 }
