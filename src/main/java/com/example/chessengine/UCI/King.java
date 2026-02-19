@@ -10,7 +10,7 @@ public class King extends Piece {
     /**
      * If the king can still castle (independent of if the rooks can castle with the king)
      */
-    boolean canCastle;
+    private boolean canCastle;
 
     /**
      * The constructor for a new king being added to a chessboard
@@ -79,5 +79,24 @@ public class King extends Piece {
     public void move(int newRow, int newCol) {
         canCastle = false;
         super.move(newRow, newCol);
+    }
+
+    /**
+     * moves the king by recalculating all the theoretically reachable squares and then calculating all the valid moves from the new position.
+     * also, sets if the king can castle or not.
+     * @param newRow must be between 0 and 7 inclusive
+     * @param newCol must be between 0 and 7 inclusive
+     */
+    public void move(int newRow, int newCol, boolean canCastle) {
+        this.canCastle = canCastle;
+        super.move(newRow, newCol);
+    }
+
+    public boolean isCanCastle() {
+        return canCastle;
+    }
+
+    public void setCanCastle(boolean canCastle) {
+        this.canCastle = canCastle;
     }
 }

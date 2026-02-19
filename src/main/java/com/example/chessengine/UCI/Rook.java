@@ -7,6 +7,10 @@ import java.util.List;
  * The class for the rook chess piece
  */
 public class Rook extends Piece {
+    public void setCanCastle(boolean canCastle) {
+        this.canCastle = canCastle;
+    }
+
     /**
      * if the rook is able to castle, used by the board to deal with castling
      */
@@ -155,6 +159,18 @@ public class Rook extends Piece {
     @Override
     public void move(int newRow, int newCol) {
         canCastle = false;
+        System.out.println(canCastle);
+        super.move(newRow, newCol);
+    }
+
+    /**
+     * moves the rook by recalculating all the theoretically reachable squares and then calculating all the valid moves from the new position.
+     * also sets if it can castle.
+     * @param newRow must be between 0 and 7 inclusive
+     * @param newCol must be between 0 and 7 inclusive
+     */
+    public void move(int newRow, int newCol, boolean canCastle) {
+        this.canCastle = canCastle;
         super.move(newRow, newCol);
     }
 

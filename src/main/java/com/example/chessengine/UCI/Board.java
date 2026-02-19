@@ -36,12 +36,18 @@ public class Board{
     /**
      * A list of all pseudolegal en passant moves in the current position, so they can easily be cleared once a move has been made
      */
-    private final List<Move> enPassantMoves = new ArrayList<>();
+    private final List<EnPassantMove> enPassantMoves = new ArrayList<>();
+
+    public List<CastlingMove> getCastlingMoves() {
+        return castlingMoves;
+    }
 
     /**
      * A list of all the castling moves in the current position by the player whose turn it is, so they can more easily be validated if they are legal or not
      */
     private final List<CastlingMove> castlingMoves = new ArrayList<>();
+
+    private final List<UndoMoveInfo> undoMoveInfoList = new ArrayList<>();
 
     /**
      * Constructor to create a new empty board, where white starts first
@@ -106,8 +112,10 @@ public class Board{
      * @param move The move containing the piece and cell it is moving to
      */
     public void movePiece(Move move){
-        enPassantMoves.clear();
         Piece p = move.p();
+        undoMoveInfoList.add(new UndoMoveInfo(move, enPassantMoves, castlingMoves, move.cell().getPiece()));
+
+        enPassantMoves.clear();
 
         if (p.getClass() == Pawn.class){
             if (Math.abs(p.getRow() - move.cell().getRow()) == 2) {
@@ -164,7 +172,7 @@ public class Board{
                     }
                     if (cell.getPiece().getClass() == King.class){
                         King king = (King) cell.getPiece();
-                        if (king.canCastle) {
+                        if (king.isCanCastle()) {
                             Arrays.stream(cells).forEach(r -> {
                                 Arrays.stream(r).filter(c -> {
                                     if (c.getPiece() != null && c.getPiece().getColour() == getColourToMove() && c.getPiece().getClass() == Rook.class){
@@ -195,5 +203,64 @@ public class Board{
             }
         }
         return moves;
+    }
+
+    public void undoMove(){
+        if (undoMoveInfoList.isEmpty()) throw new NullPointerException("No undoMoveInfo, as no move has been performed yet");
+        UndoMoveInfo undoMoveInfo = undoMoveInfoList.removeLast();
+
+        enPassantMoves.clear();
+        enPassantMoves.addAll(undoMoveInfo.enPassantMoveList);
+
+        castlingMoves.clear();
+        castlingMoves.addAll(undoMoveInfo.castlingMovesList);
+        
+        if (undoMoveInfo.move.getClass() == EnPassantMove.class){
+            EnPassantMove enPassantMove = (EnPassantMove) undoMoveInfo.move;
+            cells[undoMoveInfo.row][undoMoveInfo.col].setPiece(enPassantMove.p());
+            enPassantMove.cell().setPiece(null);
+            enPassantMove.p().move(undoMoveInfo.row, undoMoveInfo.col);
+            enPassantMove.getTargetPawnCell().setPiece(new Pawn(this, enPassantMove.getTargetPawnCell().getRow(), enPassantMove.getTargetPawnCell().getCol(), colourToMove));
+        } else {
+            Piece capturedPiece;
+            if (undoMoveInfo.captureClass == Pawn.class) {
+                capturedPiece = new Pawn(this, undoMoveInfo.move.cell().getRow(), undoMoveInfo.move.cell().getCol(), colourToMove);
+            } else if (undoMoveInfo.captureClass == Rook.class) {
+                capturedPiece = new Rook(this, undoMoveInfo.move.cell().getRow(), undoMoveInfo.move.cell().getCol(), colourToMove, undoMoveInfo.captureCanCastle);
+            } else if (undoMoveInfo.captureClass == Knight.class) {
+                capturedPiece = new Knight(this, undoMoveInfo.move.cell().getRow(), undoMoveInfo.move.cell().getCol(), colourToMove);
+            } else if (undoMoveInfo.captureClass == Bishop.class) {
+                capturedPiece = new Bishop(this, undoMoveInfo.move.cell().getRow(), undoMoveInfo.move.cell().getCol(), colourToMove);
+            } else if (undoMoveInfo.captureClass == Queen.class) {
+                capturedPiece = new Queen(this, undoMoveInfo.move.cell().getRow(), undoMoveInfo.move.cell().getCol(), colourToMove);
+            } else {
+                capturedPiece = null;
+            }
+
+            undoMoveInfo.move.cell().setPiece(capturedPiece);
+
+            Piece movedPiece = undoMoveInfo.move.p();
+            if (movedPiece.getClass() == Rook.class) {
+                ((Rook) movedPiece).move(undoMoveInfo.row, undoMoveInfo.col, undoMoveInfo.pieceCanCastle);
+            } else if (movedPiece.getClass() == King.class) {
+                ((King) movedPiece).move(undoMoveInfo.row, undoMoveInfo.col, undoMoveInfo.pieceCanCastle);
+            } else {
+                movedPiece.move(undoMoveInfo.row, undoMoveInfo.col);
+            }
+
+
+            cells[undoMoveInfo.row][undoMoveInfo.col].setPiece(movedPiece);
+
+            if (undoMoveInfo.move.getClass() == CastlingMove.class){
+                CastlingMove castlingMove = (CastlingMove) undoMoveInfo.move;
+                castlingMove.getRookCell().setPiece(null);
+                cells[undoMoveInfo.row][undoMoveInfo.col == 2 ? 0 : 7].setPiece(new Rook(this, undoMoveInfo.row, undoMoveInfo.col == 2 ? 0 : 7, castlingMove.p().getColour(), true));
+            }
+        }
+
+        switch (colourToMove){
+            case WHITE -> colourToMove = Colour.BLACK;
+            case BLACK -> colourToMove = Colour.WHITE;
+        }
     }
 }
