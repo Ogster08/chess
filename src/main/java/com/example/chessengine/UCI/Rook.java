@@ -159,7 +159,6 @@ public class Rook extends Piece {
     @Override
     public void move(int newRow, int newCol) {
         canCastle = false;
-        System.out.println(canCastle);
         super.move(newRow, newCol);
     }
 

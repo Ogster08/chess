@@ -185,8 +185,6 @@ public class HelloController{
 
         square.getChildren().add(dot);
         StackPane.setAlignment(dot, Pos.CENTER);
-
-        System.out.println("dot added");
     }
 
     private void removeDot(Pane square){
