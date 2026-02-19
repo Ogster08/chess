@@ -1,0 +1,23 @@
+.light-square{
+    -fx-background-color: #F0D9B5;
+}
+
+.dark-square{
+    -fx-background-color: #B58863;
+}
+
+.highlighted-square{
+    -fx-border-color: #6ab56a;
+    -fx-border-width: 3px;
+    -fx-border-inset: 0;
+    -fx-padding: -3px;
+}
+
+.origin-square{
+    -fx-background-color: #8ca2ad;
+}
+
+.dot{
+    -fx-background-color: rgba(100, 100, 100, 0.5);
+    -fx-background-radius: 50%;
+}

@@ -11,39 +11,50 @@ import javafx.scene.input.ClipboardContent;
 import javafx.scene.input.Dragboard;
 import javafx.scene.input.TransferMode;
 import javafx.scene.layout.GridPane;
+import javafx.scene.layout.Pane;
+import javafx.scene.layout.Region;
 import javafx.scene.layout.StackPane;
 
-import java.util.HashMap;
-import java.util.Map;
-import java.util.Objects;
+import java.util.*;
 
 public class HelloController{
     @FXML public GridPane ChessGrid;
     @FXML public StackPane BoardContainer;
 
     private MoveHandler moveHandler;
+    private Pane currentOriginSquare = null;
+    private List<Pane> showMovesSquares = new ArrayList<>();
 
     public void setMoveHandler(MoveHandler moveHandler){
         this.moveHandler = moveHandler;
     }
 
     public void initialize(){
+        ChessGrid.getStylesheets().add(getClass().getResource("/styles.css").toExternalForm());
         ChessGrid.prefWidthProperty().bind(Bindings.min(BoardContainer.widthProperty(), BoardContainer.heightProperty()));
         ChessGrid.prefHeightProperty().bind(Bindings.min(BoardContainer.widthProperty(), BoardContainer.heightProperty()));
         for (int i = 0; i < 8; i++) {
             for (int j = 0; j < 8; j++) {
                 StackPane square = new StackPane();
-                if ((i+ j) % 2 == 0) square.setStyle("-fx-background-color: #F0D9B5");
-                else square.setStyle("-fx-background-color: #B58863");
+                if ((i+ j) % 2 == 0) square.getStyleClass().add("light-square");
+                else square.getStyleClass().add("dark-square");
                 ChessGrid.add(square, i, j);
 
                 square.prefWidthProperty().bind(Bindings.min(ChessGrid.widthProperty().divide(8), ChessGrid.heightProperty().divide(8)));
                 square.prefHeightProperty().bind(Bindings.min(ChessGrid.widthProperty().divide(8), ChessGrid.heightProperty().divide(8)));
 
+                int finalI1 = i;
+                int finalJ1 = j;
                 square.setOnDragOver(dragEvent -> {
                     if (dragEvent.getGestureSource() != square && dragEvent.getDragboard().hasString()){
                         dragEvent.acceptTransferModes(TransferMode.MOVE);
+                        if (!square.getStyleClass().contains("highlighted-square")) square.getStyleClass().add("highlighted-square");
                     }
+                    dragEvent.consume();
+                });
+
+                square.setOnDragExited(dragEvent -> {
+                    square.getStyleClass().remove("highlighted-square");
                     dragEvent.consume();
                 });
 
@@ -56,9 +67,8 @@ public class HelloController{
                         String[] parts = dragboard.getString().split(",");
                         int row = Integer.parseInt(parts[0]);
                         int col = Integer.parseInt(parts[1]);
-                        if (moveHandler != null){
-                            moveHandler.handleMove(row, col, finalI, finalJ);
-                        }
+                        if (moveHandler != null) moveHandler.handleMove(row, col, finalI, finalJ);
+                        updateOriginSquare(null);
                         dragEvent.setDropCompleted(true);
                     }
                     dragEvent.consume();
@@ -85,6 +95,8 @@ public class HelloController{
             ClipboardContent content = new ClipboardContent();
             content.putString(row + "," + col);
             dragboard.setContent(content);
+            if (!square.getStyleClass().contains("origin-square")) updateOriginSquare(square);
+            if (moveHandler != null) updateShowMoveSquares(moveHandler.getLegalMoves(row, col));
             mouseEvent.consume();
         });
 
@@ -138,6 +150,49 @@ public class HelloController{
                 else addPiece(blackPieceToImagePath.get(piece.getClass()), i, j);
             }
         }
+    }
+
+    private void updateOriginSquare(Pane square){
+        if (currentOriginSquare != null) currentOriginSquare.getStyleClass().remove("origin-square");
+        currentOriginSquare = square;
+        if (currentOriginSquare != null) currentOriginSquare.getStyleClass().add("origin-square");
+    }
+
+    private void updateShowMoveSquares(List<Move> moves){
+        for (Pane square: showMovesSquares){
+            removeDot(square);
+        }
+        showMovesSquares.clear();
+        for (Move move: moves){
+            Pane square = getSquare(move.cell().getRow(), move.cell().getCol());
+            assert square != null;
+            showMovesSquares.add(square);
+            addDot(square);
+        }
+    }
+
+    private void addDot(Pane square){
+
+        Region dot = new Region();
+        dot.setUserData("dot");
+        dot.getStyleClass().add("dot");
+        dot.setMouseTransparent(true);
+
+        dot.prefWidthProperty().bind(square.widthProperty().multiply(0.25));
+        dot.prefHeightProperty().bind(square.heightProperty().multiply(0.25));
+        dot.maxWidthProperty().bind(dot.prefWidthProperty());
+        dot.maxHeightProperty().bind(dot.prefHeightProperty());
+
+        square.getChildren().add(dot);
+        StackPane.setAlignment(dot, Pos.CENTER);
+
+        System.out.println("dot added");
+    }
+
+    private void removeDot(Pane square){
+        square.getChildren().removeIf(node ->
+            "dot".equals(node.getUserData())
+        );
     }
 
 }

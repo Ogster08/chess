@@ -1,0 +1,324 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="AutoImportSettings">
+    <option name="autoReloadType" value="SELECTIVE" />
+  </component>
+  <component name="ChangeListManager">
+    <list default="true" id="5ecba770-62e4-41d3-b203-db736912793c" name="Changes" comment="minor fixes">
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/example/chessengine/UCI/CastlingMove.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/example/chessengine/UCI/Move.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/chessengine/UCI/Board.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/chessengine/UCI/Board.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/chessengine/UCI/Cell.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/chessengine/UCI/Cell.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/chessengine/UCI/King.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/chessengine/UCI/King.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/chessengine/UCI/Rook.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/chessengine/UCI/Rook.java" afterDir="false" />
+    </list>
+    <option name="SHOW_DIALOG" value="false" />
+    <option name="HIGHLIGHT_CONFLICTS" value="true" />
+    <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
+    <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="FileTemplateManagerImpl">
+    <option name="RECENT_TEMPLATES">
+      <list>
+        <option value="Interface" />
+        <option value="Enum" />
+        <option value="JUnit5 Test Class" />
+        <option value="Class" />
+        <option value="Record" />
+      </list>
+    </option>
+  </component>
+  <component name="Git.Settings">
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
+    <option name="SWAP_SIDES_IN_COMPARE_BRANCHES" value="true" />
+    <option name="UPDATE_TYPE" value="REBASE" />
+  </component>
+  <component name="GitHubPullRequestSearchHistory">{
+  &quot;lastFilter&quot;: {
+    &quot;state&quot;: &quot;OPEN&quot;,
+    &quot;assignee&quot;: &quot;Ogster08&quot;
+  }
+}</component>
+  <component name="GithubPullRequestsUISettings">{
+  &quot;selectedUrlAndAccountId&quot;: {
+    &quot;url&quot;: &quot;https://github.com/Ogster08/chess&quot;,
+    &quot;accountId&quot;: &quot;46e9369d-9557-4fca-bd41-9dc1f96e347d&quot;
+  }
+}</component>
+  <component name="MavenImportPreferences">
+    <option name="generalSettings">
+      <MavenGeneralSettings>
+        <option name="mavenHomeTypeForPersistence" value="WRAPPER" />
+      </MavenGeneralSettings>
+    </option>
+  </component>
+  <component name="ProblemsViewState">
+    <option name="selectedTabId" value="CurrentFile" />
+  </component>
+  <component name="ProjectColorInfo">{
+  &quot;associatedIndex&quot;: 8
+}</component>
+  <component name="ProjectId" id="2zrnfBc7LmW687sJ57U7sJduaow" />
+  <component name="ProjectViewState">
+    <option name="hideEmptyMiddlePackages" value="true" />
+    <option name="showLibraryContents" value="true" />
+  </component>
+  <component name="PropertiesComponent">{
+  &quot;keyToString&quot;: {
+    &quot;Application.HelloApplication.executor&quot;: &quot;Run&quot;,
+    &quot;Application.Main.executor&quot;: &quot;Run&quot;,
+    &quot;OverrideImplement.generate.javadoc&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.TerminalTabsStorage.copyFrom.TerminalArrangementManager.252&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.git.unshallow&quot;: &quot;true&quot;,
+    &quot;SHARE_PROJECT_CONFIGURATION_FILES&quot;: &quot;true&quot;,
+    &quot;com.intellij.testIntegration.createTest.CreateTestDialog.defaultLibrary&quot;: &quot;JUnit5&quot;,
+    &quot;com.intellij.testIntegration.createTest.CreateTestDialog.defaultLibrarySuperClass.JUnit5&quot;: &quot;&quot;,
+    &quot;git-widget-placeholder&quot;: &quot;main&quot;,
+    &quot;kotlin-language-version-configured&quot;: &quot;true&quot;,
+    &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
+    &quot;node.js.detected.package.tslint&quot;: &quot;true&quot;,
+    &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
+    &quot;node.js.selected.package.tslint&quot;: &quot;(autodetect)&quot;,
+    &quot;nodejs_package_manager_path&quot;: &quot;npm&quot;,
+    &quot;project.structure.last.edited&quot;: &quot;Project&quot;,
+    &quot;project.structure.proportion&quot;: &quot;0.0&quot;,
+    &quot;project.structure.side.proportion&quot;: &quot;0.0&quot;,
+    &quot;run.code.analysis.last.selected.profile&quot;: &quot;pProject Default&quot;,
+    &quot;settings.editor.selected.configurable&quot;: &quot;reference.settings.ide.settings.uml&quot;,
+    &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
+  }
+}</component>
+  <component name="RecentsManager">
+    <key name="CreateClassDialog.RecentsKey">
+      <recent name="com.example.chessengine" />
+    </key>
+    <key name="CreateTestDialog.Recents.Supers">
+      <recent name="" />
+    </key>
+    <key name="MoveFile.RECENT_KEYS">
+      <recent name="C:\Users\olive\OneDrive - Minerva Learning Trust\A-level work\computer science\Coding Projects\ChessEngine\Javadoc" />
+    </key>
+    <key name="CreateTestDialog.RecentsKey">
+      <recent name="com.example.chessengine.UCI" />
+    </key>
+  </component>
+  <component name="RunManager">
+    <configuration name="Main" type="Application" factoryName="Application">
+      <option name="MAIN_CLASS_NAME" value="com.example.chessengine.HelloApplication" />
+      <module name="ChessEngine" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+  </component>
+  <component name="SharedIndexes">
+    <attachedChunks>
+      <set>
+        <option value="bundled-jdk-9823dce3aa75-28b599e66164-intellij.indexing.shared.core-IU-242.23339.11" />
+        <option value="bundled-js-predefined-d6986cc7102b-5c90d61e3bab-JavaScript-IU-242.23339.11" />
+      </set>
+    </attachedChunks>
+  </component>
+  <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
+  <component name="TaskManager">
+    <task active="true" id="Default" summary="Default task">
+      <changelist id="5ecba770-62e4-41d3-b203-db736912793c" name="Changes" comment="" />
+      <created>1752498161247</created>
+      <option name="number" value="Default" />
+      <option name="presentableId" value="Default" />
+      <updated>1752498161247</updated>
+      <workItem from="1760694721149" duration="856000" />
+      <workItem from="1760955696502" duration="16895000" />
+      <workItem from="1761060167596" duration="6832000" />
+      <workItem from="1761128196123" duration="8376000" />
+      <workItem from="1762106830073" duration="2235000" />
+      <workItem from="1762247937654" duration="1354000" />
+      <workItem from="1762531124163" duration="5949000" />
+      <workItem from="1763037748537" duration="801000" />
+      <workItem from="1763110690307" duration="23868000" />
+      <workItem from="1763715896439" duration="5978000" />
+      <workItem from="1763733489900" duration="2552000" />
+      <workItem from="1763814299188" duration="7628000" />
+    </task>
+    <task id="LOCAL-00001" summary="Generated JavaFX base code">
+      <option name="closed" value="true" />
+      <created>1759756591927</created>
+      <option name="number" value="00001" />
+      <option name="presentableId" value="LOCAL-00001" />
+      <option name="project" value="LOCAL" />
+      <updated>1759756591927</updated>
+    </task>
+    <task id="LOCAL-00002" summary="Added chess board">
+      <option name="closed" value="true" />
+      <created>1759759463370</created>
+      <option name="number" value="00002" />
+      <option name="presentableId" value="LOCAL-00002" />
+      <option name="project" value="LOCAL" />
+      <updated>1759759463370</updated>
+    </task>
+    <task id="LOCAL-00003" summary="Added abstract classes for generating moves">
+      <option name="closed" value="true" />
+      <created>1760968920940</created>
+      <option name="number" value="00003" />
+      <option name="presentableId" value="LOCAL-00003" />
+      <option name="project" value="LOCAL" />
+      <updated>1760968920940</updated>
+    </task>
+    <task id="LOCAL-00004" summary="fixed Pawn move">
+      <option name="closed" value="true" />
+      <created>1761086212169</created>
+      <option name="number" value="00004" />
+      <option name="presentableId" value="LOCAL-00004" />
+      <option name="project" value="LOCAL" />
+      <updated>1761086212169</updated>
+    </task>
+    <task id="LOCAL-00005" summary="added King class">
+      <option name="closed" value="true" />
+      <created>1761086239114</created>
+      <option name="number" value="00005" />
+      <option name="presentableId" value="LOCAL-00005" />
+      <option name="project" value="LOCAL" />
+      <updated>1761086239114</updated>
+    </task>
+    <task id="LOCAL-00006" summary="it changed">
+      <option name="closed" value="true" />
+      <created>1761086262974</created>
+      <option name="number" value="00006" />
+      <option name="presentableId" value="LOCAL-00006" />
+      <option name="project" value="LOCAL" />
+      <updated>1761086262974</updated>
+    </task>
+    <task id="LOCAL-00007" summary="Added rook piece">
+      <option name="closed" value="true" />
+      <created>1763114664448</created>
+      <option name="number" value="00007" />
+      <option name="presentableId" value="LOCAL-00007" />
+      <option name="project" value="LOCAL" />
+      <updated>1763114664448</updated>
+    </task>
+    <task id="LOCAL-00008" summary="fixed not clearing movesList">
+      <option name="closed" value="true" />
+      <created>1763114689392</created>
+      <option name="number" value="00008" />
+      <option name="presentableId" value="LOCAL-00008" />
+      <option name="project" value="LOCAL" />
+      <updated>1763114689392</updated>
+    </task>
+    <task id="LOCAL-00009" summary="removed unused commented code">
+      <option name="closed" value="true" />
+      <created>1763114776654</created>
+      <option name="number" value="00009" />
+      <option name="presentableId" value="LOCAL-00009" />
+      <option name="project" value="LOCAL" />
+      <updated>1763114776654</updated>
+    </task>
+    <task id="LOCAL-00010" summary="removed unused import">
+      <option name="closed" value="true" />
+      <created>1763114851130</created>
+      <option name="number" value="00010" />
+      <option name="presentableId" value="LOCAL-00010" />
+      <option name="project" value="LOCAL" />
+      <updated>1763114851130</updated>
+    </task>
+    <task id="LOCAL-00011" summary="fixed initialising lists and corrected move calculation loops">
+      <option name="closed" value="true" />
+      <created>1763115946926</created>
+      <option name="number" value="00011" />
+      <option name="presentableId" value="LOCAL-00011" />
+      <option name="project" value="LOCAL" />
+      <updated>1763115946926</updated>
+    </task>
+    <task id="LOCAL-00012" summary="made move lists final">
+      <option name="closed" value="true" />
+      <created>1763115980530</created>
+      <option name="number" value="00012" />
+      <option name="presentableId" value="LOCAL-00012" />
+      <option name="project" value="LOCAL" />
+      <updated>1763115980530</updated>
+    </task>
+    <task id="LOCAL-00013" summary="added Bishop piece, without logic">
+      <option name="closed" value="true" />
+      <created>1763117507859</created>
+      <option name="number" value="00013" />
+      <option name="presentableId" value="LOCAL-00013" />
+      <option name="project" value="LOCAL" />
+      <updated>1763117507859</updated>
+    </task>
+    <task id="LOCAL-00014" summary="fixed not adding the piece as a listener to reachable cells in the constructor and not generating valid moves in the constructor">
+      <option name="closed" value="true" />
+      <created>1763120290644</created>
+      <option name="number" value="00014" />
+      <option name="presentableId" value="LOCAL-00014" />
+      <option name="project" value="LOCAL" />
+      <updated>1763120290644</updated>
+    </task>
+    <task id="LOCAL-00015" summary="added functionality for removing piece being a listener for the cells it can reach">
+      <option name="closed" value="true" />
+      <created>1763120669350</created>
+      <option name="number" value="00015" />
+      <option name="presentableId" value="LOCAL-00015" />
+      <option name="project" value="LOCAL" />
+      <updated>1763120669350</updated>
+    </task>
+    <task id="LOCAL-00016" summary="added Javadoc">
+      <option name="closed" value="true" />
+      <created>1763654248061</created>
+      <option name="number" value="00016" />
+      <option name="presentableId" value="LOCAL-00016" />
+      <option name="project" value="LOCAL" />
+      <updated>1763654248061</updated>
+    </task>
+    <task id="LOCAL-00017" summary="Knight piece added and finished">
+      <option name="closed" value="true" />
+      <created>1763719575587</created>
+      <option name="number" value="00017" />
+      <option name="presentableId" value="LOCAL-00017" />
+      <option name="project" value="LOCAL" />
+      <updated>1763719575587</updated>
+    </task>
+    <option name="localTasksCounter" value="18" />
+    <servers />
+  </component>
+  <component name="TypeScriptGeneratedFilesManager">
+    <option name="version" value="3" />
+  </component>
+  <component name="Vcs.Log.Tabs.Properties">
+    <option name="TAB_STATES">
+      <map>
+        <entry key="MAIN">
+          <value>
+            <State />
+          </value>
+        </entry>
+      </map>
+    </option>
+  </component>
+  <component name="VcsManagerConfiguration">
+    <MESSAGE value="Generated JavaFX base code" />
+    <MESSAGE value="Added chess board" />
+    <MESSAGE value="Added abstract classes for generating moves" />
+    <MESSAGE value="fixed Pawn move" />
+    <MESSAGE value="added King class" />
+    <MESSAGE value="it changed" />
+    <MESSAGE value="Added rook piece" />
+    <MESSAGE value="fixed not clearing movesList" />
+    <MESSAGE value="removed unused commented code" />
+    <MESSAGE value="removed unused import" />
+    <MESSAGE value="fixed initialising lists and corrected move calculation loops" />
+    <MESSAGE value="made move lists final" />
+    <MESSAGE value="added Bishop piece, without logic" />
+    <MESSAGE value="fixed not adding the piece as a listener to reachable cells in the constructor and not generating valid moves in the constructor" />
+    <MESSAGE value="added functionality for removing piece being a listener for the cells it can reach" />
+    <MESSAGE value="added Javadoc" />
+    <MESSAGE value="Knight piece added and finished" />
+    <MESSAGE value="Queen piece added and finished" />
+    <MESSAGE value="minor fixes" />
+    <option name="LAST_COMMIT_MESSAGE" value="minor fixes" />
+  </component>
+  <component name="XSLT-Support.FileAssociations.UIState">
+    <expand />
+    <select />
+  </component>
+</project>

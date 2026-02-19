@@ -2,9 +2,13 @@ package com.example.chessengine.UCI;
 
 import com.example.chessengine.HelloController;
 
+import java.util.ArrayList;
+import java.util.List;
+
 public class GameState implements MoveHandler{
     private final Board board;
     private final HelloController controller;
+    private final List<Move> legalMoves = new ArrayList<>();
 
     public GameState(HelloController controller){
         this.controller = controller;
@@ -41,6 +45,7 @@ public class GameState implements MoveHandler{
         board.addPiece(new Queen(board, 7, 3, Colour.BLACK));
         board.addPiece(new King(board, 7, 4, Colour.BLACK, true));
 
+        updateLegalMoves();
         controller.updatePosition(board);
     }
 
@@ -52,12 +57,36 @@ public class GameState implements MoveHandler{
      */
     @Override
     public void handleMove(int sourceRow, int sourceColumn, int targetRow, int targetColumn) {
-        for (Move move: board.getPseudolegalMoves()){
+
+        for (Move move: legalMoves){
             if (move.p().getRow() == sourceRow && move.p().getCol() == sourceColumn && move.cell().getRow() == targetRow && move.cell().getCol() == targetColumn){
-                if (checkLegalMoves(move)) {
-                    controller.updatePosition(board);
-                    return;
-                }
+                board.movePiece(move);
+                updateLegalMoves();
+                controller.updatePosition(board);
+                return;
+            }
+        }
+    }
+
+    /**
+     * @param row
+     * @param col
+     * @return
+     */
+    @Override
+    public List<Move> getLegalMoves(int row, int col) {
+        List<Move> moves = new ArrayList<>();
+        for (Move move: legalMoves){
+            if (move.p().getRow() == row && move.p().getCol() == col) moves.add(move);
+        }
+        return moves;
+    }
+
+    private void updateLegalMoves(){
+        legalMoves.clear();
+        for (Move move: board.getPseudolegalMoves()){
+            if (checkLegalMoves(move)) {
+                legalMoves.add(move);
             }
         }
     }
@@ -95,6 +124,7 @@ public class GameState implements MoveHandler{
                 }
             }
         }
+        board.undoMove();
         return true;
     }
 }
