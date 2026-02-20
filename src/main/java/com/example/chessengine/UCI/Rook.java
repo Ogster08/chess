@@ -124,20 +124,17 @@ public class Rook extends Piece {
             for (int i = getRow() - 1; i >= 0; i--) {
                 if (hitPiece(i, getCol(), downMovesList)) break;
             }
-        }
-        if (getRow() - row < 0){
+        } else if (getRow() - row < 0){
             upMovesList.clear();
             for (int i = getRow() + 1; i < 8; i++) {
                 if (hitPiece(i, getCol(), upMovesList)) break;
             }
-        }
-        if (getCol() - col > 0){
+        } else if (getCol() - col > 0){
             leftMovesList.clear();
             for (int i = getCol() - 1; i >= 0; i--) {
                 if (hitPiece(getRow(), i, leftMovesList)) break;
             }
-        }
-        if (getCol() - col < 0){
+        } else if (getCol() - col < 0){
             rightMovesList.clear();
             for (int i = getCol() + 1; i < 8; i++) {
                 if (hitPiece(getRow(), i, rightMovesList)) break;
