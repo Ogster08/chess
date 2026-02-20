@@ -22,8 +22,8 @@ import javafx.scene.layout.StackPane;
 import java.util.*;
 
 public class ChessController {
-    @FXML public GridPane ChessGrid;
-    @FXML public StackPane BoardContainer;
+    @FXML GridPane ChessGrid;
+    @FXML StackPane BoardContainer;
 
     private MoveHandler moveHandler;
     private Pane currentOriginSquare = null;
@@ -34,7 +34,7 @@ public class ChessController {
     }
 
     public void initialize(){
-        ChessGrid.getStylesheets().add(getClass().getResource("/styles.css").toExternalForm());
+        ChessGrid.getStylesheets().add(Objects.requireNonNull(getClass().getResource("/styles.css")).toExternalForm());
         ChessGrid.prefWidthProperty().bind(Bindings.min(BoardContainer.widthProperty(), BoardContainer.heightProperty()));
         ChessGrid.prefHeightProperty().bind(Bindings.min(BoardContainer.widthProperty(), BoardContainer.heightProperty()));
         for (int i = 0; i < 8; i++) {
