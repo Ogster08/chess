@@ -4,11 +4,8 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="5ecba770-62e4-41d3-b203-db736912793c" name="Changes" comment="added pawn promotion">
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/chessengine/HelloApplication.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/chessengine/HelloApplication.java" afterDir="false" />
+    <list default="true" id="5ecba770-62e4-41d3-b203-db736912793c" name="Changes" comment="fixing adding pawn moves in getPseudoLegalMoves">
       <change beforePath="$PROJECT_DIR$/src/main/java/com/example/chessengine/UCI/Board.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/chessengine/UCI/Board.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/chessengine/UCI/PromotionMove.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/chessengine/UCI/PromotionMove.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -158,15 +155,7 @@
       <workItem from="1771505307917" duration="23582000" />
       <workItem from="1771536906603" duration="4322000" />
       <workItem from="1771544969104" duration="63000" />
-      <workItem from="1771590778672" duration="19224000" />
-    </task>
-    <task id="LOCAL-00010" summary="removed unused import">
-      <option name="closed" value="true" />
-      <created>1763114851130</created>
-      <option name="number" value="00010" />
-      <option name="presentableId" value="LOCAL-00010" />
-      <option name="project" value="LOCAL" />
-      <updated>1763114851130</updated>
+      <workItem from="1771590778672" duration="19285000" />
     </task>
     <task id="LOCAL-00011" summary="fixed initialising lists and corrected move calculation loops">
       <option name="closed" value="true" />
@@ -552,7 +541,15 @@
       <option name="project" value="LOCAL" />
       <updated>1771609579862</updated>
     </task>
-    <option name="localTasksCounter" value="59" />
+    <task id="LOCAL-00059" summary="fixing adding pawn moves in getPseudoLegalMoves">
+      <option name="closed" value="true" />
+      <created>1771611257665</created>
+      <option name="number" value="00059" />
+      <option name="presentableId" value="LOCAL-00059" />
+      <option name="project" value="LOCAL" />
+      <updated>1771611257665</updated>
+    </task>
+    <option name="localTasksCounter" value="60" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -570,7 +567,6 @@
     </option>
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="removing unused debug statement" />
     <MESSAGE value="fixed castling moves not requiring space" />
     <MESSAGE value="added method to generate the board at the start of a game" />
     <MESSAGE value="added annotation for clarity" />
@@ -595,7 +591,8 @@
     <MESSAGE value="fixed king not being able to move diagonally" />
     <MESSAGE value="Fixed pawn not removing its move to 2 squares forward, when 1 the first in front is blocked and some bad if statements adding extra moves and checking wrong squares" />
     <MESSAGE value="added pawn promotion" />
-    <option name="LAST_COMMIT_MESSAGE" value="added pawn promotion" />
+    <MESSAGE value="fixing adding pawn moves in getPseudoLegalMoves" />
+    <option name="LAST_COMMIT_MESSAGE" value="fixing adding pawn moves in getPseudoLegalMoves" />
   </component>
   <component name="XSLT-Support.FileAssociations.UIState">
     <expand />

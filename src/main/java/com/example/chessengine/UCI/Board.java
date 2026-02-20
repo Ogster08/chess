@@ -119,10 +119,8 @@ public class Board{
         enPassantMoves.clear();
 
         if (move.getClass() == PromotionMove.class){
-            //System.out.println("doing promotion move");
             cells[p.getRow()][p.getCol()].setPiece(null);
             move.cell().setPiece(((PromotionMove) move).getPromotionPiece());
-            //System.out.println("finished promotion");
         } else {
             if (p.getClass() == Pawn.class){
                 if (Math.abs(p.getRow() - move.cell().getRow()) == 2) {
