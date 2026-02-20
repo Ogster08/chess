@@ -128,4 +128,11 @@ public class Pawn extends Piece {
         super.setRow(row);
         firstRank = (getColour() == Colour.WHITE && row == 1) || (getColour() == Colour.BLACK && row == 6);
     }
+
+    @Override
+    public String toString() {
+        return "Piece Pawn " +
+                "firstRank= " + firstRank +
+                " at [" + getRow() + ", " + getCol() + "]";
+    }
 }

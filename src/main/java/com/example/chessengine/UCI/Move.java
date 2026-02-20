@@ -102,4 +102,8 @@ public class Move {
                 "cell= " + cell + ']';
     }
 
+    @Override
+    public int hashCode() {
+        return Objects.hash(p, cell);
+    }
 }

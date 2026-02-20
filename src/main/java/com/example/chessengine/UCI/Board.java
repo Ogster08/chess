@@ -3,6 +3,7 @@ package com.example.chessengine.UCI;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
+import java.util.Objects;
 
 /**
  * The board class will hold the positions of all the pieces, and be able to add, move and remove them.
@@ -264,5 +265,17 @@ public class Board{
             case WHITE -> colourToMove = Colour.BLACK;
             case BLACK -> colourToMove = Colour.WHITE;
         }
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (o == null || getClass() != o.getClass()) return false;
+        Board board = (Board) o;
+        return Objects.deepEquals(cells, board.cells) && colourToMove == board.colourToMove && Objects.equals(enPassantMoves, board.enPassantMoves) && Objects.equals(castlingMoves, board.castlingMoves) && Objects.equals(undoMoveInfoList, board.undoMoveInfoList);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(Arrays.deepHashCode(cells), colourToMove);
     }
 }

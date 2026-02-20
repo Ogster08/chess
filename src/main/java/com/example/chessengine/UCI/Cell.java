@@ -2,6 +2,7 @@ package com.example.chessengine.UCI;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Objects;
 
 
 /**
@@ -101,5 +102,17 @@ public class Cell {
     @Override
     public String toString(){
         return "Cell[" + row + ", " + col + "]";
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (o == null || getClass() != o.getClass()) return false;
+        Cell cell = (Cell) o;
+        return row == cell.row && col == cell.col && Objects.equals(piece, cell.piece) && Objects.equals(Listener, cell.Listener);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(row, col);
     }
 }

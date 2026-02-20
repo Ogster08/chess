@@ -2,6 +2,7 @@ package com.example.chessengine.UCI;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Objects;
 
 /**
  * Abstract piece class to define the functionality of every piece.
@@ -160,6 +161,18 @@ public abstract class Piece implements CellListener {
 
     @Override
     public String toString(){
-        return "Piece " + getClass().getSimpleName() + "at [" + row + ", " + col + "]";
+        return "Piece " + getClass().getSimpleName() + " at [" + row + ", " + col + "]";
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (o == null || getClass() != o.getClass()) return false;
+        Piece piece = (Piece) o;
+        return row == piece.row && col == piece.col && Objects.equals(board, piece.board) && Objects.equals(cellsList, piece.cellsList) && Objects.equals(movesList, piece.movesList) && colour == piece.colour;
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(board, row, col, colour);
     }
 }
