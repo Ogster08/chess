@@ -5,10 +5,12 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="5ecba770-62e4-41d3-b203-db736912793c" name="Changes" comment="Improved GUI to show the origin square of the piece you are currently dragging, as well as outline the square it is being dragged over. Slightly modified checking legal moves, to implement dots over the squares a piece can be dragged to while dragging it">
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/example/chessengine/UCI/Engine.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/example/chessengine/UCI/EngineGameState.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/chessengine/HelloController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/chessengine/HelloController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/chessengine/UCI/Board.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/chessengine/UCI/Board.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/chessengine/UCI/Rook.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/chessengine/UCI/Rook.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/chessengine/HelloApplication.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/chessengine/HelloApplication.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/chessengine/UCI/GameState.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/chessengine/UCI/GameState.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/chessengine/UCI/MoveHandler.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/chessengine/UCI/MoveHandler.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -21,9 +23,9 @@
         <option value="Enum" />
         <option value="JUnit5 Test Class" />
         <option value="Interface" />
-        <option value="Class" />
         <option value="Record" />
         <option value="CSS File" />
+        <option value="Class" />
       </list>
     </option>
   </component>
@@ -157,6 +159,7 @@
       <workItem from="1771505307917" duration="23582000" />
       <workItem from="1771536906603" duration="4322000" />
       <workItem from="1771544969104" duration="63000" />
+      <workItem from="1771590778672" duration="2668000" />
     </task>
     <task id="LOCAL-00001" summary="Generated JavaFX base code">
       <option name="closed" value="true" />
@@ -560,7 +563,6 @@
     </option>
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="removed unused commented out code, as hopefully fixed checking which moves are valid (both functions), but they aren't tested" />
     <MESSAGE value="Removed unused bit boards, added variable for which colour is currently moving, and updated constructor accordingly, while adding a new one, which defaults to white starting first, added lists for different move types, updated remove piece, with functionality going to the cell the piece is in, changed the move function to use the new move classes and accounts for resulting en passant moves from any double pawn moves, and finally a function to return all the pseudolegal moves in the current position by the current colour to move" />
     <MESSAGE value="it changed" />
     <MESSAGE value="Fixed initialisation needing to happen at the end of subclass constructors, rather than in the super method" />
@@ -585,7 +587,8 @@
     <MESSAGE value="Added UndoMoveInfo class to store the least possible information to be able to undo a move" />
     <MESSAGE value="Added function in board to undo a move, and added legal move validation in the GameState class. Fixed canCastle logic in King and Rook classes" />
     <MESSAGE value="Improved GUI to show the origin square of the piece you are currently dragging, as well as outline the square it is being dragged over. Slightly modified checking legal moves, to implement dots over the squares a piece can be dragged to while dragging it" />
-    <option name="LAST_COMMIT_MESSAGE" value="Improved GUI to show the origin square of the piece you are currently dragging, as well as outline the square it is being dragged over. Slightly modified checking legal moves, to implement dots over the squares a piece can be dragged to while dragging it" />
+    <MESSAGE value="fixed undoing castling moves could cause a random rook to appear" />
+    <option name="LAST_COMMIT_MESSAGE" value="" />
   </component>
   <component name="XSLT-Support.FileAssociations.UIState">
     <expand />

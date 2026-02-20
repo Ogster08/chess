@@ -6,8 +6,8 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class GameState implements MoveHandler{
-    private final Board board;
-    private final HelloController controller;
+    protected final Board board;
+    protected final HelloController controller;
     private final List<Move> legalMoves = new ArrayList<>();
 
     public GameState(HelloController controller){
@@ -45,8 +45,7 @@ public class GameState implements MoveHandler{
         board.addPiece(new Queen(board, 7, 3, Colour.BLACK));
         board.addPiece(new King(board, 7, 4, Colour.BLACK, true));
 
-        updateLegalMoves();
-        controller.updatePosition(board);
+        updateGUI();
     }
 
     /**
@@ -56,16 +55,15 @@ public class GameState implements MoveHandler{
      * @param targetColumn
      */
     @Override
-    public void handleMove(int sourceRow, int sourceColumn, int targetRow, int targetColumn) {
-
+    public boolean handleMove(int sourceRow, int sourceColumn, int targetRow, int targetColumn) {
         for (Move move: legalMoves){
             if (move.p().getRow() == sourceRow && move.p().getCol() == sourceColumn && move.cell().getRow() == targetRow && move.cell().getCol() == targetColumn){
                 board.movePiece(move);
-                updateLegalMoves();
-                controller.updatePosition(board);
-                return;
+                updateGUI();
+                return true;
             }
         }
+        return false;
     }
 
     /**
@@ -80,15 +78,6 @@ public class GameState implements MoveHandler{
             if (move.p().getRow() == row && move.p().getCol() == col) moves.add(move);
         }
         return moves;
-    }
-
-    private void updateLegalMoves(){
-        legalMoves.clear();
-        for (Move move: board.getPseudolegalMoves()){
-            if (checkLegalMoves(move)) {
-                legalMoves.add(move);
-            }
-        }
     }
 
     private boolean checkLegalMoves(Move move){
@@ -126,5 +115,15 @@ public class GameState implements MoveHandler{
         }
         board.undoMove();
         return true;
+    }
+
+    public void updateGUI(){
+        legalMoves.clear();
+        for (Move move: board.getPseudolegalMoves()){
+            if (checkLegalMoves(move)) {
+                legalMoves.add(move);
+            }
+        }
+        controller.updatePosition(board);
     }
 }
