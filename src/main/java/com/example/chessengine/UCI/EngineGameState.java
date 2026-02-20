@@ -17,7 +17,6 @@ public class EngineGameState extends GameState{
     }
 
     private boolean playerTurn(){
-        System.out.println(playerColour + ", " + board.getColourToMove());
         return playerColour == board.getColourToMove();
     }
 
