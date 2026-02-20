@@ -18,8 +18,8 @@ public class HelloApplication extends Application{
         stage.setScene(scene);
         stage.show();
 
-        EngineGameState engineGameState = new EngineGameState(fxmlLoader.getController(), Colour.WHITE);
-        //GameState gameState = new GameState(fxmlLoader.getController());
+        //EngineGameState engineGameState = new EngineGameState(fxmlLoader.getController(), Colour.WHITE);
+        GameState gameState = new GameState(fxmlLoader.getController());
     }
 
     public static void main(String[] args) {

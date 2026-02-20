@@ -21,4 +21,11 @@ public class PromotionMove extends Move {
         throw new IllegalArgumentException("Invalid class: " + promotionClass);
     }
 
+    @Override
+    public String toString() {
+        return "PromotionMove{" +
+                "promotionClass=" + promotionClass +
+                "p= " + p() + ", " +
+                "cell= " + cell() + '}';
+    }
 }

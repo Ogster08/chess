@@ -119,10 +119,11 @@ public class Board{
         enPassantMoves.clear();
 
         if (move.getClass() == PromotionMove.class){
+            //System.out.println("doing promotion move");
             cells[p.getRow()][p.getCol()].setPiece(null);
             move.cell().setPiece(((PromotionMove) move).getPromotionPiece());
-        }
-        else {
+            //System.out.println("finished promotion");
+        } else {
             if (p.getClass() == Pawn.class){
                 if (Math.abs(p.getRow() - move.cell().getRow()) == 2) {
                     if (move.cell().getCol() >= 1 &&
@@ -179,15 +180,16 @@ public class Board{
                             if (moveCell.getRow() != 0 && moveCell.getRow() != 7) {
                                 moves.add(new Move(p, moveCell));
                             } else {
-                                moves.add(new PromotionMove((Pawn) p, cell, Rook.class));
-                                moves.add(new PromotionMove((Pawn) p, cell, Queen.class));
-                                moves.add(new PromotionMove((Pawn) p, cell, Bishop.class));
-                                moves.add(new PromotionMove((Pawn) p, cell, Knight.class));
+                                moves.add(new PromotionMove((Pawn) p, moveCell, Rook.class));
+                                moves.add(new PromotionMove((Pawn) p, moveCell, Queen.class));
+                                moves.add(new PromotionMove((Pawn) p, moveCell, Bishop.class));
+                                moves.add(new PromotionMove((Pawn) p, moveCell, Knight.class));
                             }
                         }
-                    }
-                    for (Cell moveCell: p.movesList){
-                        moves.add(new Move(p, moveCell));
+                    } else {
+                        for (Cell moveCell: p.movesList){
+                            moves.add(new Move(p, moveCell));
+                        }
                     }
                     if (cell.getPiece().getClass() == King.class){
                         King king = (King) cell.getPiece();
