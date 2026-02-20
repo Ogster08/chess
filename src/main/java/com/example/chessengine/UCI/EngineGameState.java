@@ -13,6 +13,10 @@ public class EngineGameState extends GameState{
         super(controller);
         this.engine = new Engine(board);
         this.playerColour = playerColour;
+        if (playerColour == Colour.BLACK){
+            board.movePiece(engine.getNextMove());
+            updateGUI();
+        }
     }
 
     private boolean playerTurn(){

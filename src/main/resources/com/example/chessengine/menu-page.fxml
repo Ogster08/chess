@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<VBox fx:id="vBox" xmlns="http://javafx.com/javafx/17.0.12" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.chessengine.MenuController">
+    <Button fx:id="multiplayerButton" mnemonicParsing="false" onAction="#setGameToMultiplayer" text="local multiplayer" />
+    <Button fx:id="engineButton" mnemonicParsing="false" onAction="#setGameToEngine" text="bot" />
+</VBox>
