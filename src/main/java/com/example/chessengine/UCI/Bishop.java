@@ -64,7 +64,6 @@ public class Bishop extends Piece {
         int row = getRow() + rowD;
         int col = getCol() + colD;
         while (row <= 7 && col <= 7 && row >= 0 && col >= 0 && !hitPiece(row, col, cells)) {
-            cells.add(getBoard().getCell(row, col));
             row += rowD;
             col += colD;
         }
@@ -121,8 +120,11 @@ public class Bishop extends Piece {
                 upLeftMovesList.clear();
                 WalkDiagonalUntilHit(1,-1, upLeftMovesList);
             }
-            upRightMovesList.clear();
-            WalkDiagonalUntilHit(1,1, upRightMovesList);
+            else{
+                upRightMovesList.clear();
+                WalkDiagonalUntilHit(1,1, upRightMovesList);
+            }
+
         }else  if (getCol() - col > 0){
             downLeftMovesList.clear();
             WalkDiagonalUntilHit(-1,-1, downLeftMovesList);
