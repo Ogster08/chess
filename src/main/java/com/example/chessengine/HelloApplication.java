@@ -19,6 +19,7 @@ public class HelloApplication extends Application{
         stage.show();
 
         EngineGameState engineGameState = new EngineGameState(fxmlLoader.getController(), Colour.WHITE);
+        //GameState gameState = new GameState(fxmlLoader.getController());
     }
 
     public static void main(String[] args) {

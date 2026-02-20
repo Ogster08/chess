@@ -1,9 +1,6 @@
 package com.example.chessengine.UCI;
 
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.List;
-import java.util.Random;
+import java.util.*;
 
 public class Engine {
     private final Board board;
@@ -18,8 +15,21 @@ public class Engine {
         for (Move move: board.getPseudolegalMoves()){
             if (checkLegalMoves(move)) legalMoves.add(move);
         }
-        System.out.println("got next move");
         return legalMoves.get(random.nextInt(legalMoves.size()));
+    }
+
+    public int countMoves(int depth){
+        if (depth == 0) return 1;
+
+        int count = 0;
+        for (Move move: board.getPseudolegalMoves()){
+            if (checkLegalMoves(move)){
+                board.movePiece(move);
+                count += countMoves(depth - 1);
+                board.undoMove();
+            }
+        }
+        return count;
     }
 
     private boolean checkLegalMoves(Move move){
