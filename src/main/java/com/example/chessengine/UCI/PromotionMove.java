@@ -1,7 +1,7 @@
 package com.example.chessengine.UCI;
 
 public class PromotionMove extends Move {
-    private final Class<?> promotionClass;
+    public final Class<?> promotionClass;
 
     /**
      * @param p The pawn doing the promotion

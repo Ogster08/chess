@@ -58,6 +58,13 @@ public class GameState implements MoveHandler{
     public boolean handleMove(int sourceRow, int sourceColumn, int targetRow, int targetColumn) {
         for (Move move: legalMoves){
             if (move.p().getRow() == sourceRow && move.p().getCol() == sourceColumn && move.cell().getRow() == targetRow && move.cell().getCol() == targetColumn){
+                if (move.getClass() == PromotionMove.class){
+                    Class<?> promotionClass = controller.choosePromotionPiece(board.getColourToMove());
+                    if (promotionClass == null) return false;
+                    for (Move promotionMove: legalMoves){
+                        if (promotionMove.getClass() == PromotionMove.class && ((PromotionMove) promotionMove).promotionClass == promotionClass && promotionMove.cell() == move.cell()) move = promotionMove;
+                    }
+                }
                 board.movePiece(move);
                 updateGUI();
                 return true;

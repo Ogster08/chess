@@ -3,8 +3,12 @@ package com.example.chessengine;
 import com.example.chessengine.UCI.*;
 import javafx.beans.binding.Bindings;
 import javafx.fxml.FXML;
+import javafx.geometry.Insets;
 import javafx.geometry.Pos;
 import javafx.scene.Node;
+import javafx.scene.control.Button;
+import javafx.scene.control.ButtonType;
+import javafx.scene.control.Dialog;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.ClipboardContent;
@@ -191,6 +195,47 @@ public class HelloController{
         square.getChildren().removeIf(node ->
             "dot".equals(node.getUserData())
         );
+    }
+
+    public Class<?> choosePromotionPiece(Colour colour){
+        Dialog<Class<?>> dialog = new Dialog<>();
+        dialog.setTitle("Choose promotion");
+
+        GridPane imageGrid = new GridPane();
+        imageGrid.setHgap(10);
+        imageGrid.setVgap(10);
+        imageGrid.setPadding(new Insets(10));
+
+        Class<?>[] pieces = {Queen.class, Rook.class, Bishop.class, Knight.class};
+
+        for (int i = 0; i < 4; i++) {
+            Class<?> c = pieces[i];
+            String imagePath;
+            if (colour == Colour.WHITE) imagePath = whitePieceToImagePath.get(c);
+            else imagePath = blackPieceToImagePath.get(pieces[i]);
+
+            Button button = new Button();
+            ImageView imageView = new ImageView(new Image(Objects.requireNonNull(getClass().getResourceAsStream(imagePath))));
+            imageView.setPreserveRatio(true);
+
+            button.setGraphic(imageView);
+
+            button.setOnAction(actionEvent -> {
+                dialog.setResult(c);;
+                dialog.close();
+            });
+
+            imageGrid.add(button, i, 0);
+        }
+
+        dialog.getDialogPane().setContent(imageGrid);
+        dialog.getDialogPane().getButtonTypes().add(ButtonType.CANCEL);
+
+        dialog.setResultConverter(buttonType -> {
+            return null;
+        });
+
+        return dialog.showAndWait().orElse(null);
     }
 
 }
