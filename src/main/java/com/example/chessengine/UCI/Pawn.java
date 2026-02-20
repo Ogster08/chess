@@ -104,18 +104,26 @@ public class Pawn extends Piece {
                 movesList.add(cell); // For moving forward 1 square while on the first rank
                 if(getColour() == Colour.WHITE && getBoard().getCell(3, col).getPiece() == null){
                     movesList.add(getBoard().getCell(3, col)); // For moving forward 2 squares while on the first rank as the square in between is now clear
-                } else if (getBoard().getCell(4, col).getPiece() == null) {
+                } else if (getColour() == Colour.BLACK && getBoard().getCell(4, col).getPiece() == null) {
                     movesList.add(getBoard().getCell(4, col)); // For moving forward 2 squares while on the first rank as the square in between is now clear
                 }
                 return;
             }
-            if(getBoard().getCell(Math.abs(getRow() - row), col).getPiece() == null){
+            if(getBoard().getCell((getColour() == Colour.WHITE) ? getRow() + 1 : getRow() - 1, col).getPiece() == null){
+                //System.out.println(getColour() + ", " + getRow() + ", " + row);
                 movesList.add(cell); // For moving forward 2 squares while on the first rank
             }
         }else if (Math.abs(getCol() - col) == 1 &&
                 newColour != getColour() &&
                 newColour != null){
             movesList.add(cell); // For capturing diagonally
+        } else if (newColour != null && col == getCol() && Math.abs(getRow() - row) == 1){
+            if (getColour() == Colour.WHITE){
+                movesList.remove(getBoard().getCell(3, col));
+            }
+            else {
+                movesList.remove(getBoard().getCell(4, col));
+            }
         }
     }
 
