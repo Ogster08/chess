@@ -1,8 +1,7 @@
 package com.example.chessengine.UCI;
 
-import com.example.chessengine.HelloController;
+import com.example.chessengine.ChessController;
 
-import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 
@@ -10,7 +9,7 @@ public class EngineGameState extends GameState{
     private final Engine engine;
     private final Colour playerColour;
 
-    public EngineGameState(HelloController controller, Colour playerColour) {
+    public EngineGameState(ChessController controller, Colour playerColour) {
         super(controller);
         this.engine = new Engine(board);
         this.playerColour = playerColour;

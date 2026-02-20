@@ -21,13 +21,13 @@ import javafx.scene.layout.StackPane;
 
 import java.util.*;
 
-public class HelloController{
+public class ChessController {
     @FXML public GridPane ChessGrid;
     @FXML public StackPane BoardContainer;
 
     private MoveHandler moveHandler;
     private Pane currentOriginSquare = null;
-    private List<Pane> showMovesSquares = new ArrayList<>();
+    private final List<Pane> showMovesSquares = new ArrayList<>();
 
     public void setMoveHandler(MoveHandler moveHandler){
         this.moveHandler = moveHandler;
