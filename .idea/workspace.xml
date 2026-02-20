@@ -4,13 +4,10 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="5ecba770-62e4-41d3-b203-db736912793c" name="Changes" comment="Improved GUI to show the origin square of the piece you are currently dragging, as well as outline the square it is being dragged over. Slightly modified checking legal moves, to implement dots over the squares a piece can be dragged to while dragging it">
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/example/chessengine/UCI/Engine.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/example/chessengine/UCI/EngineGameState.java" afterDir="false" />
+    <list default="true" id="5ecba770-62e4-41d3-b203-db736912793c" name="Changes" comment="Fixed pawn not removing its move to 2 squares forward, when 1 the first in front is blocked and some bad if statements adding extra moves and checking wrong squares">
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/example/chessengine/UCI/PromotionMove.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/chessengine/HelloApplication.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/chessengine/HelloApplication.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/chessengine/UCI/GameState.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/chessengine/UCI/GameState.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/chessengine/UCI/MoveHandler.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/chessengine/UCI/MoveHandler.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/chessengine/UCI/Board.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/chessengine/UCI/Board.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -93,6 +90,7 @@
 }</component>
   <component name="RecentsManager">
     <key name="CreateClassDialog.RecentsKey">
+      <recent name="com.example.chessengine.UCI" />
       <recent name="com.example.chessengine" />
     </key>
     <key name="CreateTestDialog.Recents.Supers">
@@ -159,71 +157,7 @@
       <workItem from="1771505307917" duration="23582000" />
       <workItem from="1771536906603" duration="4322000" />
       <workItem from="1771544969104" duration="63000" />
-      <workItem from="1771590778672" duration="2668000" />
-    </task>
-    <task id="LOCAL-00001" summary="Generated JavaFX base code">
-      <option name="closed" value="true" />
-      <created>1759756591927</created>
-      <option name="number" value="00001" />
-      <option name="presentableId" value="LOCAL-00001" />
-      <option name="project" value="LOCAL" />
-      <updated>1759756591927</updated>
-    </task>
-    <task id="LOCAL-00002" summary="Added chess board">
-      <option name="closed" value="true" />
-      <created>1759759463370</created>
-      <option name="number" value="00002" />
-      <option name="presentableId" value="LOCAL-00002" />
-      <option name="project" value="LOCAL" />
-      <updated>1759759463370</updated>
-    </task>
-    <task id="LOCAL-00003" summary="Added abstract classes for generating moves">
-      <option name="closed" value="true" />
-      <created>1760968920940</created>
-      <option name="number" value="00003" />
-      <option name="presentableId" value="LOCAL-00003" />
-      <option name="project" value="LOCAL" />
-      <updated>1760968920940</updated>
-    </task>
-    <task id="LOCAL-00004" summary="fixed Pawn move">
-      <option name="closed" value="true" />
-      <created>1761086212169</created>
-      <option name="number" value="00004" />
-      <option name="presentableId" value="LOCAL-00004" />
-      <option name="project" value="LOCAL" />
-      <updated>1761086212169</updated>
-    </task>
-    <task id="LOCAL-00005" summary="added King class">
-      <option name="closed" value="true" />
-      <created>1761086239114</created>
-      <option name="number" value="00005" />
-      <option name="presentableId" value="LOCAL-00005" />
-      <option name="project" value="LOCAL" />
-      <updated>1761086239114</updated>
-    </task>
-    <task id="LOCAL-00006" summary="it changed">
-      <option name="closed" value="true" />
-      <created>1761086262974</created>
-      <option name="number" value="00006" />
-      <option name="presentableId" value="LOCAL-00006" />
-      <option name="project" value="LOCAL" />
-      <updated>1761086262974</updated>
-    </task>
-    <task id="LOCAL-00007" summary="Added rook piece">
-      <option name="closed" value="true" />
-      <created>1763114664448</created>
-      <option name="number" value="00007" />
-      <option name="presentableId" value="LOCAL-00007" />
-      <option name="project" value="LOCAL" />
-      <updated>1763114664448</updated>
-    </task>
-    <task id="LOCAL-00008" summary="fixed not clearing movesList">
-      <option name="closed" value="true" />
-      <created>1763114689392</created>
-      <option name="number" value="00008" />
-      <option name="presentableId" value="LOCAL-00008" />
-      <option name="project" value="LOCAL" />
-      <updated>1763114689392</updated>
+      <workItem from="1771590778672" duration="17514000" />
     </task>
     <task id="LOCAL-00009" summary="removed unused commented code">
       <option name="closed" value="true" />
@@ -545,7 +479,79 @@
       <option name="project" value="LOCAL" />
       <updated>1771537152474</updated>
     </task>
-    <option name="localTasksCounter" value="49" />
+    <task id="LOCAL-00049" summary="added Engine class, that chooses a random move">
+      <option name="closed" value="true" />
+      <created>1771593675136</created>
+      <option name="number" value="00049" />
+      <option name="presentableId" value="LOCAL-00049" />
+      <option name="project" value="LOCAL" />
+      <updated>1771593675136</updated>
+    </task>
+    <task id="LOCAL-00050" summary="added EngineGameState class, to be the interface between the GUI and player. Changed some things for it to work smoother">
+      <option name="closed" value="true" />
+      <created>1771593758045</created>
+      <option name="number" value="00050" />
+      <option name="presentableId" value="LOCAL-00050" />
+      <option name="project" value="LOCAL" />
+      <updated>1771593758045</updated>
+    </task>
+    <task id="LOCAL-00051" summary="removed debug code">
+      <option name="closed" value="true" />
+      <created>1771608797231</created>
+      <option name="number" value="00051" />
+      <option name="presentableId" value="LOCAL-00051" />
+      <option name="project" value="LOCAL" />
+      <updated>1771608797231</updated>
+    </task>
+    <task id="LOCAL-00052" summary="Added function to count the number of positions at a certain depth in the given position for move generation testing">
+      <option name="closed" value="true" />
+      <created>1771608891171</created>
+      <option name="number" value="00052" />
+      <option name="presentableId" value="LOCAL-00052" />
+      <option name="project" value="LOCAL" />
+      <updated>1771608891173</updated>
+    </task>
+    <task id="LOCAL-00053" summary="improved classes for debugging, by changing to string functions and adding some equals and hash function">
+      <option name="closed" value="true" />
+      <created>1771608999274</created>
+      <option name="number" value="00053" />
+      <option name="presentableId" value="LOCAL-00053" />
+      <option name="project" value="LOCAL" />
+      <updated>1771608999276</updated>
+    </task>
+    <task id="LOCAL-00054" summary="improved reCalculating, by chaining some if statements that weren't before">
+      <option name="closed" value="true" />
+      <created>1771609063879</created>
+      <option name="number" value="00054" />
+      <option name="presentableId" value="LOCAL-00054" />
+      <option name="project" value="LOCAL" />
+      <updated>1771609063879</updated>
+    </task>
+    <task id="LOCAL-00055" summary="Fixed double counting and fixed upRightMovesList being updated when not necessary">
+      <option name="closed" value="true" />
+      <created>1771609147662</created>
+      <option name="number" value="00055" />
+      <option name="presentableId" value="LOCAL-00055" />
+      <option name="project" value="LOCAL" />
+      <updated>1771609147662</updated>
+    </task>
+    <task id="LOCAL-00056" summary="fixed king not being able to move diagonally">
+      <option name="closed" value="true" />
+      <created>1771609174287</created>
+      <option name="number" value="00056" />
+      <option name="presentableId" value="LOCAL-00056" />
+      <option name="project" value="LOCAL" />
+      <updated>1771609174287</updated>
+    </task>
+    <task id="LOCAL-00057" summary="Fixed pawn not removing its move to 2 squares forward, when 1 the first in front is blocked and some bad if statements adding extra moves and checking wrong squares">
+      <option name="closed" value="true" />
+      <created>1771609270660</created>
+      <option name="number" value="00057" />
+      <option name="presentableId" value="LOCAL-00057" />
+      <option name="project" value="LOCAL" />
+      <updated>1771609270660</updated>
+    </task>
+    <option name="localTasksCounter" value="58" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -563,15 +569,6 @@
     </option>
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="Removed unused bit boards, added variable for which colour is currently moving, and updated constructor accordingly, while adding a new one, which defaults to white starting first, added lists for different move types, updated remove piece, with functionality going to the cell the piece is in, changed the move function to use the new move classes and accounts for resulting en passant moves from any double pawn moves, and finally a function to return all the pseudolegal moves in the current position by the current colour to move" />
-    <MESSAGE value="it changed" />
-    <MESSAGE value="Fixed initialisation needing to happen at the end of subclass constructors, rather than in the super method" />
-    <MESSAGE value="Added toString method for debug purpose" />
-    <MESSAGE value="Fixed getPseudolegalMoves to add the target cell when creating a move, and looping through pieces every move" />
-    <MESSAGE value="Fixed chessboard scaling, and added function to update the GUI from a board object" />
-    <MESSAGE value="testing GUI and move calculations" />
-    <MESSAGE value="chess piece images" />
-    <MESSAGE value="removed debug statements" />
     <MESSAGE value="fixed boolean in CalculateValidMoves" />
     <MESSAGE value="removing unused debug statement" />
     <MESSAGE value="fixed castling moves not requiring space" />
@@ -588,7 +585,16 @@
     <MESSAGE value="Added function in board to undo a move, and added legal move validation in the GameState class. Fixed canCastle logic in King and Rook classes" />
     <MESSAGE value="Improved GUI to show the origin square of the piece you are currently dragging, as well as outline the square it is being dragged over. Slightly modified checking legal moves, to implement dots over the squares a piece can be dragged to while dragging it" />
     <MESSAGE value="fixed undoing castling moves could cause a random rook to appear" />
-    <option name="LAST_COMMIT_MESSAGE" value="" />
+    <MESSAGE value="added Engine class, that chooses a random move" />
+    <MESSAGE value="added EngineGameState class, to be the interface between the GUI and player. Changed some things for it to work smoother" />
+    <MESSAGE value="removed debug code" />
+    <MESSAGE value="Added function to count the number of positions at a certain depth in the given position for move generation testing" />
+    <MESSAGE value="improved classes for debugging, by changing to string functions and adding some equals and hash function" />
+    <MESSAGE value="improved reCalculating, by chaining some if statements that weren't before" />
+    <MESSAGE value="Fixed double counting and fixed upRightMovesList being updated when not necessary" />
+    <MESSAGE value="fixed king not being able to move diagonally" />
+    <MESSAGE value="Fixed pawn not removing its move to 2 squares forward, when 1 the first in front is blocked and some bad if statements adding extra moves and checking wrong squares" />
+    <option name="LAST_COMMIT_MESSAGE" value="Fixed pawn not removing its move to 2 squares forward, when 1 the first in front is blocked and some bad if statements adding extra moves and checking wrong squares" />
   </component>
   <component name="XSLT-Support.FileAssociations.UIState">
     <expand />

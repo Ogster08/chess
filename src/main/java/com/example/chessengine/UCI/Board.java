@@ -118,36 +118,42 @@ public class Board{
 
         enPassantMoves.clear();
 
-        if (p.getClass() == Pawn.class){
-            if (Math.abs(p.getRow() - move.cell().getRow()) == 2) {
-                if (move.cell().getCol() >= 1 &&
-                        getCell(move.cell().getRow(), move.cell().getCol() - 1).getPiece() != null &&
-                        getCell(move.cell().getRow(), move.cell().getCol() - 1).getPiece().getClass() == Pawn.class &&
-                        getCell(move.cell().getRow(), move.cell().getCol() - 1).getPiece().getColour() != p.getColour()) {
-                    enPassantMoves.add(new EnPassantMove((Pawn) getCell(move.cell().getRow(), move.cell().getCol() - 1).getPiece(),
-                            getCell((move.cell().getRow() + move.p().getRow()) / 2, move.cell().getCol())));
-                }
-                if (move.cell().getCol() <= 6 &&
-                        getCell(move.cell().getRow(), move.cell().getCol() + 1).getPiece() != null &&
-                        getCell(move.cell().getRow(), move.cell().getCol() + 1).getPiece().getClass() == Pawn.class &&
-                        getCell(move.cell().getRow(), move.cell().getCol() + 1).getPiece().getColour() != p.getColour()){
-                    enPassantMoves.add(new EnPassantMove((Pawn) getCell(move.cell().getRow(), move.cell().getCol() + 1).getPiece(),
-                            getCell((move.cell().getRow() + move.p().getRow()) / 2, move.cell().getCol())));
+        if (move.getClass() == PromotionMove.class){
+            cells[p.getRow()][p.getCol()].setPiece(null);
+            move.cell().setPiece(((PromotionMove) move).getPromotionPiece());
+        }
+        else {
+            if (p.getClass() == Pawn.class){
+                if (Math.abs(p.getRow() - move.cell().getRow()) == 2) {
+                    if (move.cell().getCol() >= 1 &&
+                            getCell(move.cell().getRow(), move.cell().getCol() - 1).getPiece() != null &&
+                            getCell(move.cell().getRow(), move.cell().getCol() - 1).getPiece().getClass() == Pawn.class &&
+                            getCell(move.cell().getRow(), move.cell().getCol() - 1).getPiece().getColour() != p.getColour()) {
+                        enPassantMoves.add(new EnPassantMove((Pawn) getCell(move.cell().getRow(), move.cell().getCol() - 1).getPiece(),
+                                getCell((move.cell().getRow() + move.p().getRow()) / 2, move.cell().getCol())));
+                    }
+                    if (move.cell().getCol() <= 6 &&
+                            getCell(move.cell().getRow(), move.cell().getCol() + 1).getPiece() != null &&
+                            getCell(move.cell().getRow(), move.cell().getCol() + 1).getPiece().getClass() == Pawn.class &&
+                            getCell(move.cell().getRow(), move.cell().getCol() + 1).getPiece().getColour() != p.getColour()){
+                        enPassantMoves.add(new EnPassantMove((Pawn) getCell(move.cell().getRow(), move.cell().getCol() + 1).getPiece(),
+                                getCell((move.cell().getRow() + move.p().getRow()) / 2, move.cell().getCol())));
+                    }
                 }
             }
-        }
-        move.cell().setPiece(p);
-        cells[p.getRow()][p.getCol()].setPiece(null);
-        p.move(move.cell().getRow(), move.cell().getCol());
-        if (move.getClass() == EnPassantMove.class){
-            EnPassantMove enPassantMove = (EnPassantMove) move;
-            enPassantMove.getTargetPawnCell().setPiece(null);
-        } else if (move.getClass() == CastlingMove.class) {
-            CastlingMove castlingMove = (CastlingMove) move;
-            Rook rook = castlingMove.getR();
-            castlingMove.getRookCell().setPiece(rook);
-            cells[rook.getRow()][rook.getCol()].setPiece(null);
-            rook.move(castlingMove.getRookCell().getRow(), castlingMove.getRookCell().getCol());
+            move.cell().setPiece(p);
+            cells[p.getRow()][p.getCol()].setPiece(null);
+            p.move(move.cell().getRow(), move.cell().getCol());
+            if (move.getClass() == EnPassantMove.class){
+                EnPassantMove enPassantMove = (EnPassantMove) move;
+                enPassantMove.getTargetPawnCell().setPiece(null);
+            } else if (move.getClass() == CastlingMove.class) {
+                CastlingMove castlingMove = (CastlingMove) move;
+                Rook rook = castlingMove.getR();
+                castlingMove.getRookCell().setPiece(rook);
+                cells[rook.getRow()][rook.getCol()].setPiece(null);
+                rook.move(castlingMove.getRookCell().getRow(), castlingMove.getRookCell().getCol());
+            }
         }
 
         switch (colourToMove){
@@ -168,8 +174,20 @@ public class Board{
             for (Cell cell : row) {
                 if (cell.getPiece() != null && cell.getPiece().getColour() == getColourToMove()) {
                     Piece p = cell.getPiece();
+                    if (p.getClass() == Pawn.class){
+                        for (Cell moveCell: p.movesList){
+                            if (moveCell.getRow() != 0 && moveCell.getRow() != 7) {
+                                moves.add(new Move(p, moveCell));
+                            } else {
+                                moves.add(new PromotionMove((Pawn) p, cell, Rook.class));
+                                moves.add(new PromotionMove((Pawn) p, cell, Queen.class));
+                                moves.add(new PromotionMove((Pawn) p, cell, Bishop.class));
+                                moves.add(new PromotionMove((Pawn) p, cell, Knight.class));
+                            }
+                        }
+                    }
                     for (Cell moveCell: p.movesList){
-                        moves.add(new Move(cell.getPiece(), moveCell));
+                        moves.add(new Move(p, moveCell));
                     }
                     if (cell.getPiece().getClass() == King.class){
                         King king = (King) cell.getPiece();
