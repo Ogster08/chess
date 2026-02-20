@@ -33,8 +33,16 @@ public class King extends Piece {
     @Override
     protected List<Cell> TheoreticalReachableCells() {
         List<Cell> cells = new ArrayList<Cell>();
-        if (getRow() > 0) cells.add(getBoard().getCell(getRow() - 1, getCol()));
-        if (getRow() < 7) cells.add(getBoard().getCell(getRow() + 1, getCol()));
+        if (getRow() > 0) {
+            cells.add(getBoard().getCell(getRow() - 1, getCol()));
+            if (getCol() > 0) cells.add(getBoard().getCell(getRow() - 1, getCol() - 1));
+            if (getCol() < 7) cells.add(getBoard().getCell(getRow() - 1, getCol() + 1));
+        }
+        if (getRow() < 7) {
+            cells.add(getBoard().getCell(getRow() + 1, getCol()));
+            if (getCol() > 0) cells.add(getBoard().getCell(getRow() + 1, getCol() - 1));
+            if (getCol() < 7) cells.add(getBoard().getCell(getRow() + 1, getCol() + 1));
+        }
         if (getCol() > 0) cells.add(getBoard().getCell(getRow(), getCol() - 1));
         if (getCol() < 7) cells.add(getBoard().getCell(getRow(), getCol() + 1));
         return cells;
