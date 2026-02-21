@@ -4,15 +4,12 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="5ecba770-62e4-41d3-b203-db736912793c" name="Changes" comment="added popup to choose promotion piece">
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/example/chessengine/MenuController.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/example/chessengine/UCI/SceneSwitcher.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/resources/com/example/chessengine/menu-page.fxml" afterDir="false" />
+    <list default="true" id="5ecba770-62e4-41d3-b203-db736912793c" name="Changes" comment="code cleanup">
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/example/chessengine/UCI/EngineThread.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/chessengine/ChessController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/chessengine/ChessController.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/com/example/chessengine/HelloApplication.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/chessengine/HelloApplication.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/chessengine/UCI/Engine.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/chessengine/UCI/Engine.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/com/example/chessengine/UCI/EngineGameState.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/chessengine/UCI/EngineGameState.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/com/example/chessengine/hello-view.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/com/example/chessengine/game-page.fxml" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -27,8 +24,8 @@
         <option value="Record" />
         <option value="CSS File" />
         <option value="FxmlFile" />
-        <option value="Class" />
         <option value="Interface" />
+        <option value="Class" />
       </list>
     </option>
   </component>
@@ -164,23 +161,8 @@
       <workItem from="1771536906603" duration="4322000" />
       <workItem from="1771544969104" duration="63000" />
       <workItem from="1771590778672" duration="22168000" />
-      <workItem from="1771622595576" duration="3850000" />
-    </task>
-    <task id="LOCAL-00013" summary="added Bishop piece, without logic">
-      <option name="closed" value="true" />
-      <created>1763117507859</created>
-      <option name="number" value="00013" />
-      <option name="presentableId" value="LOCAL-00013" />
-      <option name="project" value="LOCAL" />
-      <updated>1763117507859</updated>
-    </task>
-    <task id="LOCAL-00014" summary="fixed not adding the piece as a listener to reachable cells in the constructor and not generating valid moves in the constructor">
-      <option name="closed" value="true" />
-      <created>1763120290644</created>
-      <option name="number" value="00014" />
-      <option name="presentableId" value="LOCAL-00014" />
-      <option name="project" value="LOCAL" />
-      <updated>1763120290644</updated>
+      <workItem from="1771622595576" duration="4182000" />
+      <workItem from="1771672283301" duration="3434000" />
     </task>
     <task id="LOCAL-00015" summary="added functionality for removing piece being a listener for the cells it can reach">
       <option name="closed" value="true" />
@@ -558,7 +540,23 @@
       <option name="project" value="LOCAL" />
       <updated>1771613695158</updated>
     </task>
-    <option name="localTasksCounter" value="62" />
+    <task id="LOCAL-00062" summary="added menu to choose to play multiplayer or against the engine">
+      <option name="closed" value="true" />
+      <created>1771627417291</created>
+      <option name="number" value="00062" />
+      <option name="presentableId" value="LOCAL-00062" />
+      <option name="project" value="LOCAL" />
+      <updated>1771627417292</updated>
+    </task>
+    <task id="LOCAL-00063" summary="code cleanup">
+      <option name="closed" value="true" />
+      <created>1771627433259</created>
+      <option name="number" value="00063" />
+      <option name="presentableId" value="LOCAL-00063" />
+      <option name="project" value="LOCAL" />
+      <updated>1771627433259</updated>
+    </task>
+    <option name="localTasksCounter" value="64" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -576,8 +574,6 @@
     </option>
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="added annotation for clarity" />
-    <MESSAGE value="made toString method better" />
     <MESSAGE value="removed unused line for cleaner code" />
     <MESSAGE value="fixed index outside bounds error, when ReCalculatingValidMoves on  move forward 2 spaces cell, and using cellsList instead of movesList in 2 instances" />
     <MESSAGE value="added moving pieces using the GUI, with a validation function, connected using the MoveHandler interface" />
@@ -601,7 +597,9 @@
     <MESSAGE value="fixing adding pawn moves in getPseudoLegalMoves" />
     <MESSAGE value="removing unused code" />
     <MESSAGE value="added popup to choose promotion piece" />
-    <option name="LAST_COMMIT_MESSAGE" value="added popup to choose promotion piece" />
+    <MESSAGE value="added menu to choose to play multiplayer or against the engine" />
+    <MESSAGE value="code cleanup" />
+    <option name="LAST_COMMIT_MESSAGE" value="code cleanup" />
   </component>
   <component name="XSLT-Support.FileAssociations.UIState">
     <expand />

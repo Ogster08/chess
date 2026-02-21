@@ -6,16 +6,16 @@ import java.util.Collections;
 import java.util.List;
 
 public class EngineGameState extends GameState{
-    private final Engine engine;
+    private final EngineThread engineThread;
     private final Colour playerColour;
 
     public EngineGameState(ChessController controller, Colour playerColour) {
         super(controller);
-        this.engine = new Engine(board);
+        engineThread = new EngineThread(new Engine(board));
+        engineThread.start();
         this.playerColour = playerColour;
         if (playerColour == Colour.BLACK){
-            board.movePiece(engine.getNextMove());
-            updateGUI();
+            doNextEngineMove();
         }
     }
 
@@ -27,8 +27,7 @@ public class EngineGameState extends GameState{
     public boolean handleMove(int sourceRow, int sourceColumn, int targetRow, int targetColumn) {
         if (playerTurn()) {
             if (super.handleMove(sourceRow, sourceColumn, targetRow, targetColumn)){
-                board.movePiece(engine.getNextMove());
-                updateGUI();
+                doNextEngineMove();
                 return true;
             }
         }
@@ -39,5 +38,20 @@ public class EngineGameState extends GameState{
     public List<Move> getLegalMoves(int row, int col) {
         if (playerTurn())  return super.getLegalMoves(row, col);
         return Collections.emptyList();
+    }
+
+    private void doNextEngineMove(){
+        engineThread.requestMove(move -> {
+            board.movePiece(move);
+            updateGUI();
+        });
+    }
+
+    private void outputCount(int depth){
+        engineThread.getCountMoves(System.out::println, depth);
+    }
+
+    public void stopEngineThread(){
+        engineThread.stopEngine();
     }
 }

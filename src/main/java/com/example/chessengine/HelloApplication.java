@@ -10,6 +10,7 @@ import java.io.IOException;
 
 public class HelloApplication extends Application implements SceneSwitcher{
     private Stage stage;
+    private GameState gameState;
 
     @Override
     public void start(Stage stage) throws IOException {
@@ -20,16 +21,13 @@ public class HelloApplication extends Application implements SceneSwitcher{
         stage.setTitle("Chess");
         stage.setScene(menuScene);
         stage.show();
-/*
-        FXMLLoader gameLoader = new FXMLLoader(HelloApplication.class.getResource("game-page.fxml"));
-        Scene scene = new Scene(gameLoader.load(), 480, 480);
-        stage.setTitle("Chess");
-        stage.setScene(scene);
-        stage.show();
-        EngineGameState engineGameState = new EngineGameState(gameLoader.getController(), Colour.WHITE);
-*/
+    }
 
-        //GameState gameState = new GameState(gameLoader.getController());
+    @Override
+    public void stop() throws Exception {
+        if  (gameState.getClass() == EngineGameState.class){
+            ((EngineGameState) gameState).stopEngineThread();
+        }
     }
 
     public static void main(String[] args) {
@@ -44,8 +42,7 @@ public class HelloApplication extends Application implements SceneSwitcher{
         FXMLLoader gameLoader = new FXMLLoader(HelloApplication.class.getResource("game-page.fxml"));
         Scene scene = new Scene(gameLoader.load(), 480, 480);
         stage.setScene(scene);
-        GameState gameState;
         if (GameStateClass == GameState.class) gameState = new GameState(gameLoader.getController());
-        if (GameStateClass == EngineGameState.class) gameState = new EngineGameState(gameLoader.getController(), Colour.BLACK);
+        if (GameStateClass == EngineGameState.class) gameState = new EngineGameState(gameLoader.getController(), Colour.WHITE);
     }
 }
