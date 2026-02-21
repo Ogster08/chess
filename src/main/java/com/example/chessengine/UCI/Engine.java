@@ -2,7 +2,7 @@ package com.example.chessengine.UCI;
 
 import java.util.*;
 
-public class Engine {
+public class Engine{
     private final Board board;
 
     public Engine(Board board) {
