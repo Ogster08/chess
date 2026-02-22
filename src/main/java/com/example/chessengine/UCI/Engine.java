@@ -15,7 +15,8 @@ public class Engine{
 
     public Move getNextMove(){
         count = 0;
-        search(5, 0, Integer.MIN_VALUE, Integer.MAX_VALUE, true);
+        System.out.println("-----New move-----");
+        System.out.println(search(5, 0, Integer.MIN_VALUE, Integer.MAX_VALUE, true));
         System.out.println(count);
         return bestMove;
     }
@@ -91,17 +92,43 @@ public class Engine{
     };
 
     private int evaluatePosition(){
-        int score = 0;
+        int evaluation = 0;
         for (int i = 0; i < 8; i++) {
             for (int j = 0; j < 8; j++) {
                 Piece p = board.getCell(i, j).getPiece();
                 if (p != null){
-                    if (p.getColour() == engineColour) score += pieceScores.get(p.getClass());
-                    else score -= pieceScores.get(p.getClass());
+                    int score = 0;
+                    score += pieceScores.get(p.getClass());
+                    if (p.getClass() == Pawn.class) {
+                        score += readTable(pawnTable, p);
+                    } else if (p.getClass() == Knight.class) {
+                        score += readTable(knightTable, p);
+                    } else if (p.getClass() == Bishop.class) {
+                        score += readTable(bishopTable, p);
+                    } else if (p.getClass() == Rook.class) {
+                        score += readTable(rookTable, p);
+                    } else if (p.getClass() == Queen.class) {
+                        score += readTable(queenTable, p);
+                    } else if (p.getClass() == King.class) {
+                        score += readTable(kingMiddleTable, p);
+                    }
+
+                    if (p.getColour() == engineColour) {
+                        evaluation += score;
+                    } else {
+                        evaluation -= score;
+                    }
                 }
             }
         }
-        return score;
+        return evaluation;
+    }
+
+    private int readTable(int[] table, Piece piece){
+        int index;
+        if (piece.getColour() == Colour.WHITE) index = 8 * (7 - piece.getRow()) + piece.getCol();
+        else index = 8 * piece.getRow() + piece.getCol();
+        return table[index];
     }
 
     private boolean checkLegalMoves(Move move){
@@ -140,4 +167,81 @@ public class Engine{
         board.undoMove();
         return true;
     }
+
+    private static final int[] pawnTable = {
+            0,  0,  0,  0,  0,  0,  0,  0,
+            50, 50, 50, 50, 50, 50, 50, 50,
+            10, 10, 20, 30, 30, 20, 10, 10,
+            5,  5, 10, 25, 25, 10,  5,  5,
+            0,  0,  0, 20, 20,  0,  0,  0,
+            5, -5,-10,  0,  0,-10, -5,  5,
+            5, 10, 10,-20,-20, 10, 10,  5,
+            0,  0,  0,  0,  0,  0,  0,  0
+    };
+
+    private static final int[] knightTable = {
+            -50,-40,-30,-30,-30,-30,-40,-50,
+            -40,-20,  0,  0,  0,  0,-20,-40,
+            -30,  0, 10, 15, 15, 10,  0,-30,
+            -30,  5, 15, 20, 20, 15,  5,-30,
+            -30,  0, 15, 20, 20, 15,  0,-30,
+            -30,  5, 10, 15, 15, 10,  5,-30,
+            -40,-20,  0,  5,  5,  0,-20,-40,
+            -50,-40,-30,-30,-30,-30,-40,-50,
+    };
+
+    private static final int[] bishopTable = {
+            -20,-10,-10,-10,-10,-10,-10,-20,
+            -10,  0,  0,  0,  0,  0,  0,-10,
+            -10,  0,  5, 10, 10,  5,  0,-10,
+            -10,  5,  5, 10, 10,  5,  5,-10,
+            -10,  0, 10, 10, 10, 10,  0,-10,
+            -10, 10, 10, 10, 10, 10, 10,-10,
+            -10,  5,  0,  0,  0,  0,  5,-10,
+            -20,-10,-10,-10,-10,-10,-10,-20,
+    };
+
+    private static final int[] rookTable = {
+            0,  0,  0,  0,  0,  0,  0,  0,
+            5, 10, 10, 10, 10, 10, 10,  5,
+            -5,  0,  0,  0,  0,  0,  0, -5,
+            -5,  0,  0,  0,  0,  0,  0, -5,
+            -5,  0,  0,  0,  0,  0,  0, -5,
+            -5,  0,  0,  0,  0,  0,  0, -5,
+            -5,  0,  0,  0,  0,  0,  0, -5,
+            0,  0,  0,  5,  5,  0,  0,  0
+    };
+
+    private static final int[] queenTable = {
+            -20,-10,-10, -5, -5,-10,-10,-20,
+            -10,  0,  0,  0,  0,  0,  0,-10,
+            -10,  0,  5,  5,  5,  5,  0,-10,
+            -5,  0,  5,  5,  5,  5,  0, -5,
+            0,  0,  5,  5,  5,  5,  0, -5,
+            -10,  5,  5,  5,  5,  5,  0,-10,
+            -10,  0,  5,  0,  0,  0,  0,-10,
+            -20,-10,-10, -5, -5,-10,-10,-20
+    };
+
+    private static final int[] kingMiddleTable = {
+            -30,-40,-40,-50,-50,-40,-40,-30,
+            -30,-40,-40,-50,-50,-40,-40,-30,
+            -30,-40,-40,-50,-50,-40,-40,-30,
+            -30,-40,-40,-50,-50,-40,-40,-30,
+            -20,-30,-30,-40,-40,-30,-30,-20,
+            -10,-20,-20,-20,-20,-20,-20,-10,
+            20, 20,  0,  0,  0,  0, 20, 20,
+            20, 30, 10,  0,  0, 10, 30, 20
+    };
+
+    private static final int[] kingEndTable = {
+            -50,-40,-30,-20,-20,-30,-40,-50,
+            -30,-20,-10,  0,  0,-10,-20,-30,
+            -30,-10, 20, 30, 30, 20,-10,-30,
+            -30,-10, 30, 40, 40, 30,-10,-30,
+            -30,-10, 30, 40, 40, 30,-10,-30,
+            -30,-10, 20, 30, 30, 20,-10,-30,
+            -30,-30,  0,  0,  0,  0,-30,-30,
+            -50,-30,-30,-30,-30,-30,-30,-50
+    };
 }
