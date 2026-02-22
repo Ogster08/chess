@@ -274,8 +274,8 @@ public class Board{
                 CastlingMove castlingMove = (CastlingMove) undoMoveInfo.move;
                 castlingMove.getRookCell().setPiece(null);
                 Rook rook = castlingMove.getR();
-                rook.move(undoMoveInfo.row, undoMoveInfo.col == 2 ? 0 : 7, true);
-                cells[undoMoveInfo.row][undoMoveInfo.col == 2 ? 0 : 7].setPiece(rook);
+                rook.move(undoMoveInfo.row, rook.getCol() == 3 ? 0 : 7, true);
+                cells[undoMoveInfo.row][rook.getCol()].setPiece(rook);
             }
         }
 
