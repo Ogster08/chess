@@ -4,10 +4,9 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="5ecba770-62e4-41d3-b203-db736912793c" name="Changes" comment="code cleanup">
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/example/chessengine/UCI/EngineThread.java" afterDir="false" />
+    <list default="true" id="5ecba770-62e4-41d3-b203-db736912793c" name="Changes" comment="The engine now runs on its own thread">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/chessengine/HelloApplication.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/chessengine/HelloApplication.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/chessengine/UCI/Board.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/chessengine/UCI/Board.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/com/example/chessengine/UCI/Engine.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/chessengine/UCI/Engine.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/com/example/chessengine/UCI/EngineGameState.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/chessengine/UCI/EngineGameState.java" afterDir="false" />
     </list>
@@ -162,23 +161,9 @@
       <workItem from="1771544969104" duration="63000" />
       <workItem from="1771590778672" duration="22168000" />
       <workItem from="1771622595576" duration="4182000" />
-      <workItem from="1771672283301" duration="3434000" />
-    </task>
-    <task id="LOCAL-00015" summary="added functionality for removing piece being a listener for the cells it can reach">
-      <option name="closed" value="true" />
-      <created>1763120669350</created>
-      <option name="number" value="00015" />
-      <option name="presentableId" value="LOCAL-00015" />
-      <option name="project" value="LOCAL" />
-      <updated>1763120669350</updated>
-    </task>
-    <task id="LOCAL-00016" summary="added Javadoc">
-      <option name="closed" value="true" />
-      <created>1763654248061</created>
-      <option name="number" value="00016" />
-      <option name="presentableId" value="LOCAL-00016" />
-      <option name="project" value="LOCAL" />
-      <updated>1763654248061</updated>
+      <workItem from="1771672283301" duration="4723000" />
+      <workItem from="1771687600666" duration="1229000" />
+      <workItem from="1771760873997" duration="12934000" />
     </task>
     <task id="LOCAL-00017" summary="Knight piece added and finished">
       <option name="closed" value="true" />
@@ -556,7 +541,23 @@
       <option name="project" value="LOCAL" />
       <updated>1771627433259</updated>
     </task>
-    <option name="localTasksCounter" value="64" />
+    <task id="LOCAL-00064" summary="cleanup">
+      <option name="closed" value="true" />
+      <created>1771675892874</created>
+      <option name="number" value="00064" />
+      <option name="presentableId" value="LOCAL-00064" />
+      <option name="project" value="LOCAL" />
+      <updated>1771675892874</updated>
+    </task>
+    <task id="LOCAL-00065" summary="The engine now runs on its own thread">
+      <option name="closed" value="true" />
+      <created>1771675938842</created>
+      <option name="number" value="00065" />
+      <option name="presentableId" value="LOCAL-00065" />
+      <option name="project" value="LOCAL" />
+      <updated>1771675938842</updated>
+    </task>
+    <option name="localTasksCounter" value="66" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -574,8 +575,6 @@
     </option>
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="removed unused line for cleaner code" />
-    <MESSAGE value="fixed index outside bounds error, when ReCalculatingValidMoves on  move forward 2 spaces cell, and using cellsList instead of movesList in 2 instances" />
     <MESSAGE value="added moving pieces using the GUI, with a validation function, connected using the MoveHandler interface" />
     <MESSAGE value="Fixing en passant moves and castling" />
     <MESSAGE value="changes" />
@@ -599,7 +598,9 @@
     <MESSAGE value="added popup to choose promotion piece" />
     <MESSAGE value="added menu to choose to play multiplayer or against the engine" />
     <MESSAGE value="code cleanup" />
-    <option name="LAST_COMMIT_MESSAGE" value="code cleanup" />
+    <MESSAGE value="cleanup" />
+    <MESSAGE value="The engine now runs on its own thread" />
+    <option name="LAST_COMMIT_MESSAGE" value="The engine now runs on its own thread" />
   </component>
   <component name="XSLT-Support.FileAssociations.UIState">
     <expand />

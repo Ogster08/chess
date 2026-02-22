@@ -4,18 +4,65 @@ import java.util.*;
 
 public class Engine{
     private final Board board;
+    private final Colour engineColour;
+    private Move bestMove;
+    private int count = 0;
 
-    public Engine(Board board) {
+    public Engine(Board board, Colour engineColour) {
         this.board = board;
+        this.engineColour = engineColour;
     }
 
     public Move getNextMove(){
-        Random random = new Random();
-        List<Move> legalMoves = new ArrayList<>();
-        for (Move move: board.getPseudolegalMoves()){
-            if (checkLegalMoves(move)) legalMoves.add(move);
+        count = 0;
+        search(5, 0, Integer.MIN_VALUE, Integer.MAX_VALUE, true);
+        System.out.println(count);
+        return bestMove;
+    }
+
+    private int search(int maxDepth, int currentDepth, int alpha, int beta, boolean maximising){
+        if (maxDepth == 0) return evaluatePosition();
+
+        if (maximising){
+            for (Move move: board.getPseudolegalMoves()){
+                if (checkLegalMoves(move)){
+                    count++;
+                    board.movePiece(move);
+                    int score = search(maxDepth - 1, currentDepth + 1, alpha, beta, false);
+                    board.undoMove();
+
+                    if (score > alpha){
+                        alpha = score;
+                        if (currentDepth == 0){
+                            bestMove = move;
+                        }
+                    }
+
+                    if (alpha >= beta){
+                        break;
+                    }
+                }
+            }
+            return alpha;
         }
-        return legalMoves.get(random.nextInt(legalMoves.size()));
+        else {
+            for (Move move: board.getPseudolegalMoves()){
+                if (checkLegalMoves(move)){
+                    board.movePiece(move);
+                    int score = search(maxDepth - 1, currentDepth + 1, alpha, beta, true);
+                    board.undoMove();
+
+                    if (score < beta){
+                        beta = score;
+                    }
+
+                    if (alpha >= beta){
+                        break;
+                    }
+                }
+            }
+            return beta;
+        }
     }
 
     public int countMoves(int depth){
@@ -30,6 +77,31 @@ public class Engine{
             }
         }
         return count;
+    }
+
+    private static final Map<Class<?>, Integer> pieceScores = new HashMap<>(){
+        {
+            put(Pawn.class, 100);
+            put(Knight.class, 325);
+            put(Bishop.class, 325);
+            put(Rook.class, 525);
+            put(Queen.class, 1000);
+            put(King.class, 0);
+        }
+    };
+
+    private int evaluatePosition(){
+        int score = 0;
+        for (int i = 0; i < 8; i++) {
+            for (int j = 0; j < 8; j++) {
+                Piece p = board.getCell(i, j).getPiece();
+                if (p != null){
+                    if (p.getColour() == engineColour) score += pieceScores.get(p.getClass());
+                    else score -= pieceScores.get(p.getClass());
+                }
+            }
+        }
+        return score;
     }
 
     private boolean checkLegalMoves(Move move){

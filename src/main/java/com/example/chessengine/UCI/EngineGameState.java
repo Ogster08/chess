@@ -11,7 +11,7 @@ public class EngineGameState extends GameState{
 
     public EngineGameState(ChessController controller, Colour playerColour) {
         super(controller);
-        engineThread = new EngineThread(new Engine(board));
+        engineThread = new EngineThread(new Engine(board, playerColour == Colour.WHITE ? Colour.BLACK: Colour.WHITE));
         engineThread.start();
         this.playerColour = playerColour;
         if (playerColour == Colour.BLACK){
