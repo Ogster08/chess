@@ -4,8 +4,9 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="5ecba770-62e4-41d3-b203-db736912793c" name="Changes" comment="fixed undoing a castling move, with the rook being moved to the wrong square sometimes">
+    <list default="true" id="5ecba770-62e4-41d3-b203-db736912793c" name="Changes" comment="added position evaluation">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/chessengine/UCI/Board.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/chessengine/UCI/Board.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/com/example/chessengine/UCI/Engine.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/chessengine/UCI/Engine.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -161,15 +162,7 @@
       <workItem from="1771622595576" duration="4182000" />
       <workItem from="1771672283301" duration="4723000" />
       <workItem from="1771687600666" duration="1229000" />
-      <workItem from="1771760873997" duration="18340000" />
-    </task>
-    <task id="LOCAL-00019" summary="Added piece being removed functionality to cell class, so it deals with it rather than the board">
-      <option name="closed" value="true" />
-      <created>1771257048709</created>
-      <option name="number" value="00019" />
-      <option name="presentableId" value="LOCAL-00019" />
-      <option name="project" value="LOCAL" />
-      <updated>1771257048709</updated>
+      <workItem from="1771760873997" duration="20766000" />
     </task>
     <task id="LOCAL-00020" summary="added Move classes, this should be earlier, and has changes from several commits">
       <option name="closed" value="true" />
@@ -555,7 +548,15 @@
       <option name="project" value="LOCAL" />
       <updated>1771793937730</updated>
     </task>
-    <option name="localTasksCounter" value="68" />
+    <task id="LOCAL-00068" summary="added position evaluation">
+      <option name="closed" value="true" />
+      <created>1771800851525</created>
+      <option name="number" value="00068" />
+      <option name="presentableId" value="LOCAL-00068" />
+      <option name="project" value="LOCAL" />
+      <updated>1771800851525</updated>
+    </task>
+    <option name="localTasksCounter" value="69" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -573,7 +574,6 @@
     </option>
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="changes" />
     <MESSAGE value="Added GameState class to be the interface between the GUI and engine" />
     <MESSAGE value="Added UndoMoveInfo class to store the least possible information to be able to undo a move" />
     <MESSAGE value="Added function in board to undo a move, and added legal move validation in the GameState class. Fixed canCastle logic in King and Rook classes" />
@@ -598,7 +598,8 @@
     <MESSAGE value="The engine now runs on its own thread" />
     <MESSAGE value="added evaluation based on material value, and alpha-beta pruning for searching" />
     <MESSAGE value="fixed undoing a castling move, with the rook being moved to the wrong square sometimes" />
-    <option name="LAST_COMMIT_MESSAGE" value="fixed undoing a castling move, with the rook being moved to the wrong square sometimes" />
+    <MESSAGE value="added position evaluation" />
+    <option name="LAST_COMMIT_MESSAGE" value="added position evaluation" />
   </component>
   <component name="XSLT-Support.FileAssociations.UIState">
     <expand />

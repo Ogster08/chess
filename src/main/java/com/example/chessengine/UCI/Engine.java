@@ -16,7 +16,7 @@ public class Engine{
     public Move getNextMove(){
         count = 0;
         System.out.println("-----New move-----");
-        System.out.println(search(5, 0, Integer.MIN_VALUE, Integer.MAX_VALUE, true));
+        System.out.println(search(4, 0, Integer.MIN_VALUE, Integer.MAX_VALUE, true));
         System.out.println(count);
         return bestMove;
     }
