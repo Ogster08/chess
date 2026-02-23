@@ -7,6 +7,7 @@ public class Engine{
     private final Colour engineColour;
     private Move bestMove;
     private int count = 0;
+    private final int mateScore = 100_000;
 
     public Engine(Board board, Colour engineColour) {
         this.board = board;
@@ -15,18 +16,23 @@ public class Engine{
 
     public Move getNextMove(){
         count = 0;
+        bestMove = null;
         System.out.println("-----New move-----");
         System.out.println(search(4, 0, Integer.MIN_VALUE, Integer.MAX_VALUE, true));
         System.out.println(count);
+        System.out.println(bestMove);
         return bestMove;
     }
 
     private int search(int maxDepth, int currentDepth, int alpha, int beta, boolean maximising){
         if (maxDepth == 0) return evaluatePosition();
 
+        boolean noMoves = true;
+
         if (maximising){
             for (Move move: board.getPseudolegalMoves()){
                 if (checkLegalMoves(move)){
+                    noMoves = false;
                     count++;
                     board.movePiece(move);
                     int score = search(maxDepth - 1, currentDepth + 1, alpha, beta, false);
@@ -44,11 +50,19 @@ public class Engine{
                     }
                 }
             }
+            if (noMoves){
+                if (board.isInCheck()) {
+                    return -mateScore;
+                } else {
+                    return 0;
+                }
+            }
             return alpha;
         }
         else {
             for (Move move: board.getPseudolegalMoves()){
                 if (checkLegalMoves(move)){
+                    noMoves = false;
                     board.movePiece(move);
                     int score = search(maxDepth - 1, currentDepth + 1, alpha, beta, true);
                     board.undoMove();
@@ -61,6 +75,10 @@ public class Engine{
                         break;
                     }
                 }
+            }
+            if (noMoves){
+                if (board.isInCheck()) return mateScore;
+                else return 0;
             }
             return beta;
         }

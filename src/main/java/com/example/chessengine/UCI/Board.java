@@ -285,6 +285,40 @@ public class Board{
         }
     }
 
+    public boolean isInCheck(){
+        Cell kingCell = null;
+        boolean breakLoop = false;
+
+        for (Cell[] row: cells){
+            for (Cell cell: row){
+                if (cell.getPiece() != null && cell.getPiece().getClass() == King.class && cell.getPiece().getColour() == getColourToMove()){
+                    kingCell = cell;
+                    breakLoop = true;
+                    break;
+                }
+            }
+            if (breakLoop) break;
+        }
+        System.out.println(kingCell);
+
+        if (kingCell == null){
+            System.out.println("no king");
+            throw new NullPointerException("no king cell");
+        }
+
+        for (Cell[] row: cells){
+            for (Cell cell: row){
+                if (cell.getPiece() != null && cell.getPiece().getColour() != colourToMove){
+                    if (cell.getPiece().movesList.contains(kingCell)) {
+                        System.out.println(cell.getPiece());
+                        return true;
+                    }
+                }
+            }
+        }
+        return false;
+    }
+
     @Override
     public boolean equals(Object o) {
         if (o == null || getClass() != o.getClass()) return false;

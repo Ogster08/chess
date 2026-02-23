@@ -4,10 +4,12 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="5ecba770-62e4-41d3-b203-db736912793c" name="Changes" comment="added position evaluation">
+    <list default="true" id="5ecba770-62e4-41d3-b203-db736912793c" name="Changes" comment="removed commented out code">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/chessengine/ChessController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/chessengine/ChessController.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/com/example/chessengine/UCI/Board.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/chessengine/UCI/Board.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/com/example/chessengine/UCI/Engine.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/chessengine/UCI/Engine.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/chessengine/UCI/EngineGameState.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/chessengine/UCI/EngineGameState.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -162,23 +164,8 @@
       <workItem from="1771622595576" duration="4182000" />
       <workItem from="1771672283301" duration="4723000" />
       <workItem from="1771687600666" duration="1229000" />
-      <workItem from="1771760873997" duration="20766000" />
-    </task>
-    <task id="LOCAL-00020" summary="added Move classes, this should be earlier, and has changes from several commits">
-      <option name="closed" value="true" />
-      <created>1771257139779</created>
-      <option name="number" value="00020" />
-      <option name="presentableId" value="LOCAL-00020" />
-      <option name="project" value="LOCAL" />
-      <updated>1771257139779</updated>
-    </task>
-    <task id="LOCAL-00021" summary="changed how checking castling works, so the king only checks if it can at all. ALso, fixed creating new cells in TheoreticalReachableCella and wrong boolean logic when calculating valid moves (in knight as well)">
-      <option name="closed" value="true" />
-      <created>1771257344498</created>
-      <option name="number" value="00021" />
-      <option name="presentableId" value="LOCAL-00021" />
-      <option name="project" value="LOCAL" />
-      <updated>1771257344498</updated>
+      <workItem from="1771760873997" duration="21067000" />
+      <workItem from="1771845823998" duration="8011000" />
     </task>
     <task id="LOCAL-00022" summary="Added boolean getter of if the rook can castle, as castling functionality changed">
       <option name="closed" value="true" />
@@ -556,7 +543,23 @@
       <option name="project" value="LOCAL" />
       <updated>1771800851525</updated>
     </task>
-    <option name="localTasksCounter" value="69" />
+    <task id="LOCAL-00069" summary="tuning depth, so the search doesn't take as long">
+      <option name="closed" value="true" />
+      <created>1771803625457</created>
+      <option name="number" value="00069" />
+      <option name="presentableId" value="LOCAL-00069" />
+      <option name="project" value="LOCAL" />
+      <updated>1771803625457</updated>
+    </task>
+    <task id="LOCAL-00070" summary="removed commented out code">
+      <option name="closed" value="true" />
+      <created>1771855310904</created>
+      <option name="number" value="00070" />
+      <option name="presentableId" value="LOCAL-00070" />
+      <option name="project" value="LOCAL" />
+      <updated>1771855310904</updated>
+    </task>
+    <option name="localTasksCounter" value="71" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -574,8 +577,6 @@
     </option>
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="Added GameState class to be the interface between the GUI and engine" />
-    <MESSAGE value="Added UndoMoveInfo class to store the least possible information to be able to undo a move" />
     <MESSAGE value="Added function in board to undo a move, and added legal move validation in the GameState class. Fixed canCastle logic in King and Rook classes" />
     <MESSAGE value="Improved GUI to show the origin square of the piece you are currently dragging, as well as outline the square it is being dragged over. Slightly modified checking legal moves, to implement dots over the squares a piece can be dragged to while dragging it" />
     <MESSAGE value="fixed undoing castling moves could cause a random rook to appear" />
@@ -599,7 +600,9 @@
     <MESSAGE value="added evaluation based on material value, and alpha-beta pruning for searching" />
     <MESSAGE value="fixed undoing a castling move, with the rook being moved to the wrong square sometimes" />
     <MESSAGE value="added position evaluation" />
-    <option name="LAST_COMMIT_MESSAGE" value="added position evaluation" />
+    <MESSAGE value="tuning depth, so the search doesn't take as long" />
+    <MESSAGE value="removed commented out code" />
+    <option name="LAST_COMMIT_MESSAGE" value="removed commented out code" />
   </component>
   <component name="XSLT-Support.FileAssociations.UIState">
     <expand />

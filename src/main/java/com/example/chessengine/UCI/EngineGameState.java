@@ -42,8 +42,13 @@ public class EngineGameState extends GameState{
 
     private void doNextEngineMove(){
         engineThread.requestMove(move -> {
-            board.movePiece(move);
-            updateGUI();
+            if (move != null){
+                board.movePiece(move);
+                updateGUI();
+            }
+            else {
+                System.out.println("no engine move");
+            }
         });
     }
 
