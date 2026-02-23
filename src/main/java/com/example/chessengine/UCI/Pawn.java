@@ -110,7 +110,6 @@ public class Pawn extends Piece {
                 return;
             }
             if(getBoard().getCell((getColour() == Colour.WHITE) ? getRow() + 1 : getRow() - 1, col).getPiece() == null){
-                //System.out.println(getColour() + ", " + getRow() + ", " + row);
                 movesList.add(cell); // For moving forward 2 squares while on the first rank
             }
         }else if (Math.abs(getCol() - col) == 1 &&
