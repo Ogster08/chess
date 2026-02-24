@@ -11,15 +11,21 @@ public class UndoMoveInfo {
     public final boolean pieceCanCastle;
     public final int row;
     public final int col;
+    public final int fiftyMoveCounter;
+    public final int enPassantFile;
+    public final boolean[] castlingState;
 
-    public UndoMoveInfo(Move move, List<EnPassantMove> enPassantMoveList, List<CastlingMove> castlingMovesList, Piece capture) {
+    public UndoMoveInfo(Move move, List<EnPassantMove> enPassantMoveList, List<CastlingMove> castlingMovesList, Piece capture, int fiftyMoveCounter, int enPassantFile, boolean[] castlingState) {
         this.move = move;
         this.enPassantMoveList = enPassantMoveList;
         this.castlingMovesList = castlingMovesList;
         row = move.p().getRow();
         col = move.p().getCol();
+        this.fiftyMoveCounter = fiftyMoveCounter;
 
         pieceCanCastle = (move.p().getClass() == Rook.class && ((Rook) move.p()).isCanCastle()) ||  (move.p().getClass() == King.class && ((King) move.p()).isCanCastle());
+        this.enPassantFile = enPassantFile;
+        this.castlingState = castlingState;
         if (capture != null){
             captureClass = capture.getClass();
             captureCanCastle = capture.getClass() == Rook.class && ((Rook) capture).isCanCastle();

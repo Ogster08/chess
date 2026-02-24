@@ -1,9 +1,6 @@
 package com.example.chessengine.UCI;
 
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.List;
-import java.util.Objects;
+import java.util.*;
 
 /**
  * The board class will hold the positions of all the pieces, and be able to add, move and remove them.
@@ -35,20 +32,30 @@ public class Board{
     private Colour colourToMove;
 
     /**
-     * A list of all pseudolegal en passant moves in the current position, so they can easily be cleared once a move has been made
+     * A list of all pseudo legal en passant moves in the current position, so they can easily be cleared once a move has been made
      */
-    private final List<EnPassantMove> enPassantMoves = new ArrayList<>();
-
-    public List<CastlingMove> getCastlingMoves() {
-        return castlingMoves;
-    }
+    public final List<EnPassantMove> enPassantMoves = new ArrayList<>();
 
     /**
      * A list of all the castling moves in the current position by the player whose turn it is, so they can more easily be validated if they are legal or not
      */
-    private final List<CastlingMove> castlingMoves = new ArrayList<>();
+    public final List<CastlingMove> castlingMoves = new ArrayList<>();
 
-    private final List<UndoMoveInfo> undoMoveInfoList = new ArrayList<>();
+    public final List<UndoMoveInfo> undoMoveInfoList = new ArrayList<>();
+
+    public int getFiftyMoveCounter() {
+        return fiftyMoveCounter;
+    }
+
+    private int fiftyMoveCounter = 0;
+
+    public final HashMap<Long, Short> positionHistory = new HashMap<>();
+
+    private boolean[] castlingState = new boolean[4];
+
+    private final Zobrist zobrist = new Zobrist();
+    private long zobristKey = 0;
+    private int enPassantRank = 0;
 
     /**
      * Constructor to create a new empty board, where white starts first
@@ -92,29 +99,77 @@ public class Board{
         int col = p.getCol();
 
         cells[row][col].setPiece(p);
-    }
-
-    /**
-     * @param p the piece to be removed
-     */
-    public void removePiece(Piece p){
-        cells[p.getRow()][p.getCol()].setPiece(null);
-    }
-
-    /**
-     * @param c the cell where the piece being removed is
-     */
-    public void removePiece(Cell c){
-        c.setPiece(null);
+        updateCastlingState();
+        zobristKey = zobrist.zobristKey(this);
     }
 
     /**
      * Moves a piece from one square to another using its position.
      * @param move The move containing the piece and cell it is moving to
      */
-    public void movePiece(Move move){
+    public void movePiece(Move move, boolean inSearch){
+        boolean capture = move.cell().getPiece() != null;
         Piece p = move.p();
-        undoMoveInfoList.add(new UndoMoveInfo(move, enPassantMoves, castlingMoves, move.cell().getPiece()));
+        UndoMoveInfo undoMoveInfo = new UndoMoveInfo(move, enPassantMoves, castlingMoves, move.cell().getPiece(), fiftyMoveCounter, enPassantRank, castlingState);
+        undoMoveInfoList.add(undoMoveInfo);
+
+        if (enPassantRank != 0){
+            zobristKey ^= zobrist.enPassantFile[enPassantRank];
+            zobristKey ^= zobrist.enPassantFile[0];
+            enPassantRank = 0;
+        }
+
+        if (p.getClass() == King.class){
+            if (p.getColour() == Colour.WHITE) {
+                if (castlingState[1]) {
+                    castlingState[1] = false;
+                    zobristKey ^= zobrist.castlingRights[1];
+                }
+                if (castlingState[0]) {
+                    castlingState[0] = false;
+                    zobristKey ^= zobrist.castlingRights[0];
+                }
+
+            } else {
+                if (castlingState[3]) {
+                    castlingState[3] = false;
+                    zobristKey ^= zobrist.castlingRights[3];
+                }
+                if (castlingState[2]) {
+                    castlingState[2] = false;
+                    zobristKey ^= zobrist.castlingRights[2];
+                }
+            }
+        }
+        if (p.getClass() == Rook.class && ((Rook) p).isCanCastle()){
+            if (p.getRow() == 0){
+                if (p.getCol() == 0){
+                    if (castlingState[1]){
+                        castlingState[1] = false;
+                        zobristKey ^= zobrist.castlingRights[1];
+                    }
+                } else if (p.getCol() == 7) {
+                    if (castlingState[0]) {
+                        castlingState[0] = false;
+                        zobristKey ^= zobrist.castlingRights[0];
+                    }
+                }
+            } else if (p.getRow() == 7) {
+                if (p.getCol() == 0){
+                    if (castlingState[3]) {
+                        castlingState[3] = false;
+                        zobristKey ^= zobrist.castlingRights[3];
+                    }
+                } else if (p.getCol() == 7) {
+                    if (castlingState[2]) {
+                        castlingState[2] = false;
+                        zobristKey ^= zobrist.castlingRights[2];
+                    }
+                }
+            }
+        }
+
+        fiftyMoveCounter++;
 
         enPassantMoves.clear();
 
@@ -130,6 +185,9 @@ public class Board{
                             getCell(move.cell().getRow(), move.cell().getCol() - 1).getPiece().getColour() != p.getColour()) {
                         enPassantMoves.add(new EnPassantMove((Pawn) getCell(move.cell().getRow(), move.cell().getCol() - 1).getPiece(),
                                 getCell((move.cell().getRow() + move.p().getRow()) / 2, move.cell().getCol())));
+                        enPassantRank = move.cell().getCol();
+                        zobristKey ^= zobrist.enPassantFile[0];
+                        zobristKey ^= zobrist.enPassantFile[enPassantRank];
                     }
                     if (move.cell().getCol() <= 6 &&
                             getCell(move.cell().getRow(), move.cell().getCol() + 1).getPiece() != null &&
@@ -137,18 +195,31 @@ public class Board{
                             getCell(move.cell().getRow(), move.cell().getCol() + 1).getPiece().getColour() != p.getColour()){
                         enPassantMoves.add(new EnPassantMove((Pawn) getCell(move.cell().getRow(), move.cell().getCol() + 1).getPiece(),
                                 getCell((move.cell().getRow() + move.p().getRow()) / 2, move.cell().getCol())));
+                        if (enPassantRank == 0){
+                            enPassantRank = move.cell().getCol();
+                            zobristKey ^= zobrist.enPassantFile[0];
+                            zobristKey ^= zobrist.enPassantFile[enPassantRank];
+                        }
                     }
                 }
             }
+
+            zobristKey ^= zobrist.pieces[zobrist.pieceMap.get(p.getClass())][colourToMove == Colour.WHITE ? 0: 1][p.getRow() * 8 + p.getCol()];
+            if (move.cell().getPiece() != null) zobristKey ^= zobrist.pieces[zobrist.pieceMap.get(move.cell().getPiece().getClass())][colourToMove == Colour.WHITE ? 1: 0][move.cell().getRow() * 8 + move.cell().getCol()];
+            zobristKey ^= zobrist.pieces[zobrist.pieceMap.get(p.getClass())][colourToMove == Colour.WHITE ? 0: 1][move.cell().getRow() * 8 + move.cell().getCol()];
+
             move.cell().setPiece(p);
             cells[p.getRow()][p.getCol()].setPiece(null);
             p.move(move.cell().getRow(), move.cell().getCol());
             if (move.getClass() == EnPassantMove.class){
                 EnPassantMove enPassantMove = (EnPassantMove) move;
+                zobristKey ^= zobrist.pieces[zobrist.pieceMap.get(Pawn.class)][colourToMove == Colour.WHITE ? 1: 0][enPassantMove.getTargetPawnCell().getRow() * 8 + enPassantMove.getTargetPawnCell().getCol()];
                 enPassantMove.getTargetPawnCell().setPiece(null);
             } else if (move.getClass() == CastlingMove.class) {
                 CastlingMove castlingMove = (CastlingMove) move;
                 Rook rook = castlingMove.getR();
+                zobristKey ^= zobrist.pieces[zobrist.pieceMap.get(Rook.class)][colourToMove == Colour.WHITE ? 0: 1][rook.getRow() * 8 + rook.getCol()];
+                zobristKey ^= zobrist.pieces[zobrist.pieceMap.get(Rook.class)][colourToMove == Colour.WHITE ? 0: 1][castlingMove.getRookCell().getRow() * 8 + castlingMove.getRookCell().getCol()];
                 castlingMove.getRookCell().setPiece(rook);
                 cells[rook.getRow()][rook.getCol()].setPiece(null);
                 rook.move(castlingMove.getRookCell().getRow(), castlingMove.getRookCell().getCol());
@@ -158,6 +229,14 @@ public class Board{
         switch (colourToMove){
             case WHITE -> colourToMove = Colour.BLACK;
             case BLACK -> colourToMove = Colour.WHITE;
+        }
+
+        zobristKey ^= zobrist.blackToMove;
+        if (!inSearch) {
+            if (p.getClass() == Pawn.class || capture){
+                fiftyMoveCounter = 0;
+            }
+            positionHistory.merge(zobristKey, (short) 1, (i, j) -> (short) (i + j));
         }
     }
 
@@ -228,6 +307,16 @@ public class Board{
         if (undoMoveInfoList.isEmpty()) throw new NullPointerException("No undoMoveInfo, as no move has been performed yet");
         UndoMoveInfo undoMoveInfo = undoMoveInfoList.removeLast();
 
+        zobristKey ^= zobrist.pieces[zobrist.pieceMap.get(undoMoveInfo.move.p().getClass())][colourToMove == Colour.WHITE ? 1: 0][undoMoveInfo.move.p().getRow() * 8 + undoMoveInfo.move.p().getCol()];
+        if (undoMoveInfo.captureClass != null) zobristKey ^= zobrist.pieces[zobrist.pieceMap.get(undoMoveInfo.move.cell().getPiece().getClass())][colourToMove == Colour.WHITE ? 0: 1][undoMoveInfo.move.cell().getRow() * 8 + undoMoveInfo.move.cell().getCol()];
+        zobristKey ^= zobrist.pieces[zobrist.pieceMap.get(undoMoveInfo.move.p().getClass())][colourToMove == Colour.WHITE ? 1: 0][undoMoveInfo.row * 8 + undoMoveInfo.col];
+
+        zobristKey ^= zobrist.enPassantFile[enPassantRank];
+        enPassantRank = undoMoveInfo.enPassantFile;
+        zobristKey ^= zobrist.enPassantFile[enPassantRank];
+
+        fiftyMoveCounter = undoMoveInfo.fiftyMoveCounter;
+
         enPassantMoves.clear();
         enPassantMoves.addAll(undoMoveInfo.enPassantMoveList);
 
@@ -279,6 +368,11 @@ public class Board{
             }
         }
 
+        zobristKey ^= zobrist.castlingRights[getCastlingState()];
+        castlingState = undoMoveInfo.castlingState;
+        zobristKey ^= zobrist.castlingRights[getCastlingState()];
+
+        zobristKey ^= zobrist.blackToMove;
         switch (colourToMove){
             case WHITE -> colourToMove = Colour.BLACK;
             case BLACK -> colourToMove = Colour.WHITE;
@@ -314,6 +408,28 @@ public class Board{
             }
         }
         return false;
+    }
+
+    private void updateCastlingState(){
+        castlingState = new boolean[4];
+        if (cells[0][4].getPiece() != null && cells[0][4].getPiece().getClass() == King.class && cells[0][4].getPiece().getColour() == Colour.WHITE){
+            if (cells[0][0].getPiece() != null && cells[0][0].getPiece().getClass() == Rook.class && cells[0][0].getPiece().getColour() == Colour.WHITE) castlingState[1] =  true;
+            if (cells[0][7].getPiece() != null && cells[0][7].getPiece().getClass() == Rook.class && cells[0][7].getPiece().getColour() == Colour.WHITE) castlingState[0] = true;
+        }
+        if (cells[7][4].getPiece() != null && cells[7][4].getPiece().getClass() == King.class && cells[7][4].getPiece().getColour() == Colour.BLACK){
+            if (cells[7][0].getPiece() != null && cells[7][0].getPiece().getClass() == Rook.class && cells[7][0].getPiece().getColour() == Colour.BLACK) castlingState[3] = true;
+            if (cells[7][7].getPiece() != null && cells[7][7].getPiece().getClass() == Rook.class && cells[7][7].getPiece().getColour() == Colour.BLACK) castlingState[2] = true;
+        }
+    }
+
+    public int getCastlingState(){
+        int state = 0;
+        for (boolean b: castlingState){
+            if (b) state++;
+            state = state << 1;
+        }
+        state = state >> 1;
+        return state;
     }
 
     @Override

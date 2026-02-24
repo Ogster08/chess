@@ -34,7 +34,7 @@ public class Engine{
                 if (checkLegalMoves(move)){
                     noMoves = false;
                     count++;
-                    board.movePiece(move);
+                    board.movePiece(move, true);
                     int score = search(maxDepth - 1, currentDepth + 1, alpha, beta, false);
                     board.undoMove();
 
@@ -63,7 +63,7 @@ public class Engine{
             for (Move move: board.getPseudolegalMoves()){
                 if (checkLegalMoves(move)){
                     noMoves = false;
-                    board.movePiece(move);
+                    board.movePiece(move, true);
                     int score = search(maxDepth - 1, currentDepth + 1, alpha, beta, true);
                     board.undoMove();
 
@@ -90,7 +90,7 @@ public class Engine{
         int count = 0;
         for (Move move: board.getPseudolegalMoves()){
             if (checkLegalMoves(move)){
-                board.movePiece(move);
+                board.movePiece(move, true);
                 count += countMoves(depth - 1);
                 board.undoMove();
             }
@@ -153,7 +153,7 @@ public class Engine{
         Cell stepOverCell = null;
         if (move.getClass() == CastlingMove.class)stepOverCell = board.getCell(move.cell().getRow(), (move.cell().getCol() == 2) ? 3: 5);
 
-        board.movePiece(move);
+        board.movePiece(move, true);
 
         Cell kingCell = null;
         boolean breakLoop = false;

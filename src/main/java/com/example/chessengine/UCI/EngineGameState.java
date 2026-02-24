@@ -54,9 +54,9 @@ public class EngineGameState extends GameState{
     private void doNextEngineMove(){
         engineThread.requestMove(move -> {
             if (move != null){
-                board.movePiece(move);
+                board.movePiece(move, false);
                 updateGUI();
-                if (legalMoves.isEmpty() && !gameEnd) {
+                if ((legalMoves.isEmpty() || board.getFiftyMoveCounter() >= 100 || board.positionHistory.containsValue((short) 3)) && !gameEnd) {
                     gameEndMessage();
                 }
             }

@@ -41,7 +41,6 @@ public class GameState implements MoveHandler{
         board.addPiece(new Queen(board, 0, 3, Colour.WHITE));
         board.addPiece(new King(board, 0, 4, Colour.WHITE, true));
 
-/*
         for (int col = 0; col < 8; col++) {
             board.addPiece(new Pawn(board, 6, col, Colour.BLACK));
         }
@@ -55,7 +54,6 @@ public class GameState implements MoveHandler{
         board.addPiece(new Bishop(board, 7, 5, Colour.BLACK));
 
         board.addPiece(new Queen(board, 7, 3, Colour.BLACK));
-*/
         board.addPiece(new King(board, 7, 4, Colour.BLACK, true));
 
         updateGUI();
@@ -78,9 +76,9 @@ public class GameState implements MoveHandler{
                         if (promotionMove.getClass() == PromotionMove.class && ((PromotionMove) promotionMove).promotionClass == promotionClass && promotionMove.cell() == move.cell()) move = promotionMove;
                     }
                 }
-                board.movePiece(move);
+                board.movePiece(move, false);
                 updateGUI();
-                if (!gameEnd && legalMoves.isEmpty()) {
+                if (!gameEnd && (legalMoves.isEmpty() || board.getFiftyMoveCounter() >= 100 || board.positionHistory.containsValue((short) 3))) {
                     gameEndMessage();
                 }
                 return true;
@@ -107,7 +105,7 @@ public class GameState implements MoveHandler{
         Cell stepOverCell = null;
         if (move.getClass() == CastlingMove.class)stepOverCell = board.getCell(move.cell().getRow(), (move.cell().getCol() == 2) ? 3: 5);
 
-        board.movePiece(move);
+        board.movePiece(move, true);
 
         Cell kingCell = null;
         boolean breakLoop = false;
