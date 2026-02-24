@@ -40,14 +40,28 @@ public class EngineGameState extends GameState{
         return Collections.emptyList();
     }
 
+    @Override
+    protected void gameEndMessage(){
+        gameEnd = true;
+        if (board.isInCheck()){
+            controller.gameOverMessage(board.getColourToMove() == playerColour ? "Player wins": "Engine wins");
+        }
+        else {
+            controller.gameOverMessage("draw");
+        }
+    }
+
     private void doNextEngineMove(){
         engineThread.requestMove(move -> {
             if (move != null){
                 board.movePiece(move);
                 updateGUI();
+                if (legalMoves.isEmpty() && !gameEnd) {
+                    gameEndMessage();
+                }
             }
-            else {
-                System.out.println("no engine move");
+            else if (!gameEnd){
+                gameEndMessage();
             }
         });
     }

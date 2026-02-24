@@ -8,7 +8,18 @@ import java.util.List;
 public class GameState implements MoveHandler{
     protected final Board board;
     protected final ChessController controller;
-    private final List<Move> legalMoves = new ArrayList<>();
+    protected final List<Move> legalMoves = new ArrayList<>();
+    protected boolean gameEnd = false;
+
+    protected void gameEndMessage(){
+        gameEnd = true;
+        if (board.isInCheck()){
+            controller.gameOverMessage(board.getColourToMove() == Colour.WHITE ? "Black wins": "White wins");
+        }
+        else {
+            controller.gameOverMessage("draw");
+        }
+    }
 
     public GameState(ChessController controller){
         this.controller = controller;
@@ -30,6 +41,7 @@ public class GameState implements MoveHandler{
         board.addPiece(new Queen(board, 0, 3, Colour.WHITE));
         board.addPiece(new King(board, 0, 4, Colour.WHITE, true));
 
+/*
         for (int col = 0; col < 8; col++) {
             board.addPiece(new Pawn(board, 6, col, Colour.BLACK));
         }
@@ -43,6 +55,7 @@ public class GameState implements MoveHandler{
         board.addPiece(new Bishop(board, 7, 5, Colour.BLACK));
 
         board.addPiece(new Queen(board, 7, 3, Colour.BLACK));
+*/
         board.addPiece(new King(board, 7, 4, Colour.BLACK, true));
 
         updateGUI();
@@ -67,6 +80,9 @@ public class GameState implements MoveHandler{
                 }
                 board.movePiece(move);
                 updateGUI();
+                if (!gameEnd && legalMoves.isEmpty()) {
+                    gameEndMessage();
+                }
                 return true;
             }
         }

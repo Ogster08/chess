@@ -4,16 +4,11 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="5ecba770-62e4-41d3-b203-db736912793c" name="Changes" comment="improved menu, with better layout and toggle to choose your colour against the bot">
+    <list default="true" id="5ecba770-62e4-41d3-b203-db736912793c" name="Changes" comment="removing debug">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/com/example/chessengine/ChessController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/chessengine/ChessController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/chessengine/HelloApplication.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/chessengine/HelloApplication.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/chessengine/MenuController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/chessengine/MenuController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/chessengine/UCI/Board.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/chessengine/UCI/Board.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/chessengine/UCI/Engine.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/chessengine/UCI/Engine.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/chessengine/UCI/EngineGameState.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/chessengine/UCI/EngineGameState.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/com/example/chessengine/UCI/GameState.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/chessengine/UCI/GameState.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/chessengine/UCI/SceneSwitcher.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/chessengine/UCI/SceneSwitcher.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/com/example/chessengine/game-page.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/com/example/chessengine/game-page.fxml" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -169,31 +164,7 @@
       <workItem from="1771672283301" duration="4723000" />
       <workItem from="1771687600666" duration="1229000" />
       <workItem from="1771760873997" duration="21067000" />
-      <workItem from="1771845823998" duration="18362000" />
-    </task>
-    <task id="LOCAL-00025" summary="Removed unused bit boards, added variable for which colour is currently moving, and updated constructor accordingly, while adding a new one, which defaults to white starting first, added lists for different move types, updated remove piece, with functionality going to the cell the piece is in, changed the move function to use the new move classes and accounts for resulting en passant moves from any double pawn moves, and finally a function to return all the pseudolegal moves in the current position by the current colour to move">
-      <option name="closed" value="true" />
-      <created>1771258001509</created>
-      <option name="number" value="00025" />
-      <option name="presentableId" value="LOCAL-00025" />
-      <option name="project" value="LOCAL" />
-      <updated>1771258001509</updated>
-    </task>
-    <task id="LOCAL-00026" summary="it changed">
-      <option name="closed" value="true" />
-      <created>1771258046382</created>
-      <option name="number" value="00026" />
-      <option name="presentableId" value="LOCAL-00026" />
-      <option name="project" value="LOCAL" />
-      <updated>1771258046382</updated>
-    </task>
-    <task id="LOCAL-00027" summary="Fixed initialisation needing to happen at the end of subclass constructors, rather than in the super method">
-      <option name="closed" value="true" />
-      <created>1771338620469</created>
-      <option name="number" value="00027" />
-      <option name="presentableId" value="LOCAL-00027" />
-      <option name="project" value="LOCAL" />
-      <updated>1771338620469</updated>
+      <workItem from="1771845823998" duration="26089000" />
     </task>
     <task id="LOCAL-00028" summary="Added toString method for debug purpose">
       <option name="closed" value="true" />
@@ -563,7 +534,31 @@
       <option name="project" value="LOCAL" />
       <updated>1771926056039</updated>
     </task>
-    <option name="localTasksCounter" value="74" />
+    <task id="LOCAL-00074" summary="fixed engine needs to prefer mates in less moves, so it actually mates">
+      <option name="closed" value="true" />
+      <created>1771935314838</created>
+      <option name="number" value="00074" />
+      <option name="presentableId" value="LOCAL-00074" />
+      <option name="project" value="LOCAL" />
+      <updated>1771935314838</updated>
+    </task>
+    <task id="LOCAL-00075" summary="added new game button, to go back to the menu">
+      <option name="closed" value="true" />
+      <created>1771936355895</created>
+      <option name="number" value="00075" />
+      <option name="presentableId" value="LOCAL-00075" />
+      <option name="project" value="LOCAL" />
+      <updated>1771936355895</updated>
+    </task>
+    <task id="LOCAL-00076" summary="removing debug">
+      <option name="closed" value="true" />
+      <created>1771945413990</created>
+      <option name="number" value="00076" />
+      <option name="presentableId" value="LOCAL-00076" />
+      <option name="project" value="LOCAL" />
+      <updated>1771945413990</updated>
+    </task>
+    <option name="localTasksCounter" value="77" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -581,9 +576,6 @@
     </option>
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="added Engine class, that chooses a random move" />
-    <MESSAGE value="added EngineGameState class, to be the interface between the GUI and player. Changed some things for it to work smoother" />
-    <MESSAGE value="removed debug code" />
     <MESSAGE value="Added function to count the number of positions at a certain depth in the given position for move generation testing" />
     <MESSAGE value="improved classes for debugging, by changing to string functions and adding some equals and hash function" />
     <MESSAGE value="improved reCalculating, by chaining some if statements that weren't before" />
@@ -606,7 +598,10 @@
     <MESSAGE value="added checks for mate in the engine" />
     <MESSAGE value="collapsed lambda statement" />
     <MESSAGE value="improved menu, with better layout and toggle to choose your colour against the bot" />
-    <option name="LAST_COMMIT_MESSAGE" value="improved menu, with better layout and toggle to choose your colour against the bot" />
+    <MESSAGE value="fixed engine needs to prefer mates in less moves, so it actually mates" />
+    <MESSAGE value="added new game button, to go back to the menu" />
+    <MESSAGE value="removing debug" />
+    <option name="LAST_COMMIT_MESSAGE" value="removing debug" />
   </component>
   <component name="XSLT-Support.FileAssociations.UIState">
     <expand />

@@ -18,6 +18,8 @@ import javafx.scene.layout.GridPane;
 import javafx.scene.layout.Pane;
 import javafx.scene.layout.Region;
 import javafx.scene.layout.StackPane;
+import javafx.scene.text.Font;
+import javafx.scene.text.Text;
 
 import java.io.IOException;
 import java.util.*;
@@ -26,6 +28,9 @@ public class ChessController {
     @FXML Button newGame;
     @FXML GridPane ChessGrid;
     @FXML StackPane BoardContainer;
+
+    private final Text text = new Text();
+    private final StackPane rect = new StackPane();
 
     private SceneSwitcher sceneSwitcher;
     private MoveHandler moveHandler;
@@ -39,6 +44,14 @@ public class ChessController {
     public void setSceneSwitcher(SceneSwitcher sceneSwitcher){this.sceneSwitcher = sceneSwitcher;}
 
     public void initialize(){
+        BoardContainer.setAlignment(Pos.CENTER_LEFT);
+        rect.maxWidthProperty().bind(Bindings.min(ChessGrid.widthProperty(), ChessGrid.heightProperty()));
+        rect.maxHeightProperty().bind(Bindings.min(ChessGrid.widthProperty(), ChessGrid.heightProperty()));
+        text.setFont(new Font("Verdana", 40));
+        rect.getChildren().add(text);
+        rect.setStyle("-fx-background-color: rgba(100, 100, 100, 0.5);");
+
+
         newGame.prefWidthProperty().bind(Bindings.min(ChessGrid.widthProperty(), ChessGrid.heightProperty()));
         ChessGrid.getStylesheets().add(Objects.requireNonNull(getClass().getResource("/styles.css")).toExternalForm());
         ChessGrid.prefWidthProperty().bind(Bindings.min(BoardContainer.widthProperty(), BoardContainer.heightProperty()));
@@ -85,8 +98,6 @@ public class ChessController {
                 });
             }
         }
-
-        addPiece("/images/white queen.png", 1, 2);
     }
 
     private void addPiece(String imagePath, int row, int col){
@@ -244,6 +255,10 @@ public class ChessController {
 
     public void loadMenu() throws IOException {
         if (sceneSwitcher != null) sceneSwitcher.menuSwitcher();
+    }
+    public void gameOverMessage(String message){
+        text.setText(message);
+        BoardContainer.getChildren().add(rect);
     }
 
 }
