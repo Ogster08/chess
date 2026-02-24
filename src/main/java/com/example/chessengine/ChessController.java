@@ -19,12 +19,15 @@ import javafx.scene.layout.Pane;
 import javafx.scene.layout.Region;
 import javafx.scene.layout.StackPane;
 
+import java.io.IOException;
 import java.util.*;
 
 public class ChessController {
+    @FXML Button newGame;
     @FXML GridPane ChessGrid;
     @FXML StackPane BoardContainer;
 
+    private SceneSwitcher sceneSwitcher;
     private MoveHandler moveHandler;
     private Pane currentOriginSquare = null;
     private final List<Pane> showMovesSquares = new ArrayList<>();
@@ -33,7 +36,10 @@ public class ChessController {
         this.moveHandler = moveHandler;
     }
 
+    public void setSceneSwitcher(SceneSwitcher sceneSwitcher){this.sceneSwitcher = sceneSwitcher;}
+
     public void initialize(){
+        newGame.prefWidthProperty().bind(Bindings.min(ChessGrid.widthProperty(), ChessGrid.heightProperty()));
         ChessGrid.getStylesheets().add(Objects.requireNonNull(getClass().getResource("/styles.css")).toExternalForm());
         ChessGrid.prefWidthProperty().bind(Bindings.min(BoardContainer.widthProperty(), BoardContainer.heightProperty()));
         ChessGrid.prefHeightProperty().bind(Bindings.min(BoardContainer.widthProperty(), BoardContainer.heightProperty()));
@@ -234,6 +240,10 @@ public class ChessController {
         dialog.setResultConverter(buttonType -> null);
 
         return dialog.showAndWait().orElse(null);
+    }
+
+    public void loadMenu() throws IOException {
+        if (sceneSwitcher != null) sceneSwitcher.menuSwitcher();
     }
 
 }

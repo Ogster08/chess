@@ -11,12 +11,13 @@ import java.io.IOException;
 public class HelloApplication extends Application implements SceneSwitcher{
     private Stage stage;
     private GameState gameState = null;
+    private Scene menuScene;
 
     @Override
     public void start(Stage stage) throws IOException {
         this.stage = stage;
         FXMLLoader menuLoader = new FXMLLoader(HelloApplication.class.getResource("menu-page.fxml"));
-        Scene menuScene = new Scene(menuLoader.load(), 480, 480);
+        menuScene = new Scene(menuLoader.load(), 480, 480);
         if (menuLoader.getController().getClass() == MenuController.class) ((MenuController) menuLoader.getController()).setSceneSwitcher(this);
         stage.setTitle("Chess");
         stage.setScene(menuScene);
@@ -38,11 +39,20 @@ public class HelloApplication extends Application implements SceneSwitcher{
      * @param GameStateClass the class type of the GameState to be used
      */
     @Override
-    public void switchScene(Class<?> GameStateClass, Colour colour) throws IOException {
+    public void gameSwitcher(Class<?> GameStateClass, Colour colour) throws IOException {
         FXMLLoader gameLoader = new FXMLLoader(HelloApplication.class.getResource("game-page.fxml"));
         Scene scene = new Scene(gameLoader.load(), 480, 480);
         stage.setScene(scene);
         if (GameStateClass == GameState.class) gameState = new GameState(gameLoader.getController());
         if (GameStateClass == EngineGameState.class) gameState = new EngineGameState(gameLoader.getController(), colour);
+        if (gameLoader.getController().getClass() == ChessController.class) ((ChessController) gameLoader.getController()).setSceneSwitcher(this);
+    }
+
+    /**
+     * @throws IOException
+     */
+    @Override
+    public void menuSwitcher() throws IOException {
+        stage.setScene(menuScene);
     }
 }

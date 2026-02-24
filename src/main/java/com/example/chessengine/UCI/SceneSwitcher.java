@@ -2,7 +2,8 @@ package com.example.chessengine.UCI;
 
 import java.io.IOException;
 
-@FunctionalInterface
+
 public interface SceneSwitcher {
-    void switchScene(Class<?> GameStateClass, Colour colour) throws IOException;
+    void gameSwitcher(Class<?> GameStateClass, Colour colour) throws IOException;
+    void menuSwitcher() throws IOException;
 }

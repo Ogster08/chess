@@ -29,11 +29,11 @@ public class MenuController {
     }
 
     public void setGameToMultiplayer() throws IOException {
-        sceneSwitcher.switchScene(GameState.class, colourToggle.switchOnProperty().get() ? Colour.BLACK: Colour.WHITE);
+        sceneSwitcher.gameSwitcher(GameState.class, colourToggle.switchOnProperty().get() ? Colour.BLACK: Colour.WHITE);
     }
 
     public void setGameToEngine() throws IOException {
-        sceneSwitcher.switchScene(EngineGameState.class, colourToggle.switchOnProperty().get() ? Colour.BLACK: Colour.WHITE);
+        sceneSwitcher.gameSwitcher(EngineGameState.class, colourToggle.switchOnProperty().get() ? Colour.BLACK: Colour.WHITE);
     }
 
     public void setSceneSwitcher(SceneSwitcher sceneSwitcher) {
