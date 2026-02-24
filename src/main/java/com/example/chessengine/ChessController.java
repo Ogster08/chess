@@ -231,9 +231,7 @@ public class ChessController {
         dialog.getDialogPane().setContent(imageGrid);
         dialog.getDialogPane().getButtonTypes().add(ButtonType.CANCEL);
 
-        dialog.setResultConverter(buttonType -> {
-            return null;
-        });
+        dialog.setResultConverter(buttonType -> null);
 
         return dialog.showAndWait().orElse(null);
     }
