@@ -4,5 +4,5 @@ import java.io.IOException;
 
 @FunctionalInterface
 public interface SceneSwitcher {
-    void switchScene(Class<?> GameStateClass) throws IOException;
+    void switchScene(Class<?> GameStateClass, Colour colour) throws IOException;
 }
