@@ -299,10 +299,8 @@ public class Board{
             }
             if (breakLoop) break;
         }
-        System.out.println(kingCell);
 
         if (kingCell == null){
-            System.out.println("no king");
             throw new NullPointerException("no king cell");
         }
 
