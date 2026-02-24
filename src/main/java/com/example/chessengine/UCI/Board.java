@@ -310,7 +310,6 @@ public class Board{
             for (Cell cell: row){
                 if (cell.getPiece() != null && cell.getPiece().getColour() != colourToMove){
                     if (cell.getPiece().movesList.contains(kingCell)) {
-                        System.out.println(cell.getPiece());
                         return true;
                     }
                 }

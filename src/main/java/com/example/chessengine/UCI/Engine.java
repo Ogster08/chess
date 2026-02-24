@@ -52,7 +52,7 @@ public class Engine{
             }
             if (noMoves){
                 if (board.isInCheck()) {
-                    return -mateScore;
+                    return currentDepth-mateScore;
                 } else {
                     return 0;
                 }
@@ -77,7 +77,7 @@ public class Engine{
                 }
             }
             if (noMoves){
-                if (board.isInCheck()) return mateScore;
+                if (board.isInCheck()) return mateScore - currentDepth;
                 else return 0;
             }
             return beta;
