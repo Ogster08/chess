@@ -5,13 +5,8 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="5ecba770-62e4-41d3-b203-db736912793c" name="Changes" comment="added end of game message">
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/example/chessengine/UCI/Zobrist.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/com/example/chessengine/UCI/Board.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/chessengine/UCI/Board.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/chessengine/UCI/Engine.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/chessengine/UCI/Engine.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/chessengine/UCI/EngineGameState.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/chessengine/UCI/EngineGameState.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/chessengine/UCI/GameState.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/chessengine/UCI/GameState.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/chessengine/UCI/UndoMoveInfo.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/chessengine/UCI/UndoMoveInfo.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -42,12 +37,12 @@
     &quot;assignee&quot;: &quot;Ogster08&quot;
   }
 }</component>
-  <component name="GithubPullRequestsUISettings"><![CDATA[{
-  "selectedUrlAndAccountId": {
-    "url": "https://github.com/Ogster08/chess",
-    "accountId": "46e9369d-9557-4fca-bd41-9dc1f96e347d"
+  <component name="GithubPullRequestsUISettings">{
+  &quot;selectedUrlAndAccountId&quot;: {
+    &quot;url&quot;: &quot;https://github.com/Ogster08/chess&quot;,
+    &quot;accountId&quot;: &quot;8938a103-73e7-4b64-8478-b8501ab2861e&quot;
   }
-}]]></component>
+}</component>
   <component name="MavenImportPreferences">
     <option name="generalSettings">
       <MavenGeneralSettings>
@@ -69,7 +64,7 @@
   <component name="PropertiesComponent"><![CDATA[{
   "keyToString": {
     "Application.HelloApplication.executor": "Run",
-    "Application.Main.executor": "Run",
+    "Application.Main.executor": "Profiler#1",
     "OverrideImplement.generate.javadoc": "true",
     "RunOnceActivity.ShowReadmeOnStart": "true",
     "RunOnceActivity.TerminalTabsStorage.copyFrom.TerminalArrangementManager.252": "true",
@@ -89,7 +84,7 @@
     "project.structure.proportion": "0.0",
     "project.structure.side.proportion": "0.0",
     "run.code.analysis.last.selected.profile": "pProject Default",
-    "settings.editor.selected.configurable": "editor.preferences.inline.completion",
+    "settings.editor.selected.configurable": "reference.settings.ide.settings.uml",
     "vue.rearranger.settings.migration": "true"
   }
 }]]></component>
@@ -121,8 +116,8 @@
   <component name="SharedIndexes">
     <attachedChunks>
       <set>
-        <option value="bundled-jdk-9823dce3aa75-28b599e66164-intellij.indexing.shared.core-IU-242.23339.11" />
-        <option value="bundled-js-predefined-d6986cc7102b-5c90d61e3bab-JavaScript-IU-242.23339.11" />
+        <option value="bundled-jdk-9823dce3aa75-bf35d07a577b-intellij.indexing.shared.core-IU-252.26830.84" />
+        <option value="bundled-js-predefined-d6986cc7102b-3aa1da707db6-JavaScript-IU-252.26830.84" />
       </set>
     </attachedChunks>
   </component>
@@ -167,8 +162,7 @@
       <workItem from="1771672283301" duration="4723000" />
       <workItem from="1771687600666" duration="1229000" />
       <workItem from="1771760873997" duration="21067000" />
-      <workItem from="1771845823998" duration="30012000" />
-      <workItem from="1771965183650" duration="10423000" />
+      <workItem from="1771845823998" duration="31134000" />
     </task>
     <task id="LOCAL-00029" summary="Fixed getPseudolegalMoves to add the target cell when creating a move, and looping through pieces every move">
       <option name="closed" value="true" />
@@ -606,18 +600,6 @@
     <MESSAGE value="removing debug" />
     <MESSAGE value="added end of game message" />
     <option name="LAST_COMMIT_MESSAGE" value="added end of game message" />
-  </component>
-  <component name="XDebuggerManager">
-    <breakpoint-manager>
-      <breakpoints>
-        <line-breakpoint enabled="true" type="java-line">
-          <condition expression="board.getCell(i, j) == null" language="JAVA" />
-          <url>file://$PROJECT_DIR$/src/main/java/com/example/chessengine/UCI/Zobrist.java</url>
-          <line>47</line>
-          <option name="timeStamp" value="5" />
-        </line-breakpoint>
-      </breakpoints>
-    </breakpoint-manager>
   </component>
   <component name="XSLT-Support.FileAssociations.UIState">
     <expand />

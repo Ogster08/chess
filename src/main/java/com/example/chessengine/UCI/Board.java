@@ -119,54 +119,49 @@ public class Board{
             enPassantRank = 0;
         }
 
-        if (p.getClass() == King.class){
+        if (p.getClass() == King.class && ((King) p).isCanCastle()){
+            zobristKey |= zobrist.castlingRights[getCastlingState()];
             if (p.getColour() == Colour.WHITE) {
                 if (castlingState[1]) {
                     castlingState[1] = false;
-                    zobristKey ^= zobrist.castlingRights[1];
                 }
                 if (castlingState[0]) {
                     castlingState[0] = false;
-                    zobristKey ^= zobrist.castlingRights[0];
                 }
 
             } else {
                 if (castlingState[3]) {
                     castlingState[3] = false;
-                    zobristKey ^= zobrist.castlingRights[3];
                 }
                 if (castlingState[2]) {
                     castlingState[2] = false;
-                    zobristKey ^= zobrist.castlingRights[2];
                 }
             }
-        }
-        if (p.getClass() == Rook.class && ((Rook) p).isCanCastle()){
+            zobristKey |= zobrist.castlingRights[getCastlingState()];
+        } else if (p.getClass() == Rook.class && ((Rook) p).isCanCastle()){
+            zobristKey |= zobrist.castlingRights[getCastlingState()];
             if (p.getRow() == 0){
                 if (p.getCol() == 0){
                     if (castlingState[1]){
                         castlingState[1] = false;
-                        zobristKey ^= zobrist.castlingRights[1];
                     }
                 } else if (p.getCol() == 7) {
                     if (castlingState[0]) {
                         castlingState[0] = false;
-                        zobristKey ^= zobrist.castlingRights[0];
                     }
                 }
             } else if (p.getRow() == 7) {
                 if (p.getCol() == 0){
                     if (castlingState[3]) {
                         castlingState[3] = false;
-                        zobristKey ^= zobrist.castlingRights[3];
                     }
                 } else if (p.getCol() == 7) {
                     if (castlingState[2]) {
                         castlingState[2] = false;
-                        zobristKey ^= zobrist.castlingRights[2];
                     }
                 }
             }
+            zobristKey |= zobrist.castlingRights[getCastlingState()];
         }
 
         fiftyMoveCounter++;
