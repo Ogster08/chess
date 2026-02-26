@@ -31,7 +31,7 @@ public class Engine{
 
         if (maximising){
             for (Move move: board.getPseudolegalMoves()){
-                if (checkLegalMoves(move)){
+                if (board.checkLegalMoves(move)){
                     noMoves = false;
                     count++;
                     board.movePiece(move, true);
@@ -61,7 +61,7 @@ public class Engine{
         }
         else {
             for (Move move: board.getPseudolegalMoves()){
-                if (checkLegalMoves(move)){
+                if (board.checkLegalMoves(move)){
                     noMoves = false;
                     board.movePiece(move, true);
                     int score = search(maxDepth - 1, currentDepth + 1, alpha, beta, true);
@@ -89,7 +89,7 @@ public class Engine{
 
         int count = 0;
         for (Move move: board.getPseudolegalMoves()){
-            if (checkLegalMoves(move)){
+            if (board.checkLegalMoves(move)){
                 board.movePiece(move, true);
                 count += countMoves(depth - 1);
                 board.undoMove();
@@ -147,43 +147,6 @@ public class Engine{
         if (piece.getColour() == Colour.WHITE) index = 8 * (7 - piece.getRow()) + piece.getCol();
         else index = 8 * piece.getRow() + piece.getCol();
         return table[index];
-    }
-
-    private boolean checkLegalMoves(Move move){
-        Cell stepOverCell = null;
-        if (move.getClass() == CastlingMove.class)stepOverCell = board.getCell(move.cell().getRow(), (move.cell().getCol() == 2) ? 3: 5);
-
-        board.movePiece(move, true);
-
-        Cell kingCell = null;
-        boolean breakLoop = false;
-        for (int i = 0; i < 8; i++) {
-            for (int j = 0; j < 8; j++) {
-                Cell cell = board.getCell(i, j);
-                if (cell.getPiece() != null && cell.getPiece().getClass() == King.class && cell.getPiece().getColour() != board.getColourToMove()){
-                    kingCell = cell;
-                    breakLoop = true;
-                    break;
-                }
-            }
-            if (breakLoop) break;
-        }
-        for (Move nextMove: board.getPseudolegalMoves()){
-            if (nextMove.cell() == kingCell) {
-                board.undoMove();
-                return false;
-            }
-        }
-        if (move.getClass() == CastlingMove.class){
-            for (Move nextMove: board.getPseudolegalMoves()){
-                if (nextMove.cell() == stepOverCell) {
-                    board.undoMove();
-                    return false;
-                }
-            }
-        }
-        board.undoMove();
-        return true;
     }
 
     private static final int[] pawnTable = {

@@ -439,6 +439,46 @@ public class Board{
         return false;
     }
 
+    public boolean checkLegalMoves(Move move){
+        Cell stepOverCell = null;
+        if (move.getClass() == CastlingMove.class)stepOverCell = cells[move.cell().getRow()][(move.cell().getCol() == 2) ? 3: 5];
+
+        movePiece(move, true);
+
+        Cell kingCell = null;
+        boolean breakLoop = false;
+        for (int i = 0; i < 8; i++) {
+            for (int j = 0; j < 8; j++) {
+                Cell cell = cells[i][j];
+                if (cell.getPiece() != null && cell.getPiece().getClass() == King.class && cell.getPiece().getColour() != colourToMove){
+                    kingCell = cell;
+                    breakLoop = true;
+                    break;
+                }
+            }
+            if (breakLoop) break;
+        }
+
+        List<Move> pseudoLegalMoves = getPseudolegalMoves();
+
+        for (Move nextMove: pseudoLegalMoves){
+            if (nextMove.cell() == kingCell) {
+                undoMove();
+                return false;
+            }
+        }
+        if (move.getClass() == CastlingMove.class){
+            for (Move nextMove: pseudoLegalMoves){
+                if (nextMove.cell() == stepOverCell) {
+                    undoMove();
+                    return false;
+                }
+            }
+        }
+        undoMove();
+        return true;
+    }
+
     private void updateCastlingState(){
         castlingState = new boolean[4];
         if (cells[0][4].getPiece() != null && cells[0][4].getPiece().getClass() == King.class && cells[0][4].getPiece().getColour() == Colour.WHITE){
