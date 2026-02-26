@@ -3,7 +3,6 @@ package com.example.chessengine.Book;
 import com.example.chessengine.UCI.Board;
 import com.example.chessengine.UCI.Move;
 
-import java.util.Arrays;
 import java.util.HashMap;
 import java.util.Random;
 
@@ -51,7 +50,6 @@ public class Book {
     public Move getRandomWeightedMove(Board board){
         BookMoves bookMoves = bookPositions.get(board.getZobristKey());
         BookMove[] bookMoveArray = bookMoves.MovesWithNumPlayed.keySet().toArray(new BookMove[0]);
-        System.out.println(Arrays.toString(bookMoveArray));
         float[] weights = new float[bookMoveArray.length];
         for (int i = 0; i < bookMoveArray.length; i++) {
             weights[i] = bookMoves.MovesWithNumPlayed.get(bookMoveArray[i]);
@@ -64,13 +62,11 @@ public class Book {
         for (int i = 0; i < weights.length; i++) {
             cumulProb += weights[i] / sum;
             cumulProbs[i] = cumulProb;
-            System.out.println(cumulProb);
         }
 
         BookMove bookMove = null;
         Random random = new Random();
         float p = random.nextFloat();
-        System.out.println(p);
         for (int i = 0; i < bookMoveArray.length; i++) {
             if (p <= cumulProbs[i]) {
                 bookMove = bookMoveArray[i];
