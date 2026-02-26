@@ -39,7 +39,6 @@ public class Board{
     /**
      * A list of all the castling moves in the current position by the player whose turn it is, so they can more easily be validated if they are legal or not
      */
-    public final List<CastlingMove> castlingMoves = new ArrayList<>();
 
     public final List<UndoMoveInfo> undoMoveInfoList = new ArrayList<>();
 
@@ -62,8 +61,8 @@ public class Board{
     }
 
     private long zobristKey = 0;
-    private int enPassantRank = 0;
-    private int enPassantRankForFEN = 0;
+    private int enPassantFile = 0;
+    private int enPassantFileForFEN = 0;
 
     /**
      * Constructor to create a new empty board, where white starts first
@@ -152,19 +151,19 @@ public class Board{
     public void movePiece(Move move, boolean inSearch){
         boolean capture = move.cell().getPiece() != null;
         Piece p = move.p();
-        UndoMoveInfo undoMoveInfo = new UndoMoveInfo(move, enPassantMoves, castlingMoves, move.cell().getPiece(), fiftyMoveCounter, enPassantRank, castlingState, enPassantRankForFEN);
+        UndoMoveInfo undoMoveInfo = new UndoMoveInfo(move, enPassantMoves, fiftyMoveCounter, enPassantFile, castlingState, enPassantFileForFEN, zobristKey);
         undoMoveInfoList.add(undoMoveInfo);
 
-        enPassantRankForFEN = 0;
+        enPassantFileForFEN = 0;
 
-        if (enPassantRank != 0){
-            zobristKey ^= zobrist.enPassantFile[enPassantRank];
+        if (enPassantFile != 0){
+            zobristKey ^= zobrist.enPassantFile[enPassantFile];
             zobristKey ^= zobrist.enPassantFile[0];
-            enPassantRank = 0;
+            enPassantFile = 0;
         }
 
         if (p.getClass() == King.class && ((King) p).isCanCastle()){
-            zobristKey |= zobrist.castlingRights[getCastlingState()];
+            zobristKey ^= zobrist.castlingRights[getCastlingState()];
             if (p.getColour() == Colour.WHITE) {
                 if (castlingState[1]) {
                     castlingState[1] = false;
@@ -181,9 +180,9 @@ public class Board{
                     castlingState[2] = false;
                 }
             }
-            zobristKey |= zobrist.castlingRights[getCastlingState()];
+            zobristKey ^= zobrist.castlingRights[getCastlingState()];
         } else if (p.getClass() == Rook.class && ((Rook) p).isCanCastle()){
-            zobristKey |= zobrist.castlingRights[getCastlingState()];
+            zobristKey ^= zobrist.castlingRights[getCastlingState()];
             if (p.getRow() == 0){
                 if (p.getCol() == 0){
                     if (castlingState[1]){
@@ -205,7 +204,7 @@ public class Board{
                     }
                 }
             }
-            zobristKey |= zobrist.castlingRights[getCastlingState()];
+            zobristKey ^= zobrist.castlingRights[getCastlingState()];
         }
 
         fiftyMoveCounter++;
@@ -218,16 +217,16 @@ public class Board{
         } else {
             if (p.getClass() == Pawn.class){
                 if (Math.abs(p.getRow() - move.cell().getRow()) == 2) {
-                    enPassantRankForFEN = p.getCol() + 1;
+                    enPassantFileForFEN = p.getCol() + 1;
                     if (move.cell().getCol() >= 1 &&
                             getCell(move.cell().getRow(), move.cell().getCol() - 1).getPiece() != null &&
                             getCell(move.cell().getRow(), move.cell().getCol() - 1).getPiece().getClass() == Pawn.class &&
                             getCell(move.cell().getRow(), move.cell().getCol() - 1).getPiece().getColour() != p.getColour()) {
                         enPassantMoves.add(new EnPassantMove((Pawn) getCell(move.cell().getRow(), move.cell().getCol() - 1).getPiece(),
                                 getCell((move.cell().getRow() + move.p().getRow()) / 2, move.cell().getCol())));
-                        enPassantRank = move.cell().getCol();
+                        enPassantFile = move.cell().getCol() + 1;
                         zobristKey ^= zobrist.enPassantFile[0];
-                        zobristKey ^= zobrist.enPassantFile[enPassantRank];
+                        zobristKey ^= zobrist.enPassantFile[enPassantFile];
                     }
                     if (move.cell().getCol() <= 6 &&
                             getCell(move.cell().getRow(), move.cell().getCol() + 1).getPiece() != null &&
@@ -235,10 +234,10 @@ public class Board{
                             getCell(move.cell().getRow(), move.cell().getCol() + 1).getPiece().getColour() != p.getColour()){
                         enPassantMoves.add(new EnPassantMove((Pawn) getCell(move.cell().getRow(), move.cell().getCol() + 1).getPiece(),
                                 getCell((move.cell().getRow() + move.p().getRow()) / 2, move.cell().getCol())));
-                        if (enPassantRank == 0){
-                            enPassantRank = move.cell().getCol();
+                        if (enPassantFile == 0){
+                            enPassantFile = move.cell().getCol() + 1;
                             zobristKey ^= zobrist.enPassantFile[0];
-                            zobristKey ^= zobrist.enPassantFile[enPassantRank];
+                            zobristKey ^= zobrist.enPassantFile[enPassantFile];
                         }
                     }
                 }
@@ -290,13 +289,12 @@ public class Board{
      */
     public List<Move> getPseudolegalMoves() {
         List<Move> moves = new ArrayList<>();
-        castlingMoves.clear();
         for (Cell[] row : cells) {
             for (Cell cell : row) {
                 if (cell.getPiece() != null && cell.getPiece().getColour() == getColourToMove()) {
                     Piece p = cell.getPiece();
                     if (p.getClass() == Pawn.class){
-                        for (Cell moveCell: p.movesList){
+                        for (Cell moveCell: p.getMovesList()){
                             if (moveCell.getRow() != 0 && moveCell.getRow() != 7) {
                                 moves.add(new Move(p, moveCell));
                             } else {
@@ -307,7 +305,7 @@ public class Board{
                             }
                         }
                     } else {
-                        for (Cell moveCell: p.movesList){
+                        for (Cell moveCell: p.getMovesList()){
                             moves.add(new Move(p, moveCell));
                         }
                     }
@@ -329,7 +327,6 @@ public class Board{
                                     return false;
                                 }).forEach(c -> {
                                     CastlingMove cm = new CastlingMove(king, (Rook) c.getPiece());
-                                    castlingMoves.add(cm);
                                     moves.add(cm);
                                 });
                             });
@@ -350,24 +347,14 @@ public class Board{
         if (undoMoveInfoList.isEmpty()) throw new NullPointerException("No undoMoveInfo, as no move has been performed yet");
         UndoMoveInfo undoMoveInfo = undoMoveInfoList.removeLast();
 
-        enPassantRankForFEN = undoMoveInfo.enPassantFileForFEN;
-
-        zobristKey ^= zobrist.pieces[zobrist.pieceMap.get(undoMoveInfo.move.p().getClass())][colourToMove == Colour.WHITE ? 1: 0][undoMoveInfo.move.p().getRow() * 8 + undoMoveInfo.move.p().getCol()];
-        if (undoMoveInfo.captureClass != null) zobristKey ^= zobrist.pieces[zobrist.pieceMap.get(undoMoveInfo.move.cell().getPiece().getClass())][colourToMove == Colour.WHITE ? 0: 1][undoMoveInfo.move.cell().getRow() * 8 + undoMoveInfo.move.cell().getCol()];
-        zobristKey ^= zobrist.pieces[zobrist.pieceMap.get(undoMoveInfo.move.p().getClass())][colourToMove == Colour.WHITE ? 1: 0][undoMoveInfo.row * 8 + undoMoveInfo.col];
-
-        zobristKey ^= zobrist.enPassantFile[enPassantRank];
-        enPassantRank = undoMoveInfo.enPassantFile;
-        zobristKey ^= zobrist.enPassantFile[enPassantRank];
-
+        enPassantFileForFEN = undoMoveInfo.enPassantFileForFEN;
+        enPassantFile = undoMoveInfo.enPassantFile;
         fiftyMoveCounter = undoMoveInfo.fiftyMoveCounter;
-
         enPassantMoves.clear();
         enPassantMoves.addAll(undoMoveInfo.enPassantMoveList);
+        castlingState = undoMoveInfo.castlingState;
+        zobristKey = undoMoveInfo.zobristKey;
 
-        castlingMoves.clear();
-        castlingMoves.addAll(undoMoveInfo.castlingMovesList);
-        
         if (undoMoveInfo.move.getClass() == EnPassantMove.class){
             EnPassantMove enPassantMove = (EnPassantMove) undoMoveInfo.move;
             cells[undoMoveInfo.row][undoMoveInfo.col].setPiece(enPassantMove.p());
@@ -413,11 +400,7 @@ public class Board{
             }
         }
 
-        zobristKey ^= zobrist.castlingRights[getCastlingState()];
-        castlingState = undoMoveInfo.castlingState;
-        zobristKey ^= zobrist.castlingRights[getCastlingState()];
 
-        zobristKey ^= zobrist.blackToMove;
         switch (colourToMove){
             case WHITE -> {
                 colourToMove = Colour.BLACK;
@@ -449,7 +432,7 @@ public class Board{
         for (Cell[] row: cells){
             for (Cell cell: row){
                 if (cell.getPiece() != null && cell.getPiece().getColour() != colourToMove){
-                    if (cell.getPiece().movesList.contains(kingCell)) {
+                    if (cell.getPiece().getMovesList().contains(kingCell)) {
                         return true;
                     }
                 }
@@ -552,10 +535,10 @@ public class Board{
         else fen.append(cs);
         fen.append("_");
         //en passant target square
-        if (enPassantRankForFEN == 0){
+        if (enPassantFileForFEN == 0){
             fen.append("-");
         }else {
-            fen.append(fileNumberToLetter.get(enPassantRankForFEN));
+            fen.append(fileNumberToLetter.get(enPassantFileForFEN));
             fen.append(colourToMove == Colour.BLACK ? 3: 6);
         }
         fen.append("_");
@@ -622,14 +605,13 @@ public class Board{
     }
 
     @Override
-    public boolean equals(Object o) {
-        if (o == null || getClass() != o.getClass()) return false;
-        Board board = (Board) o;
-        return Objects.deepEquals(cells, board.cells) && colourToMove == board.colourToMove && Objects.equals(enPassantMoves, board.enPassantMoves) && Objects.equals(castlingMoves, board.castlingMoves) && Objects.equals(undoMoveInfoList, board.undoMoveInfoList);
+    public int hashCode() {
+        return Objects.hash(Arrays.deepHashCode(cells), colourToMove);
     }
 
     @Override
-    public int hashCode() {
-        return Objects.hash(Arrays.deepHashCode(cells), colourToMove);
+    public boolean equals(Object o) {
+        if (!(o instanceof Board board)) return false;
+        return fiftyMoveCounter == board.fiftyMoveCounter && fullMoveCounter == board.fullMoveCounter && zobristKey == board.zobristKey && Objects.equals(positionHistory, board.positionHistory);
     }
 }
