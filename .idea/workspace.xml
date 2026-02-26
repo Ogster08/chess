@@ -4,18 +4,7 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="5ecba770-62e4-41d3-b203-db736912793c" name="Changes" comment="fixing changing castling rights when updating the zobrist key">
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/example/chessengine/Book/Book.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/example/chessengine/Book/BookCreator.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/example/chessengine/Book/BookMove.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/example/chessengine/Book/BookMoves.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/chessengine/HelloApplication.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/chessengine/HelloApplication.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/chessengine/UCI/Board.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/chessengine/UCI/Board.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/chessengine/UCI/Engine.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/chessengine/UCI/Engine.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/chessengine/UCI/GameState.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/chessengine/UCI/GameState.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/module-info.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/module-info.java" afterDir="false" />
-    </list>
+    <list default="true" id="5ecba770-62e4-41d3-b203-db736912793c" name="Changes" comment="added classes to create, load and use an opening book" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -175,31 +164,7 @@
       <workItem from="1771845823998" duration="37118000" />
       <workItem from="1772026856895" duration="10247000" />
       <workItem from="1772051972638" duration="10693000" />
-      <workItem from="1772095073182" duration="54000" />
-    </task>
-    <task id="LOCAL-00030" summary="Fixed chessboard scaling, and added function to update the GUI from a board object">
-      <option name="closed" value="true" />
-      <created>1771339550568</created>
-      <option name="number" value="00030" />
-      <option name="presentableId" value="LOCAL-00030" />
-      <option name="project" value="LOCAL" />
-      <updated>1771339550568</updated>
-    </task>
-    <task id="LOCAL-00031" summary="testing GUI and move calculations">
-      <option name="closed" value="true" />
-      <created>1771339641385</created>
-      <option name="number" value="00031" />
-      <option name="presentableId" value="LOCAL-00031" />
-      <option name="project" value="LOCAL" />
-      <updated>1771339641385</updated>
-    </task>
-    <task id="LOCAL-00032" summary="chess piece images">
-      <option name="closed" value="true" />
-      <created>1771339937919</created>
-      <option name="number" value="00032" />
-      <option name="presentableId" value="LOCAL-00032" />
-      <option name="project" value="LOCAL" />
-      <updated>1771339937919</updated>
+      <workItem from="1772095073182" duration="495000" />
     </task>
     <task id="LOCAL-00033" summary="removed debug statements">
       <option name="closed" value="true" />
@@ -569,7 +534,31 @@
       <option name="project" value="LOCAL" />
       <updated>1772014683376</updated>
     </task>
-    <option name="localTasksCounter" value="79" />
+    <task id="LOCAL-00079" summary="moved loading start position to Board class">
+      <option name="closed" value="true" />
+      <created>1772095268733</created>
+      <option name="number" value="00079" />
+      <option name="presentableId" value="LOCAL-00079" />
+      <option name="project" value="LOCAL" />
+      <updated>1772095268733</updated>
+    </task>
+    <task id="LOCAL-00080" summary="moved checkLegalMove to Board class">
+      <option name="closed" value="true" />
+      <created>1772095430317</created>
+      <option name="number" value="00080" />
+      <option name="presentableId" value="LOCAL-00080" />
+      <option name="project" value="LOCAL" />
+      <updated>1772095430317</updated>
+    </task>
+    <task id="LOCAL-00081" summary="added classes to create, load and use an opening book">
+      <option name="closed" value="true" />
+      <created>1772095543526</created>
+      <option name="number" value="00081" />
+      <option name="presentableId" value="LOCAL-00081" />
+      <option name="project" value="LOCAL" />
+      <updated>1772095543526</updated>
+    </task>
+    <option name="localTasksCounter" value="82" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -587,9 +576,6 @@
     </option>
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="improved reCalculating, by chaining some if statements that weren't before" />
-    <MESSAGE value="Fixed double counting and fixed upRightMovesList being updated when not necessary" />
-    <MESSAGE value="fixed king not being able to move diagonally" />
     <MESSAGE value="Fixed pawn not removing its move to 2 squares forward, when 1 the first in front is blocked and some bad if statements adding extra moves and checking wrong squares" />
     <MESSAGE value="added pawn promotion" />
     <MESSAGE value="fixing adding pawn moves in getPseudoLegalMoves" />
@@ -612,7 +598,10 @@
     <MESSAGE value="removing debug" />
     <MESSAGE value="added end of game message" />
     <MESSAGE value="fixing changing castling rights when updating the zobrist key" />
-    <option name="LAST_COMMIT_MESSAGE" value="fixing changing castling rights when updating the zobrist key" />
+    <MESSAGE value="moved loading start position to Board class" />
+    <MESSAGE value="moved checkLegalMove to Board class" />
+    <MESSAGE value="added classes to create, load and use an opening book" />
+    <option name="LAST_COMMIT_MESSAGE" value="added classes to create, load and use an opening book" />
   </component>
   <component name="XSLT-Support.FileAssociations.UIState">
     <expand />
