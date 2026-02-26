@@ -1,5 +1,6 @@
 package com.example.chessengine;
 
+import com.example.chessengine.Book.BookCreator;
 import com.example.chessengine.UCI.*;
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
@@ -33,6 +34,8 @@ public class HelloApplication extends Application implements SceneSwitcher{
 
     public static void main(String[] args) {
         launch();
+        //BookCreator bc = new BookCreator();
+        //bc.createBook();
     }
 
     /**

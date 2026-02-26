@@ -1,5 +1,8 @@
 package com.example.chessengine.UCI;
 
+import com.example.chessengine.Book.Book;
+import com.example.chessengine.Book.BookCreator;
+
 import java.util.*;
 
 public class Engine{
@@ -8,13 +11,23 @@ public class Engine{
     private Move bestMove;
     private int count = 0;
     private final int mateScore = 100_000;
+    private boolean usingBook = true;
+    private final Book book;
 
     public Engine(Board board, Colour engineColour) {
         this.board = board;
         this.engineColour = engineColour;
+        book = BookCreator.LoadBook();
     }
 
     public Move getNextMove(){
+        if (usingBook){
+            if (!book.positionInBook(board.getZobristKey())) usingBook = false;
+            else {
+                System.out.println("getting book move");
+                return book.getRandomWeightedMove(board);
+            }
+        }
         count = 0;
         bestMove = null;
         System.out.println("-----New move-----");

@@ -4,9 +4,12 @@ module com.example.chessengine {
 
     requires org.controlsfx.controls;
     requires org.kordamp.bootstrapfx.core;
+    requires jdk.unsupported.desktop;
 
     opens com.example.chessengine to javafx.fxml;
     exports com.example.chessengine;
     exports com.example.chessengine.UCI;
     opens com.example.chessengine.UCI to javafx.fxml;
+    exports com.example.chessengine.Book;
+    opens com.example.chessengine.Book to javafx.fxml;
 }

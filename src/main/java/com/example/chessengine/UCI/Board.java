@@ -54,6 +54,11 @@ public class Board{
     private boolean[] castlingState = new boolean[4];
 
     private final Zobrist zobrist = new Zobrist();
+
+    public long getZobristKey() {
+        return zobristKey;
+    }
+
     private long zobristKey = 0;
     private int enPassantRank = 0;
 
