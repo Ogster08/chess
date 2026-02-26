@@ -1,11 +1,17 @@
-package com.example.chessengine.UCI;
+package com.example.chessengine.Board;
+
+import com.example.chessengine.Board.Moves.CastlingMove;
+import com.example.chessengine.Board.Moves.EnPassantMove;
+import com.example.chessengine.Board.Moves.Move;
+import com.example.chessengine.Board.Pieces.King;
+import com.example.chessengine.Board.Pieces.Piece;
+import com.example.chessengine.Board.Pieces.Rook;
 
 import java.util.List;
 
 public class UndoMoveInfo {
     public final Move move;
     public final List<EnPassantMove> enPassantMoveList;
-    public final List<CastlingMove> castlingMovesList;
     public final Class<?> captureClass;
     public final boolean captureCanCastle;
     public final boolean pieceCanCastle;
@@ -15,11 +21,11 @@ public class UndoMoveInfo {
     public final int enPassantFile;
     public final boolean[] castlingState;
     public final int enPassantFileForFEN;
+    public final long zobristKey;
 
-    public UndoMoveInfo(Move move, List<EnPassantMove> enPassantMoveList, List<CastlingMove> castlingMovesList, Piece capture, int fiftyMoveCounter, int enPassantFile, boolean[] castlingState, int enPassantFileForFEN) {
+    public UndoMoveInfo(Move move, List<EnPassantMove> enPassantMoveList, int fiftyMoveCounter, int enPassantFile, boolean[] castlingState, int enPassantFileForFEN, long zobristKey) {
         this.move = move;
         this.enPassantMoveList = enPassantMoveList;
-        this.castlingMovesList = castlingMovesList;
         row = move.p().getRow();
         col = move.p().getCol();
         this.fiftyMoveCounter = fiftyMoveCounter;
@@ -28,6 +34,9 @@ public class UndoMoveInfo {
         this.enPassantFile = enPassantFile;
         this.castlingState = castlingState;
         this.enPassantFileForFEN = enPassantFileForFEN;
+        this.zobristKey = zobristKey;
+
+        Piece capture = move.cell().getPiece();
         if (capture != null){
             captureClass = capture.getClass();
             captureCanCastle = capture.getClass() == Rook.class && ((Rook) capture).isCanCastle();
@@ -35,19 +44,5 @@ public class UndoMoveInfo {
             captureClass = null;
             captureCanCastle = false;
         }
-    }
-
-    @Override
-    public String toString() {
-        return "UndoMoveInfo{" +
-                "move=" + move +
-                ", enPassantMoveList=" + enPassantMoveList +
-                ", castlingMovesList=" + castlingMovesList +
-                ", captureClass=" + captureClass +
-                ", captureCanCastle=" + captureCanCastle +
-                ", pieceCanCastle=" + pieceCanCastle +
-                ", row=" + row +
-                ", col=" + col +
-                '}';
     }
 }

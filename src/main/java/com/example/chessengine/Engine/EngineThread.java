@@ -1,5 +1,6 @@
-package com.example.chessengine.UCI;
+package com.example.chessengine.Engine;
 
+import com.example.chessengine.Board.Moves.Move;
 import javafx.application.Platform;
 
 import java.util.concurrent.BlockingQueue;

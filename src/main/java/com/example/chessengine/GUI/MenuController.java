@@ -1,9 +1,8 @@
-package com.example.chessengine;
+package com.example.chessengine.GUI;
 
-import com.example.chessengine.UCI.Colour;
+import com.example.chessengine.Board.Colour;
 import com.example.chessengine.UCI.EngineGameState;
 import com.example.chessengine.UCI.GameState;
-import com.example.chessengine.UCI.SceneSwitcher;
 import javafx.fxml.FXML;
 import javafx.geometry.Pos;
 import javafx.scene.control.Button;

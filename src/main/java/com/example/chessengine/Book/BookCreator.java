@@ -1,7 +1,10 @@
 package com.example.chessengine.Book;
 
-import com.example.chessengine.UCI.*;
-import jdk.swing.interop.SwingInterOpUtils;
+import com.example.chessengine.Board.*;
+import com.example.chessengine.Board.Moves.CastlingMove;
+import com.example.chessengine.Board.Moves.Move;
+import com.example.chessengine.Board.Moves.PromotionMove;
+import com.example.chessengine.Board.Pieces.*;
 
 import java.io.*;
 import java.nio.charset.StandardCharsets;

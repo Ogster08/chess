@@ -1,4 +1,7 @@
-package com.example.chessengine.UCI;
+package com.example.chessengine.Board.Moves;
+
+import com.example.chessengine.Board.Cell;
+import com.example.chessengine.Board.Pieces.Piece;
 
 import java.util.Objects;
 

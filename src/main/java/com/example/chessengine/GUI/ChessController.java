@@ -1,6 +1,8 @@
-package com.example.chessengine;
+package com.example.chessengine.GUI;
 
-import com.example.chessengine.UCI.*;
+import com.example.chessengine.Board.*;
+import com.example.chessengine.Board.Moves.Move;
+import com.example.chessengine.Board.Pieces.*;
 import javafx.beans.binding.Bindings;
 import javafx.fxml.FXML;
 import javafx.geometry.Insets;

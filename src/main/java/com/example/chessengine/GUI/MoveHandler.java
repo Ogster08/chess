@@ -1,4 +1,6 @@
-package com.example.chessengine.UCI;
+package com.example.chessengine.GUI;
+
+import com.example.chessengine.Board.Moves.Move;
 
 import java.util.List;
 

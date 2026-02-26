@@ -1,4 +1,9 @@
-package com.example.chessengine.UCI;
+package com.example.chessengine.Board.Pieces;
+
+import com.example.chessengine.Board.Board;
+import com.example.chessengine.Board.Cell;
+import com.example.chessengine.Board.CellListener;
+import com.example.chessengine.Board.Colour;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -20,6 +25,11 @@ public abstract class Piece implements CellListener {
      * The list of square the piece could reach if the board was empty, where it has subscribed as a listener
      */
     protected final List<Cell> cellsList =  new ArrayList<>();
+
+    public List<Cell> getMovesList() {
+        return movesList;
+    }
+
     /**
      * The list of all pseudolegal moves the piece can do based on the current position on the board
      */

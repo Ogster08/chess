@@ -1,6 +1,10 @@
 package com.example.chessengine.UCI;
 
-import com.example.chessengine.ChessController;
+import com.example.chessengine.Board.Colour;
+import com.example.chessengine.Board.Moves.Move;
+import com.example.chessengine.Engine.Engine;
+import com.example.chessengine.Engine.EngineThread;
+import com.example.chessengine.GUI.ChessController;
 
 import java.util.Collections;
 import java.util.List;

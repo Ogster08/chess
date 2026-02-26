@@ -1,4 +1,4 @@
-package com.example.chessengine.UCI;
+package com.example.chessengine.Board;
 
 /**
  * interface to define the method to link cell changes and pieces updating valid moves

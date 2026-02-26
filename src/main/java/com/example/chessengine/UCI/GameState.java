@@ -1,11 +1,16 @@
 package com.example.chessengine.UCI;
 
-import com.example.chessengine.ChessController;
+import com.example.chessengine.Board.Board;
+import com.example.chessengine.Board.Colour;
+import com.example.chessengine.Board.Moves.Move;
+import com.example.chessengine.Board.Moves.PromotionMove;
+import com.example.chessengine.GUI.ChessController;
+import com.example.chessengine.GUI.MoveHandler;
 
 import java.util.ArrayList;
 import java.util.List;
 
-public class GameState implements MoveHandler{
+public class GameState implements MoveHandler {
     protected final Board board;
     protected final ChessController controller;
     protected final List<Move> legalMoves = new ArrayList<>();

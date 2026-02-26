@@ -1,6 +1,9 @@
-package com.example.chessengine.tablebase;
+package com.example.chessengine.Tablebase;
 
-import com.example.chessengine.UCI.*;
+import com.example.chessengine.Board.*;
+import com.example.chessengine.Board.Moves.Move;
+import com.example.chessengine.Board.Moves.PromotionMove;
+import com.example.chessengine.Board.Pieces.Piece;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 

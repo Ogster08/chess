@@ -1,6 +1,10 @@
-package com.example.chessengine.UCI;
+package com.example.chessengine.Board.Moves;
 
-public final class CastlingMove extends Move {
+import com.example.chessengine.Board.Cell;
+import com.example.chessengine.Board.Pieces.King;
+import com.example.chessengine.Board.Pieces.Rook;
+
+public class CastlingMove extends Move {
     /**
      * The rook being moved
      */

@@ -1,4 +1,6 @@
-package com.example.chessengine.UCI;
+package com.example.chessengine.Board;
+
+import com.example.chessengine.Board.Pieces.Piece;
 
 import java.util.ArrayList;
 import java.util.List;

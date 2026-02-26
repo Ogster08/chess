@@ -1,7 +1,7 @@
 package com.example.chessengine.Book;
 
-import com.example.chessengine.UCI.Board;
-import com.example.chessengine.UCI.Move;
+import com.example.chessengine.Board.Board;
+import com.example.chessengine.Board.Moves.Move;
 
 import java.util.HashMap;
 import java.util.Random;

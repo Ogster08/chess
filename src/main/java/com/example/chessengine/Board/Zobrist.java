@@ -1,4 +1,6 @@
-package com.example.chessengine.UCI;
+package com.example.chessengine.Board;
+
+import com.example.chessengine.Board.Pieces.*;
 
 import java.util.HashMap;
 import java.util.Map;

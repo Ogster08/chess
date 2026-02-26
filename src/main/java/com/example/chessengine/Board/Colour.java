@@ -1,4 +1,4 @@
-package com.example.chessengine.UCI;
+package com.example.chessengine.Board;
 
 /**
  * Piece colours

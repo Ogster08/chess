@@ -1,4 +1,8 @@
-package com.example.chessengine.UCI;
+package com.example.chessengine.Board.Pieces;
+
+import com.example.chessengine.Board.Board;
+import com.example.chessengine.Board.Cell;
+import com.example.chessengine.Board.Colour;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -39,7 +43,7 @@ public class Rook extends Piece {
      * @param col must be between 0 and 7 inclusive
      * @param colour The colour of the new piece
      */
-    public Rook(Board board, int row, int col, Colour colour,  boolean canCastle) {
+    public Rook(Board board, int row, int col, Colour colour, boolean canCastle) {
         super(board, row, col, colour);
         this.canCastle = canCastle;
         init();

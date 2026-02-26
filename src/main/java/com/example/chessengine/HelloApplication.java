@@ -1,6 +1,10 @@
 package com.example.chessengine;
 
+import com.example.chessengine.Board.Colour;
 import com.example.chessengine.Book.BookCreator;
+import com.example.chessengine.GUI.ChessController;
+import com.example.chessengine.GUI.MenuController;
+import com.example.chessengine.GUI.SceneSwitcher;
 import com.example.chessengine.UCI.*;
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
@@ -9,7 +13,7 @@ import javafx.stage.Stage;
 
 import java.io.IOException;
 
-public class HelloApplication extends Application implements SceneSwitcher{
+public class HelloApplication extends Application implements SceneSwitcher {
     private Stage stage;
     private GameState gameState = null;
     private Scene menuScene;

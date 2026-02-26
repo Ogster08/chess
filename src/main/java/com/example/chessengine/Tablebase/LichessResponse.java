@@ -1,4 +1,4 @@
-package com.example.chessengine.tablebase;
+package com.example.chessengine.Tablebase;
 
 import java.util.List;
 

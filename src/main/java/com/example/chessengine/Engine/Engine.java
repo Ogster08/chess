@@ -1,8 +1,11 @@
-package com.example.chessengine.UCI;
+package com.example.chessengine.Engine;
 
+import com.example.chessengine.Board.*;
+import com.example.chessengine.Board.Moves.Move;
+import com.example.chessengine.Board.Pieces.*;
 import com.example.chessengine.Book.Book;
 import com.example.chessengine.Book.BookCreator;
-import com.example.chessengine.tablebase.LichessAPI;
+import com.example.chessengine.Tablebase.LichessAPI;
 
 import java.util.*;
 
@@ -22,6 +25,7 @@ public class Engine{
     }
 
     public Move getNextMove(){
+        System.out.println(board.getZobristKey());
         if (usingBook){
             if (!book.positionInBook(board.getZobristKey())) usingBook = false;
             else {
@@ -32,7 +36,7 @@ public class Engine{
         if (board.getPieceCount() <= 7) {
             Move move = LichessAPI.getMove(board);
             if (move != null) {
-                System.out.println("tablebase move");
+                System.out.println("Tablebase move");
                 return move;
             }
         }
@@ -42,6 +46,7 @@ public class Engine{
         System.out.println(search(4, 0, Integer.MIN_VALUE, Integer.MAX_VALUE, true));
         System.out.println(count);
         System.out.println(bestMove);
+        System.out.println(board.getZobristKey());
         return bestMove;
     }
 

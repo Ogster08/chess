@@ -5,7 +5,7 @@
 <?import javafx.scene.layout.*?>
 <?import javafx.scene.text.*?>
 
-<VBox fx:id="vBox" alignment="CENTER" xmlns="http://javafx.com/javafx/17.0.12" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.chessengine.MenuController">
+<VBox fx:id="vBox" alignment="CENTER" xmlns="http://javafx.com/javafx/17.0.12" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.chessengine.GUI.MenuController">
     <GridPane fx:id="menuGrid" alignment="CENTER" vgap="10.0">
         <rowConstraints>
             <RowConstraints maxHeight="100.0" minHeight="10.0" prefHeight="100.0" vgrow="ALWAYS" />

@@ -1,4 +1,4 @@
-package com.example.chessengine;
+package com.example.chessengine.GUI;
 
 import javafx.beans.property.SimpleBooleanProperty;
 import javafx.geometry.Pos;
