@@ -54,6 +54,10 @@ public class Board{
 
     private int fiftyMoveCounter = 0;
 
+    public int getFullMoveCounter() {
+        return fullMoveCounter;
+    }
+
     private int fullMoveCounter = 1;
 
     public final HashMap<Long, Short> positionHistory = new HashMap<>();

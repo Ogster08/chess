@@ -25,7 +25,6 @@ public class Engine{
     }
 
     public Move getNextMove(){
-        System.out.println(board.getZobristKey());
         if (usingBook){
             if (!book.positionInBook(board.getZobristKey())) usingBook = false;
             else {
@@ -45,8 +44,6 @@ public class Engine{
         System.out.println("-----normal move-----");
         System.out.println(search(4, 0, Integer.MIN_VALUE, Integer.MAX_VALUE, true));
         System.out.println(count);
-        System.out.println(bestMove);
-        System.out.println(board.getZobristKey());
         return bestMove;
     }
 
@@ -165,6 +162,19 @@ public class Engine{
                 }
             }
         }
+
+        if (board.getFullMoveCounter() <= 10){
+            Set<Piece> movedPieces = new HashSet<>(5);
+            for (UndoMoveInfo umi: board.undoMoveInfoList){
+                Piece p = umi.move.p();
+                if (p.getColour() == engineColour){
+                    if (movedPieces.contains(p)) evaluation -= 20;
+                    if (p.getClass() == Queen.class) evaluation -= 20;
+                    else movedPieces.add(p);
+                }
+            }
+        }
+
         return evaluation;
     }
 
