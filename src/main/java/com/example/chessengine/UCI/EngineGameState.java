@@ -44,7 +44,7 @@ public class EngineGameState extends GameState{
     protected void gameEndMessage(){
         gameEnd = true;
         if (board.isInCheck()){
-            controller.gameOverMessage(board.getColourToMove() == playerColour ? "Player wins": "Engine wins");
+            controller.gameOverMessage(board.getColourToMove() == playerColour ? "Engine wins": "Player wins");
         }
         else {
             controller.gameOverMessage("draw");
