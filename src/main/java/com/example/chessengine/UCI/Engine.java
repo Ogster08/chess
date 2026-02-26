@@ -2,6 +2,7 @@ package com.example.chessengine.UCI;
 
 import com.example.chessengine.Book.Book;
 import com.example.chessengine.Book.BookCreator;
+import com.example.chessengine.tablebase.LichessAPI;
 
 import java.util.*;
 
@@ -28,9 +29,16 @@ public class Engine{
                 return book.getRandomWeightedMove(board);
             }
         }
+        if (board.getPieceCount() <= 7) {
+            Move move = LichessAPI.getMove(board);
+            if (move != null) {
+                System.out.println("tablebase move");
+                return move;
+            }
+        }
         count = 0;
         bestMove = null;
-        System.out.println("-----New move-----");
+        System.out.println("-----normal move-----");
         System.out.println(search(4, 0, Integer.MIN_VALUE, Integer.MAX_VALUE, true));
         System.out.println(count);
         System.out.println(bestMove);

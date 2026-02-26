@@ -14,8 +14,9 @@ public class UndoMoveInfo {
     public final int fiftyMoveCounter;
     public final int enPassantFile;
     public final boolean[] castlingState;
+    public final int enPassantFileForFEN;
 
-    public UndoMoveInfo(Move move, List<EnPassantMove> enPassantMoveList, List<CastlingMove> castlingMovesList, Piece capture, int fiftyMoveCounter, int enPassantFile, boolean[] castlingState) {
+    public UndoMoveInfo(Move move, List<EnPassantMove> enPassantMoveList, List<CastlingMove> castlingMovesList, Piece capture, int fiftyMoveCounter, int enPassantFile, boolean[] castlingState, int enPassantFileForFEN) {
         this.move = move;
         this.enPassantMoveList = enPassantMoveList;
         this.castlingMovesList = castlingMovesList;
@@ -26,6 +27,7 @@ public class UndoMoveInfo {
         pieceCanCastle = (move.p().getClass() == Rook.class && ((Rook) move.p()).isCanCastle()) ||  (move.p().getClass() == King.class && ((King) move.p()).isCanCastle());
         this.enPassantFile = enPassantFile;
         this.castlingState = castlingState;
+        this.enPassantFileForFEN = enPassantFileForFEN;
         if (capture != null){
             captureClass = capture.getClass();
             captureCanCastle = capture.getClass() == Rook.class && ((Rook) capture).isCanCastle();

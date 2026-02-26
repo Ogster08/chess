@@ -49,6 +49,8 @@ public class Board{
 
     private int fiftyMoveCounter = 0;
 
+    private int fullMoveCounter = 1;
+
     public final HashMap<Long, Short> positionHistory = new HashMap<>();
 
     private boolean[] castlingState = new boolean[4];
@@ -61,6 +63,7 @@ public class Board{
 
     private long zobristKey = 0;
     private int enPassantRank = 0;
+    private int enPassantRankForFEN = 0;
 
     /**
      * Constructor to create a new empty board, where white starts first
@@ -149,8 +152,10 @@ public class Board{
     public void movePiece(Move move, boolean inSearch){
         boolean capture = move.cell().getPiece() != null;
         Piece p = move.p();
-        UndoMoveInfo undoMoveInfo = new UndoMoveInfo(move, enPassantMoves, castlingMoves, move.cell().getPiece(), fiftyMoveCounter, enPassantRank, castlingState);
+        UndoMoveInfo undoMoveInfo = new UndoMoveInfo(move, enPassantMoves, castlingMoves, move.cell().getPiece(), fiftyMoveCounter, enPassantRank, castlingState, enPassantRankForFEN);
         undoMoveInfoList.add(undoMoveInfo);
+
+        enPassantRankForFEN = 0;
 
         if (enPassantRank != 0){
             zobristKey ^= zobrist.enPassantFile[enPassantRank];
@@ -213,6 +218,7 @@ public class Board{
         } else {
             if (p.getClass() == Pawn.class){
                 if (Math.abs(p.getRow() - move.cell().getRow()) == 2) {
+                    enPassantRankForFEN = p.getCol() + 1;
                     if (move.cell().getCol() >= 1 &&
                             getCell(move.cell().getRow(), move.cell().getCol() - 1).getPiece() != null &&
                             getCell(move.cell().getRow(), move.cell().getCol() - 1).getPiece().getClass() == Pawn.class &&
@@ -262,7 +268,10 @@ public class Board{
 
         switch (colourToMove){
             case WHITE -> colourToMove = Colour.BLACK;
-            case BLACK -> colourToMove = Colour.WHITE;
+            case BLACK -> {
+                colourToMove = Colour.WHITE;
+                fullMoveCounter++;
+            }
         }
 
         zobristKey ^= zobrist.blackToMove;
@@ -341,6 +350,8 @@ public class Board{
         if (undoMoveInfoList.isEmpty()) throw new NullPointerException("No undoMoveInfo, as no move has been performed yet");
         UndoMoveInfo undoMoveInfo = undoMoveInfoList.removeLast();
 
+        enPassantRankForFEN = undoMoveInfo.enPassantFileForFEN;
+
         zobristKey ^= zobrist.pieces[zobrist.pieceMap.get(undoMoveInfo.move.p().getClass())][colourToMove == Colour.WHITE ? 1: 0][undoMoveInfo.move.p().getRow() * 8 + undoMoveInfo.move.p().getCol()];
         if (undoMoveInfo.captureClass != null) zobristKey ^= zobrist.pieces[zobrist.pieceMap.get(undoMoveInfo.move.cell().getPiece().getClass())][colourToMove == Colour.WHITE ? 0: 1][undoMoveInfo.move.cell().getRow() * 8 + undoMoveInfo.move.cell().getCol()];
         zobristKey ^= zobrist.pieces[zobrist.pieceMap.get(undoMoveInfo.move.p().getClass())][colourToMove == Colour.WHITE ? 1: 0][undoMoveInfo.row * 8 + undoMoveInfo.col];
@@ -408,7 +419,10 @@ public class Board{
 
         zobristKey ^= zobrist.blackToMove;
         switch (colourToMove){
-            case WHITE -> colourToMove = Colour.BLACK;
+            case WHITE -> {
+                colourToMove = Colour.BLACK;
+                fullMoveCounter--;
+            }
             case BLACK -> colourToMove = Colour.WHITE;
         }
     }
@@ -504,6 +518,107 @@ public class Board{
         }
         state = state >> 1;
         return state;
+    }
+
+    public String getFEN(){
+        StringBuilder fen = new StringBuilder();
+        //board position
+        for (int i = cells.length - 1; i >= 0; i--) {
+            int emptyCounter = 0;
+            for (Cell cell: cells[i]){
+                if (cell.getPiece() == null) emptyCounter++;
+                else {
+                    if (emptyCounter != 0) fen.append(emptyCounter);
+                    emptyCounter = 0;
+                    fen.append(cell.getPiece().getColour() == Colour.WHITE ? whitePieceToNotation.get(cell.getPiece().getClass()): blackPieceToNotation.get(cell.getPiece().getClass()));
+
+                }
+            }
+            if (emptyCounter != 0) fen.append(emptyCounter);
+            fen.append("/");
+        }
+        fen.deleteCharAt(fen.length() - 1);
+        fen.append("_");
+        //colour to move
+        fen.append(colourToMove == Colour.WHITE ? "w": "b");
+        fen.append("_");
+        //castling rights
+        String cs = "";
+        if (castlingState[0]) cs += "K";
+        if (castlingState[1]) cs += "Q";
+        if (castlingState[2]) cs += "k";
+        if (castlingState[3]) cs += "q";
+        if (cs.isEmpty()) fen.append("-");
+        else fen.append(cs);
+        fen.append("_");
+        //en passant target square
+        if (enPassantRankForFEN == 0){
+            fen.append("-");
+        }else {
+            fen.append(fileNumberToLetter.get(enPassantRankForFEN));
+            fen.append(colourToMove == Colour.BLACK ? 3: 6);
+        }
+        fen.append("_");
+        //half move clock
+        fen.append(fiftyMoveCounter);
+        fen.append("_");
+        //full move clock
+        fen.append(fullMoveCounter);
+
+        return fen.toString();
+    }
+
+    public static final HashMap<Integer, Character> fileNumberToLetter = new HashMap<>(){
+        {
+            put(1, 'a');
+            put(2, 'b');
+            put(3, 'c');
+            put(4, 'd');
+            put(5, 'e');
+            put(6, 'f');
+            put(7, 'g');
+            put(8, 'h');
+        }
+    };
+
+    public static Character getFileNumberToLetter(int i){
+        return fileNumberToLetter.get(i);
+    }
+
+    private static final HashMap<Class<?>, Character> whitePieceToNotation = new HashMap<>(){
+        {
+            put(King.class, 'K');
+            put(Queen.class, 'Q');
+            put(Rook.class, 'R');
+            put(Bishop.class, 'B');
+            put(Knight.class, 'N');
+            put(Pawn.class, 'P');
+        }
+    };
+
+    public static final HashMap<Class<?>, Character> blackPieceToNotation = new HashMap<>(){
+        {
+            put(King.class, 'k');
+            put(Queen.class, 'q');
+            put(Rook.class, 'r');
+            put(Bishop.class, 'b');
+            put(Knight.class, 'n');
+            put(Pawn.class, 'p');
+        }
+    };
+
+    public static Character getBlackPieceToNotation(Class<?> pieceClass){
+        return blackPieceToNotation.get(pieceClass);
+    }
+
+    public int getPieceCount(){
+        int count = 0;
+        for (Cell[] row: cells){
+            for (Cell cell: row){
+                if (cell.getPiece() != null) count++;
+            }
+        }
+        return count;
     }
 
     @Override
