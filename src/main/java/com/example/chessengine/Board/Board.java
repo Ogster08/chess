@@ -321,7 +321,7 @@ public class Board{
                     }
                     if (cell.getPiece().getClass() == King.class){
                         King king = (King) cell.getPiece();
-                        if (king.isCanCastle()) {
+                        if (king.isCanCastle() && !isInCheck()) {
                             Arrays.stream(cells).forEach(r -> {
                                 Arrays.stream(r).filter(c -> {
                                     if (c.getPiece() != null && c.getPiece().getColour() == getColourToMove() && c.getPiece().getClass() == Rook.class){
