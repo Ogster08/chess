@@ -64,6 +64,9 @@ public class HelloApplication extends Application implements SceneSwitcher {
      */
     @Override
     public void menuSwitcher() throws IOException {
+        if  (gameState != null && gameState.getClass() == EngineGameState.class){
+            ((EngineGameState) gameState).stopEngineThread();
+        }
         stage.setScene(menuScene);
     }
 }
