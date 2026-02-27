@@ -11,30 +11,68 @@ import javafx.scene.layout.VBox;
 
 import java.io.IOException;
 
+/**
+ * The FXMl controller for the menu page
+ */
 public class MenuController {
+    /**
+     * The GridPane object for the menu buttons and text.
+     */
     @FXML GridPane menuGrid;
-    @FXML VBox vBox;
-    @FXML Button multiplayerButton;
-    @FXML Button engineButton;
-    private ToggleSwitch colourToggle;
 
+    /**
+     * The main container for the page.
+     */
+    @FXML VBox vBox;
+
+    /**
+     * The button object to start a multiplayer game.
+     */
+    @FXML Button multiplayerButton;
+
+    /**
+     * The button object to start a game against the engine.
+     */
+    @FXML Button engineButton;
+
+    /**
+     * The ToggleSwitch object used to change the player colour for a game against the engine.
+     */
+    private final ToggleSwitch colourToggle = new ToggleSwitch();
+
+    /**
+     * The object to switch the scene.
+     */
     private SceneSwitcher sceneSwitcher;
 
+    /**
+     * Initialises the menu, by aligning the menu grid to the centre.
+     * adds the colourToggle to the menu grid.
+     */
     public void initialize(){
         vBox.setAlignment(Pos.CENTER);
-
-        colourToggle = new ToggleSwitch();
         menuGrid.add(colourToggle, 0, 3);
     }
 
+    /**
+     * Switches to the game page, as a multiplayer game, if a SceneSwitcher has been set.
+     * @throws IOException Error if the switch is unsuccessful.
+     */
     public void setGameToMultiplayer() throws IOException {
         sceneSwitcher.gameSwitcher(GameState.class, colourToggle.switchOnProperty().get() ? Colour.BLACK: Colour.WHITE);
     }
 
+    /**
+     * Switches to the game page, as n engine game, if a SceneSwitcher has been set.
+     * @throws IOException Error if the switch is unsuccessful.
+     */
     public void setGameToEngine() throws IOException {
         sceneSwitcher.gameSwitcher(EngineGameState.class, colourToggle.switchOnProperty().get() ? Colour.BLACK: Colour.WHITE);
     }
 
+    /**
+     * @param sceneSwitcher The SCeneSwitcher object this will use.
+     */
     public void setSceneSwitcher(SceneSwitcher sceneSwitcher) {
         this.sceneSwitcher = sceneSwitcher;
     }

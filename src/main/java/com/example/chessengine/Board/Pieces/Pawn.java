@@ -88,13 +88,6 @@ public class Pawn extends Piece {
         }
     }
 
-    /**
-     * updates the pseudolegal moves based on the change
-     * @param row  must be between 0 and 7 inclusive
-     * @param col must be between 0 and 7 inclusive
-     * @param oldColour the colour of the old piece
-     * @param newColour the colour of the new piece
-     */
     @Override
     protected void ReCalculateValidMoves(int row, int col, Colour oldColour, Colour newColour) {
         Cell cell = getBoard().getCell(row, col);
@@ -140,6 +133,9 @@ public class Pawn extends Piece {
         firstRank = (getColour() == Colour.WHITE && row == 1) || (getColour() == Colour.BLACK && row == 6);
     }
 
+    /**
+     * @return The string representation of the pawn object, with the location, and if it can move 2 squares
+     */
     @Override
     public String toString() {
         return "Piece Pawn " +

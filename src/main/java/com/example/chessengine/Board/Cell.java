@@ -98,23 +98,21 @@ public class Cell {
     }
 
     /**
-     * Makes a string out of the cell object, with its row and column
-     * @return The string representation of the object
+     * @return The string representation of the cell, with its row and column
      */
     @Override
     public String toString(){
         return "Cell[" + row + ", " + col + "]";
     }
 
+    /**
+     * @param o the reference object with which to compare.
+     * @return If the 2 cell objects are equal
+     */
     @Override
     public boolean equals(Object o) {
         if (o == null || getClass() != o.getClass()) return false;
         Cell cell = (Cell) o;
         return row == cell.row && col == cell.col && Objects.equals(piece, cell.piece) && Objects.equals(Listener, cell.Listener);
-    }
-
-    @Override
-    public int hashCode() {
-        return Objects.hash(row, col);
     }
 }

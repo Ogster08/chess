@@ -65,13 +65,6 @@ public class King extends Piece {
         }
     }
 
-    /**
-     * updates the pseudolegal moves based on the change
-     * @param row must be between 0 and 7 inclusive
-     * @param col must be between 0 and 7 inclusive
-     * @param oldColour the colour of the old piece
-     * @param newColour the colour of the new piece
-     */
     @Override
     protected void ReCalculateValidMoves(int row, int col, Colour oldColour, Colour newColour) {
         Cell cell = getBoard().getCell(row, col);
@@ -104,11 +97,10 @@ public class King extends Piece {
         super.move(newRow, newCol);
     }
 
+    /**
+     * @return if the king can castle, independent of any rooks
+     */
     public boolean isCanCastle() {
         return canCastle;
-    }
-
-    public void setCanCastle(boolean canCastle) {
-        this.canCastle = canCastle;
     }
 }

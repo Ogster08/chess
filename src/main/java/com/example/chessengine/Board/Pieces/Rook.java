@@ -11,9 +11,6 @@ import java.util.List;
  * The class for the rook chess piece
  */
 public class Rook extends Piece {
-    public void setCanCastle(boolean canCastle) {
-        this.canCastle = canCastle;
-    }
 
     /**
      * if the rook is able to castle, used by the board to deal with castling
@@ -114,13 +111,6 @@ public class Rook extends Piece {
         return true;
     }
 
-    /**
-     * updates the pseudolegal moves based on the change
-     * @param row must be between 0 and 7 inclusive
-     * @param col must be between 0 and 7 inclusive
-     * @param oldColour the colour of the old piece
-     * @param newColour the colour of the new piece
-     */
     @Override
     protected void ReCalculateValidMoves(int row, int col, Colour oldColour, Colour newColour) {
         if (getRow() - row > 0){
@@ -174,6 +164,9 @@ public class Rook extends Piece {
         super.move(newRow, newCol);
     }
 
+    /**
+     * @return if the rook can castle, independent of the king
+     */
     public boolean isCanCastle() {
         return canCastle;
     }

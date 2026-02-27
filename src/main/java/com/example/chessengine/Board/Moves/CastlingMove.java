@@ -4,6 +4,11 @@ import com.example.chessengine.Board.Cell;
 import com.example.chessengine.Board.Pieces.King;
 import com.example.chessengine.Board.Pieces.Rook;
 
+/**
+ * The CastlingMove class, extending the move class.
+ * Contains the king being moved and the cell it is being moved to
+ * Contains the rook and cell it is being moved to.
+ */
 public class CastlingMove extends Move {
     /**
      * The rook being moved
@@ -35,8 +40,7 @@ public class CastlingMove extends Move {
     }
 
     /**
-     * Converts the object into a string, by listing the rook and king and the cells that they are moving to.
-     * @return The string representation of the CastlingMove object
+     * @return The string representation of the CastlingMove object, with the king, cell the king is moving to, the rook and the cell the rook is moving to.
      */
     @Override
     public String toString() {

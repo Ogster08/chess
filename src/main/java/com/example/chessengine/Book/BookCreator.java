@@ -11,14 +11,27 @@ import java.nio.charset.StandardCharsets;
 import java.util.Arrays;
 import java.util.HashMap;
 
+/**
+ * The BookCreator class is used for creating an openings book from a text file containing PGN games.
+ * It also can load the openings book data from 'book.txt' into a Book object.
+ */
 public class BookCreator {
+    /**
+     * The maximum ply (half moves) to look at for each game.
+     */
     private final int maxPly = 10;
+
+    /**
+     * The openings book, the PGN games are being loaded into.
+     */
     private final Book book = new Book();
 
+    /**
+     * Creates an openings book from the 'PGN games.txt' file.
+     * Creates or overwrites the 'book.txt' file, with the information to reconstruct the openings book.
+     */
     public void createBook() {
-        System.out.println("started");
         try (BufferedReader bufferedReader = new BufferedReader(new FileReader("src/main/resources/book/PGN games.txt"))) {
-            System.out.println("loaded");
             String line = bufferedReader.readLine();
             while (line != null){
                 line = line.trim();
@@ -35,10 +48,12 @@ public class BookCreator {
         } catch (IOException e) {
             throw new RuntimeException(e);
         }
-        System.out.println("created book");
         createBookFile();
     }
 
+    /**
+     * Writes all the positions and openings from the openings book object into a 'book.txt' file.
+     */
     private void createBookFile() {
         try (PrintWriter printWriter = new PrintWriter("src/main/resources/book/book.txt", StandardCharsets.UTF_8)) {
             for (long position: book.bookPositions.keySet()){
@@ -60,6 +75,9 @@ public class BookCreator {
         }
     }
 
+    /**
+     * A hashmap of all the file letters to the corresponding column index.
+     */
     private static final HashMap<Character, Integer> fileToCol = new HashMap<>(){
         {
             put('a', 0);
@@ -73,6 +91,9 @@ public class BookCreator {
         }
     };
 
+    /**
+     * A hashmap of each piece character in san to the corresponding class
+     */
     private static final HashMap<Character, Class<?>> pieceToClass = new HashMap<>(){
         {
             put('K', King.class);
@@ -83,6 +104,11 @@ public class BookCreator {
         }
     };
 
+    /**
+     * Goes through the san moves from the game line, upto the maxPly.
+     * Adds the next move, at the current board position to the openings book for each move.
+     * @param line The game line from the PGN games.
+     */
     private void doGame(String line){
         String[] lineSplit = line.split(" ");
         if (lineSplit.length <= 20) return;
@@ -101,6 +127,14 @@ public class BookCreator {
         }
     }
 
+    /**
+     * Maps the san move to the equivalent move object from the legal moves in the board.
+     * Throws an error if no move can be found.
+     * @param board The board, where the move should come from
+     * @param algebraicMove The san move, the move is coming from
+     * @return The Move object of the san move at the current board position
+     * @throws RuntimeException error if the san move doesn't correspond to a legal move in the current position.
+     */
     private Move getMove(Board board, String algebraicMove){
         for (Move testMove: board.getPseudolegalMoves()){
             if (!board.checkLegalMoves(testMove)) continue;
@@ -152,6 +186,10 @@ public class BookCreator {
         throw new RuntimeException("No valid move found for: " + algebraicMove);
     }
 
+    /**
+     * Loads the openings book from 'book.txt' into a Book object.
+     * @return The openings book from the 'book.txt' file.
+     */
     public static Book LoadBook(){
         Book book = new Book();
         try (BufferedReader bufferedReader = new BufferedReader(new FileReader("src/main/resources/book/book.txt"))) {

@@ -7,6 +7,9 @@ import com.example.chessengine.Board.Colour;
 import java.util.ArrayList;
 import java.util.List;
 
+/**
+ * The class of the knight chess piece
+ */
 public class Knight extends Piece {
     /**
      * The constructor for a new Knight being added to a chessboard
@@ -23,7 +26,6 @@ public class Knight extends Piece {
 
     /**
      * Calculates all the squares the knight can move to
-     *
      * @return A list of all the cells on the board that the knight could reach if the board was empty
      */
     @Override
@@ -62,14 +64,6 @@ public class Knight extends Piece {
         }
     }
 
-    /**
-     * updates the pseudolegal moves based on the change
-     *
-     * @param row       must be between 0 and 7 inclusive
-     * @param col       must be between 0 and 7 inclusive
-     * @param oldColour the colour of the old piece
-     * @param newColour the colour of the new piece
-     */
     @Override
     protected void ReCalculateValidMoves(int row, int col, Colour oldColour, Colour newColour) {
         Cell cell = getBoard().getCell(row, col);

@@ -54,6 +54,12 @@ public class Bishop extends Piece {
         return cells;
     }
 
+    /**
+     * Walks from the current square to the edge of the board, adding all the cells into a list
+     * @param rowD +1 or -1, the row offset
+     * @param colD +1 or -1, the column offset
+     * @param cells The list, the cells walked ar being added to
+     */
     protected void WalkDiagonal(int rowD, int colD, List<Cell> cells) {
         int row = getRow() + rowD;
         int col = getCol() + colD;
@@ -64,6 +70,13 @@ public class Bishop extends Piece {
         }
     }
 
+    /**
+     * Walks from the current square to the edge of the board or until a piece is hit.
+     * Adds all the cells into a list that are walked, including the where a piece is hit if it is the opposite colour.
+     * @param rowD +1 or -1, the row offset
+     * @param colD +1 or -1, the column offset
+     * @param cells The list, the cells walked ar being added to
+     */
     protected void WalkDiagonalUntilHit(int rowD, int colD, List<Cell> cells) {
         int row = getRow() + rowD;
         int col = getCol() + colD;
@@ -110,13 +123,6 @@ public class Bishop extends Piece {
         return true;
     }
 
-    /**
-     * updates the pseudolegal moves based on the change
-     * @param row must be between 0 and 7 inclusive
-     * @param col must be between 0 and 7 inclusive
-     * @param oldColour the colour of the old piece
-     * @param newColour the colour of the new piece
-     */
     @Override
     protected void ReCalculateValidMoves(int row, int col, Colour oldColour, Colour newColour) {
         if (getRow() - row < 0){

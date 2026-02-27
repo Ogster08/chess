@@ -4,10 +4,40 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="5ecba770-62e4-41d3-b203-db736912793c" name="Changes" comment="reorganised file structure">
+    <list default="true" id="5ecba770-62e4-41d3-b203-db736912793c" name="Changes" comment="fixed not closing engine thread when going back to the menu">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/com/example/chessengine/Board/Board.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/chessengine/Board/Board.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/chessengine/Board/Cell.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/chessengine/Board/Cell.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/chessengine/Board/Moves/CastlingMove.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/chessengine/Board/Moves/CastlingMove.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/chessengine/Board/Moves/EnPassantMove.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/chessengine/Board/Moves/EnPassantMove.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/chessengine/Board/Moves/Move.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/chessengine/Board/Moves/Move.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/chessengine/Board/Moves/PromotionMove.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/chessengine/Board/Moves/PromotionMove.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/chessengine/Board/Pieces/Bishop.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/chessengine/Board/Pieces/Bishop.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/chessengine/Board/Pieces/King.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/chessengine/Board/Pieces/King.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/chessengine/Board/Pieces/Knight.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/chessengine/Board/Pieces/Knight.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/chessengine/Board/Pieces/Pawn.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/chessengine/Board/Pieces/Pawn.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/chessengine/Board/Pieces/Piece.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/chessengine/Board/Pieces/Piece.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/chessengine/Board/Pieces/Queen.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/chessengine/Board/Pieces/Queen.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/chessengine/Board/Pieces/Rook.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/chessengine/Board/Pieces/Rook.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/chessengine/Board/UndoMoveInfo.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/chessengine/Board/UndoMoveInfo.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/chessengine/Board/Zobrist.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/chessengine/Board/Zobrist.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/chessengine/Book/Book.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/chessengine/Book/Book.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/chessengine/Book/BookCreator.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/chessengine/Book/BookCreator.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/chessengine/Book/BookMove.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/chessengine/Book/BookMove.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/chessengine/Book/BookMoves.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/chessengine/Book/BookMoves.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/com/example/chessengine/Engine/Engine.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/chessengine/Engine/Engine.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/chessengine/Engine/EngineThread.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/chessengine/Engine/EngineThread.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/chessengine/GUI/ChessController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/chessengine/GUI/ChessController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/chessengine/GUI/MenuController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/chessengine/GUI/MenuController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/chessengine/GUI/MoveHandler.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/chessengine/GUI/MoveHandler.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/chessengine/GUI/SceneSwitcher.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/chessengine/GUI/SceneSwitcher.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/chessengine/GUI/ToggleSwitch.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/chessengine/GUI/ToggleSwitch.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/chessengine/HelloApplication.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/chessengine/HelloApplication.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/chessengine/Tablebase/LichessAPI.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/chessengine/Tablebase/LichessAPI.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/chessengine/Tablebase/LichessMoveData.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/chessengine/Tablebase/LichessMoveData.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/chessengine/Tablebase/LichessResponse.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/chessengine/Tablebase/LichessResponse.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/chessengine/UCI/EngineGameState.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/chessengine/UCI/EngineGameState.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/chessengine/UCI/GameState.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/chessengine/UCI/GameState.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -62,37 +92,37 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent"><![CDATA[{
-  "keyToString": {
-    "Application.HelloApplication.executor": "Run",
-    "Application.Main.executor": "Run",
-    "Downloaded.Files.Path.Enabled": "false",
-    "OverrideImplement.generate.javadoc": "true",
-    "Repository.Attach.Annotations": "true",
-    "Repository.Attach.JavaDocs": "true",
-    "Repository.Attach.Sources": "false",
-    "RunOnceActivity.ShowReadmeOnStart": "true",
-    "RunOnceActivity.TerminalTabsStorage.copyFrom.TerminalArrangementManager.252": "true",
-    "RunOnceActivity.git.unshallow": "true",
-    "SHARE_PROJECT_CONFIGURATION_FILES": "true",
-    "com.intellij.testIntegration.createTest.CreateTestDialog.defaultLibrary": "JUnit5",
-    "com.intellij.testIntegration.createTest.CreateTestDialog.defaultLibrarySuperClass.JUnit5": "",
-    "git-widget-placeholder": "main",
-    "kotlin-language-version-configured": "true",
-    "list.type.of.created.stylesheet": "CSS",
-    "node.js.detected.package.eslint": "true",
-    "node.js.detected.package.tslint": "true",
-    "node.js.selected.package.eslint": "(autodetect)",
-    "node.js.selected.package.tslint": "(autodetect)",
-    "nodejs_package_manager_path": "npm",
-    "project.structure.last.edited": "Libraries",
-    "project.structure.proportion": "0.15",
-    "project.structure.side.proportion": "0.2",
-    "run.code.analysis.last.selected.profile": "pProject Default",
-    "settings.editor.selected.configurable": "reference.settings.ide.settings.uml",
-    "vue.rearranger.settings.migration": "true"
+  <component name="PropertiesComponent">{
+  &quot;keyToString&quot;: {
+    &quot;Application.HelloApplication.executor&quot;: &quot;Run&quot;,
+    &quot;Application.Main.executor&quot;: &quot;Run&quot;,
+    &quot;Downloaded.Files.Path.Enabled&quot;: &quot;false&quot;,
+    &quot;OverrideImplement.generate.javadoc&quot;: &quot;true&quot;,
+    &quot;Repository.Attach.Annotations&quot;: &quot;true&quot;,
+    &quot;Repository.Attach.JavaDocs&quot;: &quot;true&quot;,
+    &quot;Repository.Attach.Sources&quot;: &quot;false&quot;,
+    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.TerminalTabsStorage.copyFrom.TerminalArrangementManager.252&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.git.unshallow&quot;: &quot;true&quot;,
+    &quot;SHARE_PROJECT_CONFIGURATION_FILES&quot;: &quot;true&quot;,
+    &quot;com.intellij.testIntegration.createTest.CreateTestDialog.defaultLibrary&quot;: &quot;JUnit5&quot;,
+    &quot;com.intellij.testIntegration.createTest.CreateTestDialog.defaultLibrarySuperClass.JUnit5&quot;: &quot;&quot;,
+    &quot;git-widget-placeholder&quot;: &quot;main&quot;,
+    &quot;kotlin-language-version-configured&quot;: &quot;true&quot;,
+    &quot;list.type.of.created.stylesheet&quot;: &quot;CSS&quot;,
+    &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
+    &quot;node.js.detected.package.tslint&quot;: &quot;true&quot;,
+    &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
+    &quot;node.js.selected.package.tslint&quot;: &quot;(autodetect)&quot;,
+    &quot;nodejs_package_manager_path&quot;: &quot;npm&quot;,
+    &quot;project.structure.last.edited&quot;: &quot;Libraries&quot;,
+    &quot;project.structure.proportion&quot;: &quot;0.15&quot;,
+    &quot;project.structure.side.proportion&quot;: &quot;0.2&quot;,
+    &quot;run.code.analysis.last.selected.profile&quot;: &quot;pProject Default&quot;,
+    &quot;settings.editor.selected.configurable&quot;: &quot;reference.settings.ide.settings.uml&quot;,
+    &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
   }
-}]]></component>
+}</component>
   <component name="RecentsManager">
     <key name="CreateClassDialog.RecentsKey">
       <recent name="com.example.chessengine.UCI" />
@@ -116,6 +146,10 @@
   </component>
   <component name="RunManager">
     <configuration name="Main" type="Application" factoryName="Application">
+      <envs>
+        <env name="LOGS" value="false" />
+        <env name="BUILD_BOOK" value="false" />
+      </envs>
       <option name="MAIN_CLASS_NAME" value="com.example.chessengine.HelloApplication" />
       <module name="ChessEngine" />
       <method v="2">
@@ -177,47 +211,11 @@
       <workItem from="1772051972638" duration="10693000" />
       <workItem from="1772095073182" duration="1798000" />
       <workItem from="1772100045397" duration="2267000" />
-      <workItem from="1772104531897" duration="22921000" />
-    </task>
-    <task id="LOCAL-00039" summary="made toString method better">
-      <option name="closed" value="true" />
-      <created>1771444623213</created>
-      <option name="number" value="00039" />
-      <option name="presentableId" value="LOCAL-00039" />
-      <option name="project" value="LOCAL" />
-      <updated>1771444623213</updated>
-    </task>
-    <task id="LOCAL-00040" summary="removed unused line for cleaner code">
-      <option name="closed" value="true" />
-      <created>1771444648514</created>
-      <option name="number" value="00040" />
-      <option name="presentableId" value="LOCAL-00040" />
-      <option name="project" value="LOCAL" />
-      <updated>1771444648514</updated>
-    </task>
-    <task id="LOCAL-00041" summary="fixed index outside bounds error, when ReCalculatingValidMoves on  move forward 2 spaces cell, and using cellsList instead of movesList in 2 instances">
-      <option name="closed" value="true" />
-      <created>1771444775678</created>
-      <option name="number" value="00041" />
-      <option name="presentableId" value="LOCAL-00041" />
-      <option name="project" value="LOCAL" />
-      <updated>1771444775678</updated>
-    </task>
-    <task id="LOCAL-00042" summary="added moving pieces using the GUI, with a validation function, connected using the MoveHandler interface">
-      <option name="closed" value="true" />
-      <created>1771445075620</created>
-      <option name="number" value="00042" />
-      <option name="presentableId" value="LOCAL-00042" />
-      <option name="project" value="LOCAL" />
-      <updated>1771445075620</updated>
-    </task>
-    <task id="LOCAL-00043" summary="Fixing en passant moves and castling">
-      <option name="closed" value="true" />
-      <created>1771445106154</created>
-      <option name="number" value="00043" />
-      <option name="presentableId" value="LOCAL-00043" />
-      <option name="project" value="LOCAL" />
-      <updated>1771445106154</updated>
+      <workItem from="1772104531897" duration="30626000" />
+      <workItem from="1772181506677" duration="9906000" />
+      <workItem from="1772194542947" duration="1467000" />
+      <workItem from="1772199497082" duration="4552000" />
+      <workItem from="1772206707695" duration="7636000" />
     </task>
     <task id="LOCAL-00044" summary="changes">
       <option name="closed" value="true" />
@@ -571,7 +569,47 @@
       <option name="project" value="LOCAL" />
       <updated>1772130893238</updated>
     </task>
-    <option name="localTasksCounter" value="88" />
+    <task id="LOCAL-00088" summary="improved evaluation to try to improve pawn structure in the opening">
+      <option name="closed" value="true" />
+      <created>1772140400892</created>
+      <option name="number" value="00088" />
+      <option name="presentableId" value="LOCAL-00088" />
+      <option name="project" value="LOCAL" />
+      <updated>1772140400892</updated>
+    </task>
+    <task id="LOCAL-00089" summary="fixed not preventing castling while in check">
+      <option name="closed" value="true" />
+      <created>1772184906741</created>
+      <option name="number" value="00089" />
+      <option name="presentableId" value="LOCAL-00089" />
+      <option name="project" value="LOCAL" />
+      <updated>1772184906741</updated>
+    </task>
+    <task id="LOCAL-00090" summary="improved colour switch styling">
+      <option name="closed" value="true" />
+      <created>1772207891056</created>
+      <option name="number" value="00090" />
+      <option name="presentableId" value="LOCAL-00090" />
+      <option name="project" value="LOCAL" />
+      <updated>1772207891056</updated>
+    </task>
+    <task id="LOCAL-00091" summary="added environment variables for creating the openings book and logs - BUILD_BOOK &amp; LOGS">
+      <option name="closed" value="true" />
+      <created>1772213421013</created>
+      <option name="number" value="00091" />
+      <option name="presentableId" value="LOCAL-00091" />
+      <option name="project" value="LOCAL" />
+      <updated>1772213421013</updated>
+    </task>
+    <task id="LOCAL-00092" summary="fixed not closing engine thread when going back to the menu">
+      <option name="closed" value="true" />
+      <created>1772213453122</created>
+      <option name="number" value="00092" />
+      <option name="presentableId" value="LOCAL-00092" />
+      <option name="project" value="LOCAL" />
+      <updated>1772213453122</updated>
+    </task>
+    <option name="localTasksCounter" value="93" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -589,11 +627,6 @@
     </option>
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="code cleanup" />
-    <MESSAGE value="cleanup" />
-    <MESSAGE value="The engine now runs on its own thread" />
-    <MESSAGE value="added evaluation based on material value, and alpha-beta pruning for searching" />
-    <MESSAGE value="fixed undoing a castling move, with the rook being moved to the wrong square sometimes" />
     <MESSAGE value="added position evaluation" />
     <MESSAGE value="tuning depth, so the search doesn't take as long" />
     <MESSAGE value="removed commented out code" />
@@ -614,7 +647,12 @@
     <MESSAGE value="added tablebase for positions with 7 or fewer pieces" />
     <MESSAGE value="fixed zobrist key issues, and corrected openings book" />
     <MESSAGE value="reorganised file structure" />
-    <option name="LAST_COMMIT_MESSAGE" value="reorganised file structure" />
+    <MESSAGE value="improved evaluation to try to improve pawn structure in the opening" />
+    <MESSAGE value="fixed not preventing castling while in check" />
+    <MESSAGE value="improved colour switch styling" />
+    <MESSAGE value="added environment variables for creating the openings book and logs - BUILD_BOOK &amp; LOGS" />
+    <MESSAGE value="fixed not closing engine thread when going back to the menu" />
+    <option name="LAST_COMMIT_MESSAGE" value="fixed not closing engine thread when going back to the menu" />
   </component>
   <component name="XSLT-Support.FileAssociations.UIState">
     <expand />

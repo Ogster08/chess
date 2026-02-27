@@ -3,7 +3,15 @@ package com.example.chessengine.Board.Moves;
 import com.example.chessengine.Board.Cell;
 import com.example.chessengine.Board.Pieces.Pawn;
 
+/**
+ * The EnPassantMove class, extending the move class.
+ * Contains the pawn being moved and the cell it is being moved to
+ * Contains the class the pawn is promoting to
+ */
 public class EnPassantMove extends Move{
+    /**
+     * The cell of the pawn being taken
+     */
     private final Cell targetPawnCell;
 
     /**
@@ -15,12 +23,15 @@ public class EnPassantMove extends Move{
         targetPawnCell = super.p().getBoard().getCell(super.p().getRow(), super.cell().getCol());
     }
 
+    /**
+     * @return The cell of the pawn being taken
+     */
     public Cell getTargetPawnCell(){
         return targetPawnCell;
     }
 
     /**
-     * @return
+     * @return The string version of the object, including the pawn, the cell it moves to and the cell of the pawn being taken
      */
     @Override
     public String toString(){

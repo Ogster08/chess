@@ -9,10 +9,27 @@ import com.example.chessengine.GUI.ChessController;
 import java.util.Collections;
 import java.util.List;
 
+/**
+ * The EngineGameState class is the GameState class for a user playing against the engine. It acts as an interface between the virtual board and GUI.
+ */
 public class EngineGameState extends GameState{
+    /**
+     * The EngineThread object, that the engine is in.
+     */
     private final EngineThread engineThread;
+
+    /**
+     * The Colour that the player is playing as.
+     */
     private final Colour playerColour;
 
+    /**
+     * Creates a new EngineThread, and starts the new thread.
+     * Sets the MoveHandler in the controller to this object, so they can communicate.
+     * If the engine is white, then does the next engine move.
+     * @param controller The ChessController object for this to communicate with.
+     * @param playerColour The Colour that the player is playing as.
+     */
     public EngineGameState(ChessController controller, Colour playerColour) {
         super(controller);
         engineThread = new EngineThread(new Engine(board, playerColour == Colour.WHITE ? Colour.BLACK: Colour.WHITE));
@@ -23,6 +40,10 @@ public class EngineGameState extends GameState{
         }
     }
 
+    /**
+     * Checks if the player Colour is the same as the Colour to move on the board.
+     * @return If it is the player's turn to move.
+     */
     private boolean playerTurn(){
         return playerColour == board.getColourToMove();
     }
@@ -55,6 +76,11 @@ public class EngineGameState extends GameState{
         }
     }
 
+    /**
+     * Requests the next move from the engine Thread.
+     * If the move isn't null, then it performs the move, updates the GUI, and checks if the game is over.
+     * If the move is null, then it calls GameEndMessage.
+     */
     private void doNextEngineMove(){
         engineThread.requestMove(move -> {
             if (move != null){
@@ -70,10 +96,17 @@ public class EngineGameState extends GameState{
         });
     }
 
+    /**
+     * Debug function for testing, to count the number of positions at the given depth, in the current position.
+     * @param depth The ply to count the number of positions at.
+     */
     private void outputCount(int depth){
         engineThread.getCountMoves(System.out::println, depth);
     }
 
+    /**
+     * Stops the engine thread running, for when the program shuts, or goes back to the menu.
+     */
     public void stopEngineThread(){
         engineThread.stopEngine();
     }

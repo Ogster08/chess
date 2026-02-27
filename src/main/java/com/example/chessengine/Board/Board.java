@@ -43,33 +43,60 @@ public class Board{
     public final List<EnPassantMove> enPassantMoves = new ArrayList<>();
 
     /**
-     * A list of all the castling moves in the current position by the player whose turn it is, so they can more easily be validated if they are legal or not
+     * A list of all the UndoMoveInfo objects, containing all the previous moves, so they can be undone if needed
      */
-
     public final List<UndoMoveInfo> undoMoveInfoList = new ArrayList<>();
 
+    /**
+     * @return The number of half moves,to enforce the fifty move rule. Reset after pawn moves and captures.
+     */
     public int getFiftyMoveCounter() {
         return fiftyMoveCounter;
     }
 
+    /**
+     * The number of half moves,to enforce the fifty move rule.
+     * Reset after pawn moves and captures.
+     */
     private int fiftyMoveCounter = 0;
 
+    /**
+     * @return The number of full moves, starting from 1 and incremented after every black move.
+     */
     public int getFullMoveCounter() {
         return fullMoveCounter;
     }
 
+    /**
+     * The number of full moves, starting from 1 and incremented after every black move.
+     */
     private int fullMoveCounter = 1;
 
+    /**
+     * A hashmap containing the number of times each position has occurred in the game, using the zobrist keys
+     */
     public final HashMap<Long, Short> positionHistory = new HashMap<>();
 
+    /**
+     * A boolean for each castling type (KQkq - FEN equivalent)
+     */
     private boolean[] castlingState = new boolean[4];
 
+    /**
+     * The zobrist object containing the pseudorandom numbers used
+     */
     private final Zobrist zobrist = new Zobrist();
 
+    /**
+     * @return The zobrist hash code of the current position
+     */
     public long getZobristKey() {
         return zobristKey;
     }
 
+    /**
+     * The zobrist hash code of the current position
+     */
     private long zobristKey = 0;
     private int enPassantFile = 0;
     private int enPassantFileForFEN = 0;
@@ -120,6 +147,10 @@ public class Board{
         zobristKey = zobrist.zobristKey(this);
     }
 
+    /**
+     * Creates a new board object and sets up the starting position, with white to move first
+     * @return The board object containing the start position with white to move
+     */
     public static Board getStartPosition(){
         Board board = new Board();
         for (int col = 0; col < 8; col++) {
@@ -353,6 +384,11 @@ public class Board{
         return moves;
     }
 
+    /**
+     * Undoes the previous move, reverting all states to the previous ones.
+     * It uses the UndoMovesList objects for this, which contain all the information needed.
+     * It moves the piece previously moved back to the original square and recreates the previous piece from the information provided.
+     */
     public void undoMove(){
         if (undoMoveInfoList.isEmpty()) throw new NullPointerException("No undoMoveInfo, as no move has been performed yet");
         UndoMoveInfo undoMoveInfo = undoMoveInfoList.removeLast();
@@ -420,6 +456,10 @@ public class Board{
         }
     }
 
+    /**
+     * It first finds the king cell, and then checks if any of the moves by the pieces of the opposite colour contain the king square.
+     * @return If the king of the current colour to move is in check.
+     */
     public boolean isInCheck(){
         Cell kingCell = null;
         boolean breakLoop = false;
@@ -451,6 +491,13 @@ public class Board{
         return false;
     }
 
+    /**
+     * Checks if a move is legal first by performing the move.
+     * Then it checks if any of the opposite colour pieces to the piece in the move can attack the king.
+     * Also checks for the step over square if the move is a castling move.
+     * @param move The move being checked if it is legal or not
+     * @return If the move is legal or not
+     */
     public boolean checkLegalMoves(Move move){
         Cell stepOverCell = null;
         if (move.getClass() == CastlingMove.class)stepOverCell = cells[move.cell().getRow()][(move.cell().getCol() == 2) ? 3: 5];
@@ -491,6 +538,9 @@ public class Board{
         return true;
     }
 
+    /**
+     * Updates all the castling states.
+     */
     private void updateCastlingState(){
         castlingState = new boolean[4];
         if (cells[0][4].getPiece() != null && cells[0][4].getPiece().getClass() == King.class && cells[0][4].getPiece().getColour() == Colour.WHITE){
@@ -503,6 +553,11 @@ public class Board{
         }
     }
 
+    /**
+     * Converts the castling states into a 4 bit number (0 to 15).
+     * This is for fast indexing when updating the zobrist key
+     * @return The int representation of the current castling state
+     */
     public int getCastlingState(){
         int state = 0;
         for (boolean b: castlingState){
@@ -513,6 +568,11 @@ public class Board{
         return state;
     }
 
+    /**
+     * Creates a string in FEN format of the current position.
+     * It uses '_' instead of ' ' between different sections, as it is used for the API calls to the tablebase
+     * @return The FEN string of the current position
+     */
     public String getFEN(){
         StringBuilder fen = new StringBuilder();
         //board position
@@ -561,6 +621,9 @@ public class Board{
         return fen.toString();
     }
 
+    /**
+     * A hashmap of the different file number (1 - 8) to their corresponding letter.
+     */
     public static final HashMap<Integer, Character> fileNumberToLetter = new HashMap<>(){
         {
             put(1, 'a');
@@ -574,10 +637,16 @@ public class Board{
         }
     };
 
+    /**
+     * gets the letter of the file number from the fileNumberToLetter hashmap.
+     */
     public static Character getFileNumberToLetter(int i){
         return fileNumberToLetter.get(i);
     }
 
+    /**
+     * a hashmap of the piece classes to their corresponding white piece letter for the FEN string.
+     */
     private static final HashMap<Class<?>, Character> whitePieceToNotation = new HashMap<>(){
         {
             put(King.class, 'K');
@@ -589,6 +658,9 @@ public class Board{
         }
     };
 
+    /**
+     * a hashmap of the piece classes to their corresponding black piece letter for the FEN string.
+     */
     public static final HashMap<Class<?>, Character> blackPieceToNotation = new HashMap<>(){
         {
             put(King.class, 'k');
@@ -600,10 +672,19 @@ public class Board{
         }
     };
 
+    /**
+     * Converts the piece class to the character representation using the blackPieceToNotation hashmap.
+     * Used for FEN string and uci move notation when promoting.
+     * @param pieceClass The class of the piece being turned into notation.
+     * @return The character of the notation for the black piece.
+     */
     public static Character getBlackPieceToNotation(Class<?> pieceClass){
         return blackPieceToNotation.get(pieceClass);
     }
 
+    /**
+     * @return The number of pieces on the board.
+     */
     public int getPieceCount(){
         int count = 0;
         for (Cell[] row: cells){
@@ -614,11 +695,10 @@ public class Board{
         return count;
     }
 
-    @Override
-    public int hashCode() {
-        return Objects.hash(Arrays.deepHashCode(cells), colourToMove);
-    }
-
+    /**
+     * @param o the reference object with which to compare.
+     * @return If the 2 board objects are equal
+     */
     @Override
     public boolean equals(Object o) {
         if (!(o instanceof Board board)) return false;

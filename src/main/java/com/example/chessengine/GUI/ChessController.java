@@ -26,25 +26,72 @@ import javafx.scene.text.Text;
 import java.io.IOException;
 import java.util.*;
 
+/**
+ * The FXML controller class for the game page.
+ */
 public class ChessController {
+    /**
+     * The FXMl button object to do a new game.
+     */
     @FXML Button newGame;
+
+    /**
+     * The FXML GridPane object containing everything in the chess board.
+     */
     @FXML GridPane ChessGrid;
+
+    /**
+     * The FXML StackPane object container containing the chess board.
+     */
     @FXML StackPane BoardContainer;
 
+    /**
+     * The text object for the game end message.
+     */
     private final Text text = new Text();
+    /**
+     * The rectangle to cover then board, with the game over text.
+     */
     private final StackPane rect = new StackPane();
 
+    /**
+     * The object to switch the scene.
+     */
     private SceneSwitcher sceneSwitcher;
+
+    /**
+     * The object to handle all moves tried by the player, and to get a list of moves a piece can do to display where it can move to.
+     */
     private MoveHandler moveHandler;
+
+    /**
+     * The square of the piece being dragged.
+     */
     private Pane currentOriginSquare = null;
+
+    /**
+     * The list of squares a selected piece can move to.
+     */
     private final List<Pane> showMovesSquares = new ArrayList<>();
 
+    /**
+     * @param moveHandler The MoveHandler object this will use.
+     */
     public void setMoveHandler(MoveHandler moveHandler){
         this.moveHandler = moveHandler;
     }
 
-    public void setSceneSwitcher(SceneSwitcher sceneSwitcher){this.sceneSwitcher = sceneSwitcher;}
+    /**
+     * @param sceneSwitcher The SCeneSwitcher object this will use.
+     */
+    public void setSceneSwitcher(SceneSwitcher sceneSwitcher){
+        this.sceneSwitcher = sceneSwitcher;
+    }
 
+    /**
+     * Initialises the page, with a board that automatically grows and shrinks, and prepares the ending message.
+     * Sets the drag events relevant to the squares.
+     */
     public void initialize(){
         BoardContainer.setAlignment(Pos.CENTER_LEFT);
         rect.maxWidthProperty().bind(Bindings.min(ChessGrid.widthProperty(), ChessGrid.heightProperty()));
@@ -102,6 +149,12 @@ public class ChessController {
         }
     }
 
+    /**
+     * Adds a piece to the board, making it automatically resize and be draggable.
+     * @param imagePath The path of the image of the piece being added.
+     * @param row The row where it is being added.
+     * @param col The column where it is being added.
+     */
     private void addPiece(String imagePath, int row, int col){
         StackPane square = getSquare(row, col);
         assert square != null;
@@ -127,6 +180,12 @@ public class ChessController {
         StackPane.setAlignment(piece, Pos.CENTER);
     }
 
+    /**
+     * Flips the row from what the Board class uses to where it is displayed and gets the square.
+     * @param row The row of the square
+     * @param col The column of the square
+     * @return The square at the given row and column
+     */
     private StackPane getSquare(int row, int col){
         // row conversion
         row = 7 - row;
@@ -138,6 +197,9 @@ public class ChessController {
         return null;
     }
 
+    /**
+     * A hashmap for each piece class to the corresponding white piece file.
+     */
     private static final Map<Class<?>, String> whitePieceToImagePath = new HashMap<>(){
         {
             put(Pawn.class, "/images/white pawn.png");
@@ -149,6 +211,9 @@ public class ChessController {
         };
     };
 
+    /**
+     * A hashmap for each piece class to the corresponding black piece file.
+     */
     private static final Map<Class<?>, String> blackPieceToImagePath = new HashMap<>(){
         {
             put(Pawn.class, "/images/black pawn.png");
@@ -160,6 +225,10 @@ public class ChessController {
         };
     };
 
+    /**
+     * Updates the display of where all the pieces are using the board given.
+     * @param board The Board object used to update the positions.
+     */
     public void updatePosition(Board board){
         for (Node node: ChessGrid.getChildren()){
             ((StackPane) node).getChildren().clear();
@@ -175,12 +244,20 @@ public class ChessController {
         }
     }
 
+    /**
+     * Updates the style of the current origin square, and then updates the new one.
+     * @param square The new origin square (null if now new square)
+     */
     private void updateOriginSquare(Pane square){
         if (currentOriginSquare != null) currentOriginSquare.getStyleClass().remove("origin-square");
         currentOriginSquare = square;
         if (currentOriginSquare != null) currentOriginSquare.getStyleClass().add("origin-square");
     }
 
+    /**
+     * Updates all the squares that have a dot on them to show which moves are legal for the selected piece.
+     * @param moves The list of moves to update which moves to show
+     */
     private void updateShowMoveSquares(List<Move> moves){
         for (Pane square: showMovesSquares){
             removeDot(square);
@@ -194,6 +271,10 @@ public class ChessController {
         }
     }
 
+    /**
+     * Adds a grey half transparent dot to the square, that resizes automatically.
+     * @param square The square where the dot is added to.
+     */
     private void addDot(Pane square){
 
         Region dot = new Region();
@@ -210,12 +291,22 @@ public class ChessController {
         StackPane.setAlignment(dot, Pos.CENTER);
     }
 
+    /**
+     * Removes any dots from the square
+     * @param square The square, where the dot is being removed from
+     */
     private void removeDot(Pane square){
         square.getChildren().removeIf(node ->
             "dot".equals(node.getUserData())
         );
     }
 
+    /**
+     * Creates a dialog to choose the promotion piece, showing pieces of the correct colour.
+     * Returns the class of the piece chosen, with null for the default, which reverts the move.
+     * @param colour The colour the promotion piece will become.
+     * @return The piece class chosen for promotion.
+     */
     public Class<?> choosePromotionPiece(Colour colour){
         Dialog<Class<?>> dialog = new Dialog<>();
         dialog.setTitle("Choose promotion");
@@ -255,12 +346,21 @@ public class ChessController {
         return dialog.showAndWait().orElse(null);
     }
 
+    /**
+     * Switches to the menu page if a SceneSwitcher has been set.
+     * @throws IOException Error if the switch is unsuccessful.
+     */
     public void loadMenu() throws IOException {
         if (sceneSwitcher != null) sceneSwitcher.menuSwitcher();
     }
+
+    /**
+     * sets the game end text to the string given.
+     * Adds the game over display to the board container, to indicate the end of the game.
+     * @param message the game end message to be displayed.
+     */
     public void gameOverMessage(String message){
         text.setText(message);
         BoardContainer.getChildren().add(rect);
     }
-
 }

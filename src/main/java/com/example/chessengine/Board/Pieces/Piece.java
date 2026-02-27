@@ -169,20 +169,22 @@ public abstract class Piece implements CellListener {
         this.col = col;
     }
 
+    /**
+     * @return The string representation of the piece, with its class and location
+     */
     @Override
     public String toString(){
         return "Piece " + getClass().getSimpleName() + " at [" + row + ", " + col + "]";
     }
 
+    /**
+     * @param o the reference object with which to compare.
+     * @return if the Object o is equal to this piece.
+     */
     @Override
     public boolean equals(Object o) {
         if (o == null || getClass() != o.getClass()) return false;
         Piece piece = (Piece) o;
         return row == piece.row && col == piece.col && Objects.equals(board, piece.board) && Objects.equals(cellsList, piece.cellsList) && Objects.equals(movesList, piece.movesList) && colour == piece.colour;
-    }
-
-    @Override
-    public int hashCode() {
-        return Objects.hash(board, row, col, colour);
     }
 }
