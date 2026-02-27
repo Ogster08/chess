@@ -28,22 +28,25 @@ public class Engine{
         if (usingBook){
             if (!book.positionInBook(board.getZobristKey())) usingBook = false;
             else {
-                System.out.println("getting book move");
+                if ("true".equals(System.getenv("LOGS"))) System.out.println("getting book move");
                 return book.getRandomWeightedMove(board);
             }
         }
         if (board.getPieceCount() <= 7) {
             Move move = LichessAPI.getMove(board);
             if (move != null) {
-                System.out.println("Tablebase move");
+                if ("true".equals(System.getenv("BUILD_BOOK"))) System.out.println("Tablebase move");
                 return move;
             }
         }
         count = 0;
         bestMove = null;
-        System.out.println("-----normal move-----");
-        System.out.println(search(4, 0, Integer.MIN_VALUE, Integer.MAX_VALUE, true));
-        System.out.println(count);
+        if ("true".equals(System.getenv("BUILD_BOOK"))) System.out.println("-----normal move-----");
+        int eval = search(4, 0, Integer.MIN_VALUE, Integer.MAX_VALUE, true);
+        if ("true".equals(System.getenv("BUILD_BOOK"))){
+            System.out.println(eval);
+            System.out.println(count);
+        }
         return bestMove;
     }
 

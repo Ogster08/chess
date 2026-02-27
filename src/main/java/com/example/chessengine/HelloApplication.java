@@ -37,6 +37,10 @@ public class HelloApplication extends Application implements SceneSwitcher {
     }
 
     public static void main(String[] args) {
+        if ("true".equals(System.getenv("BUILD_BOOK"))){
+            BookCreator bc = new BookCreator();
+            bc.createBook();
+        }
         launch();
         //BookCreator bc = new BookCreator();
         //bc.createBook();
