@@ -230,7 +230,7 @@ public class Engine{
         }
 
         if (board.getFullMoveCounter() <= 8){
-            Set<Piece> movedPieces = new HashSet<>(10);
+            Set<Piece> movedPieces = new HashSet<>(8);
             for (UndoMoveInfo umi: board.undoMoveInfoList){
                 Piece p = umi.move.p();
                 if (p.getColour() == engineColour){
