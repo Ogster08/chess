@@ -74,15 +74,15 @@ public class Engine{
         if (board.getPieceCount() <= 7) {
             Move move = LichessAPI.getMove(board);
             if (move != null) {
-                if ("true".equals(System.getenv("BUILD_BOOK"))) System.out.println("Tablebase move");
+                if ("true".equals(System.getenv("LOGS"))) System.out.println("Tablebase move");
                 return move;
             }
         }
         count = 0;
         bestMove = null;
-        if ("true".equals(System.getenv("BUILD_BOOK"))) System.out.println("-----normal move-----");
+        if ("true".equals(System.getenv("LOGS"))) System.out.println("-----normal move-----");
         int eval = search(4, 0, Integer.MIN_VALUE, Integer.MAX_VALUE, true);
-        if ("true".equals(System.getenv("BUILD_BOOK"))){
+        if ("true".equals(System.getenv("LOGS"))){
             System.out.println(eval);
             System.out.println(count);
         }
@@ -229,14 +229,17 @@ public class Engine{
             }
         }
 
-        if (board.getFullMoveCounter() <= 10){
-            Set<Piece> movedPieces = new HashSet<>(5);
+        if (board.getFullMoveCounter() <= 8){
+            Set<Piece> movedPieces = new HashSet<>(10);
             for (UndoMoveInfo umi: board.undoMoveInfoList){
                 Piece p = umi.move.p();
                 if (p.getColour() == engineColour){
-                    if (movedPieces.contains(p)) evaluation -= 20;
-                    if (p.getClass() == Queen.class) evaluation -= 20;
-                    else movedPieces.add(p);
+                    if (movedPieces.contains(p)) {
+                        evaluation -= 20;
+                        if (p.getClass() == Queen.class) evaluation -= 20;
+                    } else {
+                        movedPieces.add(p);
+                    }
                 }
             }
         }
