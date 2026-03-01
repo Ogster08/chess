@@ -4,9 +4,9 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="5ecba770-62e4-41d3-b203-db736912793c" name="Changes" comment="fixed logs">
+    <list default="true" id="5ecba770-62e4-41d3-b203-db736912793c" name="Changes" comment="cleaned up evaluation function">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/chessengine/Engine/Engine.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/chessengine/Engine/Engine.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/chessengine/GUI/ChessController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/chessengine/GUI/ChessController.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -186,15 +186,7 @@
       <workItem from="1772199497082" duration="4552000" />
       <workItem from="1772206707695" duration="7838000" />
       <workItem from="1772367090068" duration="11860000" />
-      <workItem from="1772387080544" duration="27000" />
-    </task>
-    <task id="LOCAL-00046" summary="Added UndoMoveInfo class to store the least possible information to be able to undo a move">
-      <option name="closed" value="true" />
-      <created>1771524344355</created>
-      <option name="number" value="00046" />
-      <option name="presentableId" value="LOCAL-00046" />
-      <option name="project" value="LOCAL" />
-      <updated>1771524344355</updated>
+      <workItem from="1772387080544" duration="9457000" />
     </task>
     <task id="LOCAL-00047" summary="Added function in board to undo a move, and added legal move validation in the GameState class. Fixed canCastle logic in King and Rook classes">
       <option name="closed" value="true" />
@@ -580,7 +572,15 @@
       <option name="project" value="LOCAL" />
       <updated>1772384548123</updated>
     </task>
-    <option name="localTasksCounter" value="95" />
+    <task id="LOCAL-00095" summary="cleaned up evaluation function">
+      <option name="closed" value="true" />
+      <created>1772387144777</created>
+      <option name="number" value="00095" />
+      <option name="presentableId" value="LOCAL-00095" />
+      <option name="project" value="LOCAL" />
+      <updated>1772387144777</updated>
+    </task>
+    <option name="localTasksCounter" value="96" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -598,7 +598,6 @@
     </option>
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="removed commented out code" />
     <MESSAGE value="added checks for mate in the engine" />
     <MESSAGE value="collapsed lambda statement" />
     <MESSAGE value="improved menu, with better layout and toggle to choose your colour against the bot" />
@@ -623,7 +622,8 @@
     <MESSAGE value="fixed not closing engine thread when going back to the menu" />
     <MESSAGE value="updated JavaDoc" />
     <MESSAGE value="fixed logs" />
-    <option name="LAST_COMMIT_MESSAGE" value="fixed logs" />
+    <MESSAGE value="cleaned up evaluation function" />
+    <option name="LAST_COMMIT_MESSAGE" value="cleaned up evaluation function" />
   </component>
   <component name="XSLT-Support.FileAssociations.UIState">
     <expand />

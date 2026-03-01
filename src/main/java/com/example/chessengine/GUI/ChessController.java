@@ -151,15 +151,14 @@ public class ChessController {
 
     /**
      * Adds a piece to the board, making it automatically resize and be draggable.
-     * @param imagePath The path of the image of the piece being added.
+     * @param image The image of the piece being added.
      * @param row The row where it is being added.
      * @param col The column where it is being added.
      */
-    private void addPiece(String imagePath, int row, int col){
+    private void addPiece(Image image, int row, int col){
         StackPane square = getSquare(row, col);
         assert square != null;
 
-        Image image = new Image(Objects.requireNonNull(getClass().getResourceAsStream(imagePath)));
         ImageView piece = new ImageView(image);
 
         piece.fitWidthProperty().bind(square.widthProperty().multiply(0.9));
@@ -200,28 +199,28 @@ public class ChessController {
     /**
      * A hashmap for each piece class to the corresponding white piece file.
      */
-    private static final Map<Class<?>, String> whitePieceToImagePath = new HashMap<>(){
+    private static final Map<Class<?>, Image> whitePieceToImagePath = new HashMap<>(){
         {
-            put(Pawn.class, "/images/white pawn.png");
-            put(Knight.class, "/images/white knight.png");
-            put(Bishop.class, "/images/white bishop.png");
-            put(Rook.class, "/images/white rook.png");
-            put(Queen.class, "/images/white queen.png");
-            put(King.class, "/images/white king.png");
+            put(Pawn.class, new Image(Objects.requireNonNull(getClass().getResourceAsStream("/images/white pawn.png"))));
+            put(Knight.class, new Image(Objects.requireNonNull(getClass().getResourceAsStream("/images/white knight.png"))));
+            put(Bishop.class, new Image(Objects.requireNonNull(getClass().getResourceAsStream("/images/white bishop.png"))));
+            put(Rook.class, new Image(Objects.requireNonNull(getClass().getResourceAsStream("/images/white rook.png"))));
+            put(Queen.class, new Image(Objects.requireNonNull(getClass().getResourceAsStream("/images/white queen.png"))));
+            put(King.class, new Image(Objects.requireNonNull(getClass().getResourceAsStream("/images/white king.png"))));
         };
     };
 
     /**
      * A hashmap for each piece class to the corresponding black piece file.
      */
-    private static final Map<Class<?>, String> blackPieceToImagePath = new HashMap<>(){
+    private static final Map<Class<?>, Image> blackPieceToImagePath = new HashMap<>(){
         {
-            put(Pawn.class, "/images/black pawn.png");
-            put(Knight.class, "/images/black knight.png");
-            put(Bishop.class, "/images/black bishop.png");
-            put(Rook.class, "/images/black rook.png");
-            put(Queen.class, "/images/black queen.png");
-            put(King.class, "/images/black king.png");
+            put(Pawn.class,   new Image(Objects.requireNonNull(getClass().getResourceAsStream("/images/black pawn.png"))));
+            put(Knight.class, new Image(Objects.requireNonNull(getClass().getResourceAsStream("/images/black knight.png"))));
+            put(Bishop.class, new Image(Objects.requireNonNull(getClass().getResourceAsStream("/images/black bishop.png"))));
+            put(Rook.class,   new Image(Objects.requireNonNull(getClass().getResourceAsStream("/images/black rook.png"))));
+            put(Queen.class,  new Image(Objects.requireNonNull(getClass().getResourceAsStream("/images/black queen.png"))));
+            put(King.class,   new Image(Objects.requireNonNull(getClass().getResourceAsStream("/images/black king.png"))));
         };
     };
 
@@ -320,12 +319,12 @@ public class ChessController {
 
         for (int i = 0; i < 4; i++) {
             Class<?> c = pieces[i];
-            String imagePath;
-            if (colour == Colour.WHITE) imagePath = whitePieceToImagePath.get(c);
-            else imagePath = blackPieceToImagePath.get(pieces[i]);
+            Image image;
+            if (colour == Colour.WHITE) image = whitePieceToImagePath.get(c);
+            else image = blackPieceToImagePath.get(pieces[i]);
 
             Button button = new Button();
-            ImageView imageView = new ImageView(new Image(Objects.requireNonNull(getClass().getResourceAsStream(imagePath))));
+            ImageView imageView = new ImageView(image);
             imageView.setPreserveRatio(true);
 
             button.setGraphic(imageView);
