@@ -9,15 +9,17 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="5ecba770-62e4-41d3-b203-db736912793c" name="Changes" comment="fixed standard of new line at end of file">
-      <change afterPath="$PROJECT_DIR$/src/test/java/com/example/chessengine/Engine/Perft.java" afterDir="false" />
+    <list default="true" id="5ecba770-62e4-41d3-b203-db736912793c" name="Changes" comment="added perft unit test">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/pom.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/com/example/chessengine/Board/Board.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/chessengine/Board/Board.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/chessengine/Book/Book.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/chessengine/Book/Book.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/com/example/chessengine/Book/BookCreator.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/chessengine/Book/BookCreator.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/chessengine/HelloApplication.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/chessengine/HelloApplication.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/chessengine/Tablebase/LichessResponse.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/chessengine/Tablebase/LichessResponse.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/chessengine/Engine/Engine.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/chessengine/Engine/Engine.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/chessengine/Tablebase/LichessAPI.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/chessengine/Tablebase/LichessAPI.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/chessengine/UCI/GameState.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/chessengine/UCI/GameState.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/module-info.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/module-info.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/test/java/com/example/chessengine/Engine/Perft.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/com/example/chessengine/Engine/Perft.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -40,7 +42,7 @@
   <component name="Git.Settings">
     <option name="RECENT_BRANCH_BY_REPOSITORY">
       <map>
-        <entry key="$PROJECT_DIR$" value="main" />
+        <entry key="$PROJECT_DIR$" value="Phase-1" />
       </map>
     </option>
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
@@ -105,7 +107,7 @@
     &quot;SHARE_PROJECT_CONFIGURATION_FILES&quot;: &quot;true&quot;,
     &quot;com.intellij.testIntegration.createTest.CreateTestDialog.defaultLibrary&quot;: &quot;JUnit5&quot;,
     &quot;com.intellij.testIntegration.createTest.CreateTestDialog.defaultLibrarySuperClass.JUnit5&quot;: &quot;&quot;,
-    &quot;git-widget-placeholder&quot;: &quot;Phase-1&quot;,
+    &quot;git-widget-placeholder&quot;: &quot;main&quot;,
     &quot;kotlin-language-version-configured&quot;: &quot;true&quot;,
     &quot;list.type.of.created.stylesheet&quot;: &quot;CSS&quot;,
     &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
@@ -143,7 +145,7 @@
       <recent name="com.example.chessengine.UCI" />
     </key>
   </component>
-  <component name="RunManager" selected="Application.Main">
+  <component name="RunManager" selected="JUnit.Perft.countMoves">
     <configuration name="Main" type="Application" factoryName="Application">
       <envs>
         <env name="LOGS" value="true" />
@@ -250,22 +252,9 @@
       <workItem from="1773413518599" duration="444000" />
       <workItem from="1773433526996" duration="489000" />
       <workItem from="1773438823269" duration="2208000" />
-    </task>
-    <task id="LOCAL-00049" summary="added Engine class, that chooses a random move">
-      <option name="closed" value="true" />
-      <created>1771593675136</created>
-      <option name="number" value="00049" />
-      <option name="presentableId" value="LOCAL-00049" />
-      <option name="project" value="LOCAL" />
-      <updated>1771593675136</updated>
-    </task>
-    <task id="LOCAL-00050" summary="added EngineGameState class, to be the interface between the GUI and player. Changed some things for it to work smoother">
-      <option name="closed" value="true" />
-      <created>1771593758045</created>
-      <option name="number" value="00050" />
-      <option name="presentableId" value="LOCAL-00050" />
-      <option name="project" value="LOCAL" />
-      <updated>1771593758045</updated>
+      <workItem from="1773586008140" duration="673000" />
+      <workItem from="1773599731831" duration="735000" />
+      <workItem from="1773600485255" duration="1595000" />
     </task>
     <task id="LOCAL-00051" summary="removed debug code">
       <option name="closed" value="true" />
@@ -643,7 +632,23 @@
       <option name="project" value="LOCAL" />
       <updated>1772494712051</updated>
     </task>
-    <option name="localTasksCounter" value="98" />
+    <task id="LOCAL-00098" summary="cleanup and Javadoc fixes">
+      <option name="closed" value="true" />
+      <created>1773586117245</created>
+      <option name="number" value="00098" />
+      <option name="presentableId" value="LOCAL-00098" />
+      <option name="project" value="LOCAL" />
+      <updated>1773586117245</updated>
+    </task>
+    <task id="LOCAL-00099" summary="added perft unit test">
+      <option name="closed" value="true" />
+      <created>1773586165068</created>
+      <option name="number" value="00099" />
+      <option name="presentableId" value="LOCAL-00099" />
+      <option name="project" value="LOCAL" />
+      <updated>1773586165068</updated>
+    </task>
+    <option name="localTasksCounter" value="100" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -661,8 +666,6 @@
     </option>
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="improved menu, with better layout and toggle to choose your colour against the bot" />
-    <MESSAGE value="fixed engine needs to prefer mates in less moves, so it actually mates" />
     <MESSAGE value="added new game button, to go back to the menu" />
     <MESSAGE value="removing debug" />
     <MESSAGE value="added end of game message" />
@@ -686,7 +689,9 @@
     <MESSAGE value="cleaned up evaluation function" />
     <MESSAGE value="fixed memory leak caused by repeatedly loading images instead of using the cached version." />
     <MESSAGE value="fixed standard of new line at end of file" />
-    <option name="LAST_COMMIT_MESSAGE" value="fixed standard of new line at end of file" />
+    <MESSAGE value="cleanup and Javadoc fixes" />
+    <MESSAGE value="added perft unit test" />
+    <option name="LAST_COMMIT_MESSAGE" value="added perft unit test" />
   </component>
   <component name="XSLT-Support.FileAssociations.UIState">
     <expand />

@@ -138,7 +138,7 @@ public class BookCreator {
      */
     private Move getMove(Board board, String algebraicMove){
         for (Move testMove: board.getPseudolegalMoves()){
-            if (!board.checkLegalMoves(testMove)) continue;
+            if (!board.checkLegalMoves(testMove, true)) continue;
             if (algebraicMove.equals("OO") && testMove.getClass() == CastlingMove.class){
                 if (testMove.cell().getCol() == 6) return testMove;
             }else if (algebraicMove.equals("OOO") && testMove.getClass() == CastlingMove.class){

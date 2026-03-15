@@ -18,7 +18,6 @@ class Perft {
     @Test
     @DisplayName("count different positions at different depths.")
     void countMoves() {
-        //System.out.println("start position test");
         Engine engine = new Engine(Board.getStartPosition(), Colour.WHITE);
         assertAll(
                 () -> assertEquals(20, engine.countMoves(1)),

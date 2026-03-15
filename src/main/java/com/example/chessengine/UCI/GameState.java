@@ -94,7 +94,7 @@ public class GameState implements MoveHandler {
     public void updateGUI(){
         legalMoves.clear();
         for (Move move: board.getPseudolegalMoves()){
-            if (board.checkLegalMoves(move)) {
+            if (board.checkLegalMoves(move, true)) {
                 legalMoves.add(move);
             }
         }

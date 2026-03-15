@@ -107,10 +107,9 @@ public class Engine{
 
         if (maximising){
             for (Move move: board.getPseudolegalMoves()){
-                if (board.checkLegalMoves(move)){
+                if (board.checkLegalMoves(move, false)){
                     noMoves = false;
                     count++;
-                    board.movePiece(move, true);
                     int score = search(maxDepth - 1, currentDepth + 1, alpha, beta, false);
                     board.undoMove();
 
@@ -137,9 +136,8 @@ public class Engine{
         }
         else {
             for (Move move: board.getPseudolegalMoves()){
-                if (board.checkLegalMoves(move)){
+                if (board.checkLegalMoves(move, false)){
                     noMoves = false;
-                    board.movePiece(move, true);
                     int score = search(maxDepth - 1, currentDepth + 1, alpha, beta, true);
                     board.undoMove();
 
@@ -170,8 +168,7 @@ public class Engine{
 
         int count = 0;
         for (Move move: board.getPseudolegalMoves()){
-            if (board.checkLegalMoves(move)){
-                board.movePiece(move, true);
+            if (board.checkLegalMoves(move, false)){
                 count += countMoves(depth - 1);
                 board.undoMove();
             }

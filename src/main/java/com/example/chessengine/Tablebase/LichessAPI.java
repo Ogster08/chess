@@ -70,7 +70,7 @@ public final class LichessAPI {
      */
     private static Move getMoveFromUci(String uci, Board board){
         for (Move testMove: board.getPseudolegalMoves()){
-            if (!board.checkLegalMoves(testMove)) continue;
+            if (!board.checkLegalMoves(testMove, true)) continue;
 
             Cell cell = testMove.cell();
             Piece p = testMove.p();

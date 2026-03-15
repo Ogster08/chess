@@ -63,7 +63,7 @@ public class Book {
         Random random = new Random();
         BookMove bookMove = bookMoveArray[random.nextInt(bookMoveArray.length)];
         for (Move move: board.getPseudolegalMoves()){
-            if (!board.checkLegalMoves(move)) continue;
+            if (!board.checkLegalMoves(move, true)) continue;
             if (move.p().getRow() == bookMove.pieceRow() &&
                     move.p().getCol() == bookMove.pieceCol() &&
                     move.cell().getRow() == bookMove.cellRow() &&
@@ -111,7 +111,7 @@ public class Book {
         assert bookMove != null;
 
         for (Move move: board.getPseudolegalMoves()){
-            if (!board.checkLegalMoves(move)) continue;
+            if (!board.checkLegalMoves(move, true)) continue;
             if (move.p().getRow() == bookMove.pieceRow() &&
                     move.p().getCol() == bookMove.pieceCol() &&
                     move.cell().getRow() == bookMove.cellRow() &&

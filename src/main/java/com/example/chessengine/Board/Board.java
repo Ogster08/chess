@@ -498,7 +498,7 @@ public class Board{
      * @param move The move being checked if it is legal or not
      * @return If the move is legal or not
      */
-    public boolean checkLegalMoves(Move move){
+    public boolean checkLegalMoves(Move move, boolean reset){
         Cell stepOverCell = null;
         if (move.getClass() == CastlingMove.class)stepOverCell = cells[move.cell().getRow()][(move.cell().getCol() == 2) ? 3: 5];
 
@@ -534,7 +534,7 @@ public class Board{
                 }
             }
         }
-        undoMove();
+        if (reset) undoMove();
         return true;
     }
 
