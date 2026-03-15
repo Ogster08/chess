@@ -9,13 +9,10 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="5ecba770-62e4-41d3-b203-db736912793c" name="Changes" comment="using a hash set">
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/example/chessengine/Board/Pieces/SlidingPiece.java" afterDir="false" />
+    <list default="true" id="5ecba770-62e4-41d3-b203-db736912793c" name="Changes" comment="improving sliding pieces">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/com/example/chessengine/Board/Board.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/chessengine/Board/Board.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/chessengine/Board/Pieces/Bishop.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/chessengine/Board/Pieces/Bishop.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/chessengine/Board/Pieces/Queen.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/chessengine/Board/Pieces/Queen.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/chessengine/Board/Pieces/Rook.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/chessengine/Board/Pieces/Rook.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/chessengine/Engine/Engine.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/chessengine/Engine/Engine.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -79,12 +76,12 @@
   "keyToString": {
     "Application.HelloApplication.executor": "Run",
     "Application.Launcher.executor": "Run",
-    "Application.Main.executor": "Debug",
+    "Application.Main.executor": "Run",
     "Downloaded.Files.Path.Enabled": "false",
     "JAR Application.ChessEngine-1.0-SNAPSHOT.jar.executor": "Run",
     "JAR Application.ChessEngine.jar.executor": "Run",
     "JAR Application.ChessEngine_jar.jar.executor": "Run",
-    "JUnit.Perft.countMoves.executor": "Profiler#1",
+    "JUnit.Perft.countMoves.executor": "Run",
     "Maven.ChessEngine [clean].executor": "Run",
     "Maven.ChessEngine [compile].executor": "Run",
     "Maven.ChessEngine [org.openjfx:javafx-maven-plugin:0.0.8:jlink].executor": "Run",
@@ -141,7 +138,7 @@
       <recent name="com.example.chessengine.UCI" />
     </key>
   </component>
-  <component name="RunManager" selected="JUnit.Perft.countMoves">
+  <component name="RunManager" selected="Application.Main">
     <configuration name="Main" type="Application" factoryName="Application">
       <envs>
         <env name="LOGS" value="true" />
@@ -250,15 +247,7 @@
       <workItem from="1773438823269" duration="2208000" />
       <workItem from="1773586008140" duration="673000" />
       <workItem from="1773599731831" duration="735000" />
-      <workItem from="1773600485255" duration="8057000" />
-    </task>
-    <task id="LOCAL-00054" summary="improved reCalculating, by chaining some if statements that weren't before">
-      <option name="closed" value="true" />
-      <created>1771609063879</created>
-      <option name="number" value="00054" />
-      <option name="presentableId" value="LOCAL-00054" />
-      <option name="project" value="LOCAL" />
-      <updated>1771609063879</updated>
+      <workItem from="1773600485255" duration="9285000" />
     </task>
     <task id="LOCAL-00055" summary="Fixed double counting and fixed upRightMovesList being updated when not necessary">
       <option name="closed" value="true" />
@@ -644,7 +633,15 @@
       <option name="project" value="LOCAL" />
       <updated>1773610705574</updated>
     </task>
-    <option name="localTasksCounter" value="103" />
+    <task id="LOCAL-00103" summary="improving sliding pieces">
+      <option name="closed" value="true" />
+      <created>1773613345832</created>
+      <option name="number" value="00103" />
+      <option name="presentableId" value="LOCAL-00103" />
+      <option name="project" value="LOCAL" />
+      <updated>1773613345832</updated>
+    </task>
+    <option name="localTasksCounter" value="104" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -662,7 +659,6 @@
     </option>
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="fixing changing castling rights when updating the zobrist key" />
     <MESSAGE value="moved loading start position to Board class" />
     <MESSAGE value="moved checkLegalMove to Board class" />
     <MESSAGE value="added classes to create, load and use an opening book" />
@@ -687,7 +683,8 @@
     <MESSAGE value="fixed unnecessary moving and unmoving caused by checking if a move is legal" />
     <MESSAGE value="trying a linked list" />
     <MESSAGE value="using a hash set" />
-    <option name="LAST_COMMIT_MESSAGE" value="using a hash set" />
+    <MESSAGE value="improving sliding pieces" />
+    <option name="LAST_COMMIT_MESSAGE" value="improving sliding pieces" />
   </component>
   <component name="XSLT-Support.FileAssociations.UIState">
     <expand />
