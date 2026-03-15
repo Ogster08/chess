@@ -329,7 +329,7 @@ public class Board{
      * @return The list of pseudolegal moves of the current colour to move on the board
      */
     public List<Move> getPseudolegalMoves() {
-        List<Move> moves = new ArrayList<>();
+        List<Move> moves = new ArrayList<>(35);
         for (Cell[] row : cells) {
             for (Cell cell : row) {
                 if (cell.getPiece() != null && cell.getPiece().getColour() == getColourToMove()) {
@@ -346,31 +346,52 @@ public class Board{
                             }
                         }
                     } else {
-                        for (Cell moveCell: p.getMovesList()){
-                            moves.add(new Move(p, moveCell));
+                        if (p instanceof SlidingPiece){
+                            for (List<Cell> movesList: ((SlidingPiece) p).movesListsFromDirections){
+                                for (Cell moveCell: movesList){
+                                    moves.add(new Move(p, moveCell));
+                                }
+                            }
+                        } else{
+                            for (Cell moveCell: p.getMovesList()){
+                                moves.add(new Move(p, moveCell));
+                            }
                         }
                     }
                     if (cell.getPiece().getClass() == King.class){
                         King king = (King) cell.getPiece();
-                        if (king.isCanCastle() && !isInCheck()) {
-                            Arrays.stream(cells).forEach(r -> {
-                                Arrays.stream(r).filter(c -> {
-                                    if (c.getPiece() != null && c.getPiece().getColour() == getColourToMove() && c.getPiece().getClass() == Rook.class){
-                                        if (((Rook)c.getPiece()).isCanCastle()){
-                                            for (int i = Math.min(c.getCol(), king.getCol()) + 1; i < Math.max(c.getCol(), king.getCol()); i++) {
-                                                if (cells[king.getRow()][i].getPiece() != null){
-                                                    return false;
-                                                }
-                                            }
-                                            return true;
-                                        }
+                        if (king.isCanCastle()){
+                            boolean checkedInCheck = false;
+                            boolean inCheck = false;
+                            if (king.getColour() == Colour.WHITE){
+                                if (castlingState[0]){
+                                    if (getCell(0, 1).getPiece() == null && getCell(0, 2).getPiece() == null && getCell(0, 3).getPiece() == null){
+                                        checkedInCheck = true;
+                                        inCheck = isInCheck();
+                                        if (!inCheck) moves.add(new CastlingMove(king, (Rook) getCell(0, 0).getPiece()));
                                     }
-                                    return false;
-                                }).forEach(c -> {
-                                    CastlingMove cm = new CastlingMove(king, (Rook) c.getPiece());
-                                    moves.add(cm);
-                                });
-                            });
+                                }
+                                if (castlingState[1]){
+                                    if (getCell(0, 5).getPiece() == null && getCell(0, 6).getPiece() == null){
+                                        if (!checkedInCheck) inCheck = isInCheck();
+                                        if (!inCheck) moves.add(new CastlingMove(king, (Rook) getCell(0, 7).getPiece()));
+                                    }
+                                }
+                            } else {
+                                if (castlingState[2]){
+                                    if (getCell(7, 1).getPiece() == null && getCell(7, 2).getPiece() == null && getCell(7, 3).getPiece() == null){
+                                        checkedInCheck = true;
+                                        inCheck = isInCheck();
+                                        if (!inCheck) moves.add(new CastlingMove(king, (Rook) getCell(7, 0).getPiece()));
+                                    }
+                                }
+                                if (castlingState[3]){
+                                    if (getCell(7, 5).getPiece() == null && getCell(7, 6).getPiece() == null){
+                                        if (!checkedInCheck) inCheck = isInCheck();
+                                        if (!inCheck) moves.add(new CastlingMove(king, (Rook) getCell(7, 7).getPiece()));
+                                    }
+                                }
+                            }
                         }
                     }
                 }

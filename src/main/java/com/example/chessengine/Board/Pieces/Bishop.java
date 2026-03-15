@@ -10,7 +10,7 @@ import java.util.List;
 /**
  * The class for the bishop chess piece
  */
-public class Bishop extends Piece {
+public class Bishop extends SlidingPiece {
     /**
      * The list of all pseudolegal moves the bishop can do based on the current position on the board diagonally up and left of itself
      */
@@ -37,6 +37,7 @@ public class Bishop extends Piece {
      */
     public Bishop(Board board, int row, int col, Colour colour) {
         super(board, row, col, colour);
+        movesListsFromDirections.addAll(List.of(upLeftMovesList, upRightMovesList, downLeftMovesList, downRightMovesList));
         init();
     }
 
@@ -99,11 +100,11 @@ public class Bishop extends Piece {
         WalkDiagonalUntilHit(1,1, upRightMovesList);
         WalkDiagonalUntilHit(-1,-1, downLeftMovesList);
         WalkDiagonalUntilHit(-1,1, downRightMovesList);
-        movesList.clear();
-        movesList.addAll(upLeftMovesList);
-        movesList.addAll(upRightMovesList);
-        movesList.addAll(downLeftMovesList);
-        movesList.addAll(downRightMovesList);
+        //movesList.clear();
+//        movesList.addAll(upLeftMovesList);
+//        movesList.addAll(upRightMovesList);
+//        movesList.addAll(downLeftMovesList);
+//        movesList.addAll(downRightMovesList);
     }
 
     /**
@@ -144,10 +145,10 @@ public class Bishop extends Piece {
             WalkDiagonalUntilHit(-1,1, downRightMovesList);
         }
 
-        movesList.clear();
-        movesList.addAll(upLeftMovesList);
-        movesList.addAll(upRightMovesList);
-        movesList.addAll(downLeftMovesList);
-        movesList.addAll(downRightMovesList);
+//        movesList.clear();
+//        movesList.addAll(upLeftMovesList);
+//        movesList.addAll(upRightMovesList);
+//        movesList.addAll(downLeftMovesList);
+//        movesList.addAll(downRightMovesList);
     }
 }

@@ -9,9 +9,13 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="5ecba770-62e4-41d3-b203-db736912793c" name="Changes" comment="trying a linked list">
+    <list default="true" id="5ecba770-62e4-41d3-b203-db736912793c" name="Changes" comment="using a hash set">
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/example/chessengine/Board/Pieces/SlidingPiece.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/chessengine/Board/Cell.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/chessengine/Board/Cell.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/chessengine/Board/Board.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/chessengine/Board/Board.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/chessengine/Board/Pieces/Bishop.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/chessengine/Board/Pieces/Bishop.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/chessengine/Board/Pieces/Queen.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/chessengine/Board/Pieces/Queen.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/chessengine/Board/Pieces/Rook.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/chessengine/Board/Pieces/Rook.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -246,15 +250,7 @@
       <workItem from="1773438823269" duration="2208000" />
       <workItem from="1773586008140" duration="673000" />
       <workItem from="1773599731831" duration="735000" />
-      <workItem from="1773600485255" duration="5422000" />
-    </task>
-    <task id="LOCAL-00053" summary="improved classes for debugging, by changing to string functions and adding some equals and hash function">
-      <option name="closed" value="true" />
-      <created>1771608999274</created>
-      <option name="number" value="00053" />
-      <option name="presentableId" value="LOCAL-00053" />
-      <option name="project" value="LOCAL" />
-      <updated>1771608999276</updated>
+      <workItem from="1773600485255" duration="8057000" />
     </task>
     <task id="LOCAL-00054" summary="improved reCalculating, by chaining some if statements that weren't before">
       <option name="closed" value="true" />
@@ -640,7 +636,15 @@
       <option name="project" value="LOCAL" />
       <updated>1773602640789</updated>
     </task>
-    <option name="localTasksCounter" value="102" />
+    <task id="LOCAL-00102" summary="using a hash set">
+      <option name="closed" value="true" />
+      <created>1773610705573</created>
+      <option name="number" value="00102" />
+      <option name="presentableId" value="LOCAL-00102" />
+      <option name="project" value="LOCAL" />
+      <updated>1773610705574</updated>
+    </task>
+    <option name="localTasksCounter" value="103" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -658,7 +662,6 @@
     </option>
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="added end of game message" />
     <MESSAGE value="fixing changing castling rights when updating the zobrist key" />
     <MESSAGE value="moved loading start position to Board class" />
     <MESSAGE value="moved checkLegalMove to Board class" />
@@ -683,7 +686,8 @@
     <MESSAGE value="added perft unit test" />
     <MESSAGE value="fixed unnecessary moving and unmoving caused by checking if a move is legal" />
     <MESSAGE value="trying a linked list" />
-    <option name="LAST_COMMIT_MESSAGE" value="trying a linked list" />
+    <MESSAGE value="using a hash set" />
+    <option name="LAST_COMMIT_MESSAGE" value="using a hash set" />
   </component>
   <component name="XSLT-Support.FileAssociations.UIState">
     <expand />

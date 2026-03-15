@@ -10,7 +10,7 @@ import java.util.List;
 /**
  * The class for the rook chess piece
  */
-public class Rook extends Piece {
+public class Rook extends SlidingPiece {
 
     /**
      * if the rook is able to castle, used by the board to deal with castling
@@ -43,6 +43,7 @@ public class Rook extends Piece {
     public Rook(Board board, int row, int col, Colour colour, boolean canCastle) {
         super(board, row, col, colour);
         this.canCastle = canCastle;
+        movesListsFromDirections.addAll(List.of(upMovesList, downMovesList, leftMovesList, rightMovesList));
         init();
     }
 
@@ -87,11 +88,11 @@ public class Rook extends Piece {
         for (int i = getCol() + 1; i < 8; i++) {
             if (hitPiece(getRow(), i, rightMovesList)) break;
         }
-        movesList.clear();
-        movesList.addAll(leftMovesList);
-        movesList.addAll(rightMovesList);
-        movesList.addAll(downMovesList);
-        movesList.addAll(upMovesList);
+        //movesList.clear();
+//        movesList.addAll(leftMovesList);
+//        movesList.addAll(rightMovesList);
+//        movesList.addAll(downMovesList);
+//        movesList.addAll(upMovesList);
     }
 
     /**
@@ -134,11 +135,11 @@ public class Rook extends Piece {
                 if (hitPiece(getRow(), i, rightMovesList)) break;
             }
         }
-        movesList.clear();
-        movesList.addAll(leftMovesList);
-        movesList.addAll(rightMovesList);
-        movesList.addAll(downMovesList);
-        movesList.addAll(upMovesList);
+        //movesList.clear();
+//        movesList.addAll(leftMovesList);
+//        movesList.addAll(rightMovesList);
+//        movesList.addAll(downMovesList);
+//        movesList.addAll(upMovesList);
     }
 
     /**

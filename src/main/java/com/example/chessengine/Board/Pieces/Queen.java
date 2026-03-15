@@ -10,7 +10,7 @@ import java.util.List;
 /**
  * The class of the queen chess piece
  */
-public class Queen extends Piece{
+public class Queen extends SlidingPiece{
     /**
      * The list of all pseudolegal moves the queen can do based on the current position on the board above itself
      */
@@ -54,6 +54,7 @@ public class Queen extends Piece{
      */
     public Queen(Board board, int row, int col, Colour colour) {
         super(board, row, col, colour);
+        movesListsFromDirections.addAll(List.of(upMovesList, downMovesList, leftMovesList, rightMovesList, upLeftMovesList, upRightMovesList, downLeftMovesList, downRightMovesList));
         init();
     }
 
@@ -144,7 +145,7 @@ public class Queen extends Piece{
         WalkDiagonalUntilHit(1,1, upRightMovesList);
         WalkDiagonalUntilHit(-1,-1, downLeftMovesList);
         WalkDiagonalUntilHit(-1,1, downRightMovesList);
-        UpdateMovesList();
+        //UpdateMovesList();
     }
 
     /**
@@ -207,7 +208,7 @@ public class Queen extends Piece{
                 WalkDiagonalUntilHit(-1,1, downRightMovesList);
             }
         }
-        UpdateMovesList();
+        //UpdateMovesList();
     }
 
     /**
