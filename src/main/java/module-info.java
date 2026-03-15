@@ -7,6 +7,7 @@ module com.example.chessengine {
     requires jdk.unsupported.desktop;
     requires java.net.http;
     requires com.fasterxml.jackson.databind;
+    requires org.junit.jupiter.api;
 
     opens com.example.chessengine to javafx.fxml;
     exports com.example.chessengine.UCI;
