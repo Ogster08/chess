@@ -138,6 +138,7 @@ public class Engine{
             for (Move move: board.getPseudolegalMoves()){
                 if (board.checkLegalMoves(move, false)){
                     noMoves = false;
+                    count++;
                     int score = search(maxDepth - 1, currentDepth + 1, alpha, beta, true);
                     board.undoMove();
 
