@@ -9,7 +9,7 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="5ecba770-62e4-41d3-b203-db736912793c" name="Changes" comment="fixed unnecessary moving and unmoving caused by checking if a move is legal">
+    <list default="true" id="5ecba770-62e4-41d3-b203-db736912793c" name="Changes" comment="trying a linked list">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/com/example/chessengine/Board/Cell.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/chessengine/Board/Cell.java" afterDir="false" />
     </list>
@@ -61,7 +61,7 @@
     </option>
   </component>
   <component name="ProblemsViewState">
-    <option name="selectedTabId" value="CurrentFile" />
+    <option name="selectedTabId" value="ProjectErrors" />
   </component>
   <component name="ProjectColorInfo">{
   &quot;associatedIndex&quot;: 8
@@ -75,7 +75,7 @@
   "keyToString": {
     "Application.HelloApplication.executor": "Run",
     "Application.Launcher.executor": "Run",
-    "Application.Main.executor": "Run",
+    "Application.Main.executor": "Debug",
     "Downloaded.Files.Path.Enabled": "false",
     "JAR Application.ChessEngine-1.0-SNAPSHOT.jar.executor": "Run",
     "JAR Application.ChessEngine.jar.executor": "Run",
@@ -246,15 +246,7 @@
       <workItem from="1773438823269" duration="2208000" />
       <workItem from="1773586008140" duration="673000" />
       <workItem from="1773599731831" duration="735000" />
-      <workItem from="1773600485255" duration="2111000" />
-    </task>
-    <task id="LOCAL-00052" summary="Added function to count the number of positions at a certain depth in the given position for move generation testing">
-      <option name="closed" value="true" />
-      <created>1771608891171</created>
-      <option name="number" value="00052" />
-      <option name="presentableId" value="LOCAL-00052" />
-      <option name="project" value="LOCAL" />
-      <updated>1771608891173</updated>
+      <workItem from="1773600485255" duration="5422000" />
     </task>
     <task id="LOCAL-00053" summary="improved classes for debugging, by changing to string functions and adding some equals and hash function">
       <option name="closed" value="true" />
@@ -640,7 +632,15 @@
       <option name="project" value="LOCAL" />
       <updated>1773602138233</updated>
     </task>
-    <option name="localTasksCounter" value="101" />
+    <task id="LOCAL-00101" summary="trying a linked list">
+      <option name="closed" value="true" />
+      <created>1773602640789</created>
+      <option name="number" value="00101" />
+      <option name="presentableId" value="LOCAL-00101" />
+      <option name="project" value="LOCAL" />
+      <updated>1773602640789</updated>
+    </task>
+    <option name="localTasksCounter" value="102" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -658,7 +658,6 @@
     </option>
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="removing debug" />
     <MESSAGE value="added end of game message" />
     <MESSAGE value="fixing changing castling rights when updating the zobrist key" />
     <MESSAGE value="moved loading start position to Board class" />
@@ -683,7 +682,8 @@
     <MESSAGE value="cleanup and Javadoc fixes" />
     <MESSAGE value="added perft unit test" />
     <MESSAGE value="fixed unnecessary moving and unmoving caused by checking if a move is legal" />
-    <option name="LAST_COMMIT_MESSAGE" value="fixed unnecessary moving and unmoving caused by checking if a move is legal" />
+    <MESSAGE value="trying a linked list" />
+    <option name="LAST_COMMIT_MESSAGE" value="trying a linked list" />
   </component>
   <component name="XSLT-Support.FileAssociations.UIState">
     <expand />
