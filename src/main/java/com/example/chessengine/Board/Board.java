@@ -192,7 +192,7 @@ public class Board{
     public void movePiece(Move move, boolean inSearch){
         boolean capture = move.cell().getPiece() != null;
         Piece p = move.p();
-        UndoMoveInfo undoMoveInfo = new UndoMoveInfo(move, enPassantMoves, fiftyMoveCounter, enPassantFile, castlingState, enPassantFileForFEN, zobristKey);
+        UndoMoveInfo undoMoveInfo = new UndoMoveInfo(move, enPassantMoves, fiftyMoveCounter, enPassantFile, castlingState.clone(), enPassantFileForFEN, zobristKey);
         undoMoveInfoList.add(undoMoveInfo);
 
         enPassantFileForFEN = 0;
