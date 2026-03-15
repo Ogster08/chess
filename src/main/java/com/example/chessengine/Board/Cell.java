@@ -3,6 +3,7 @@ package com.example.chessengine.Board;
 import com.example.chessengine.Board.Pieces.Piece;
 
 import java.util.ArrayList;
+import java.util.LinkedList;
 import java.util.List;
 import java.util.Objects;
 
@@ -24,7 +25,7 @@ public class Cell {
     /**
      * A list of all the pieces that listen for changes to the cell
      */
-    private final List<CellListener> Listener = new ArrayList<>();
+    private final LinkedList<CellListener> Listener = new LinkedList<>();
 
     /**
      * The constructor to create a new cell for a chessboard
