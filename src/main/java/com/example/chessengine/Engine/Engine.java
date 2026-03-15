@@ -32,6 +32,7 @@ public class Engine{
      * used for debug to see the number of positions looked at.
      */
     private int count = 0;
+    private int pEval = 0;
 
     /**
      * the score associated with a king being mated, being sufficiently higher than a position score ever could
@@ -79,12 +80,14 @@ public class Engine{
             }
         }
         count = 0;
+        pEval = 0;
         bestMove = null;
         if ("true".equals(System.getenv("LOGS"))) System.out.println("-----normal move-----");
         int eval = search(4, 0, Integer.MIN_VALUE, Integer.MAX_VALUE, true);
         if ("true".equals(System.getenv("LOGS"))){
             System.out.println(eval);
             System.out.println(count);
+            System.out.println(pEval);
         }
         return bestMove;
     }
@@ -101,7 +104,10 @@ public class Engine{
      * @return The score of the position the search is currently evaluating.
      */
     private int search(int maxDepth, int currentDepth, int alpha, int beta, boolean maximising){
-        if (maxDepth == 0) return evaluatePosition();
+        if (maxDepth == 0) {
+            pEval++;
+            return evaluatePosition();
+        }
 
         boolean noMoves = true;
 

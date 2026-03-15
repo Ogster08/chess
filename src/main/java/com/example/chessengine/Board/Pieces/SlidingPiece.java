@@ -17,8 +17,8 @@ public abstract class SlidingPiece extends Piece {
      * @param col    must be between 0 and 7 inclusive
      * @param colour The colour of the new piece
      */
-    public SlidingPiece(Board board, int row, int col, Colour colour) {
-        super(board, row, col, colour);
+    public SlidingPiece(Board board, int row, int col, Colour colour, int pieceNum) {
+        super(board, row, col, colour, pieceNum);
     }
 
 }

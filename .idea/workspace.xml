@@ -9,9 +9,19 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="5ecba770-62e4-41d3-b203-db736912793c" name="Changes" comment="improving sliding pieces">
+    <list default="true" id="5ecba770-62e4-41d3-b203-db736912793c" name="Changes" comment="changes">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/com/example/chessengine/Board/Board.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/chessengine/Board/Board.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/chessengine/Board/Cell.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/chessengine/Board/Cell.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/chessengine/Board/Pieces/Bishop.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/chessengine/Board/Pieces/Bishop.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/chessengine/Board/Pieces/King.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/chessengine/Board/Pieces/King.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/chessengine/Board/Pieces/Knight.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/chessengine/Board/Pieces/Knight.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/chessengine/Board/Pieces/Pawn.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/chessengine/Board/Pieces/Pawn.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/chessengine/Board/Pieces/Piece.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/chessengine/Board/Pieces/Piece.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/chessengine/Board/Pieces/Queen.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/chessengine/Board/Pieces/Queen.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/chessengine/Board/Pieces/Rook.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/chessengine/Board/Pieces/Rook.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/chessengine/Board/Pieces/SlidingPiece.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/chessengine/Board/Pieces/SlidingPiece.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/chessengine/Board/Zobrist.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/chessengine/Board/Zobrist.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/com/example/chessengine/Engine/Engine.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/chessengine/Engine/Engine.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -247,31 +257,7 @@
       <workItem from="1773438823269" duration="2208000" />
       <workItem from="1773586008140" duration="673000" />
       <workItem from="1773599731831" duration="735000" />
-      <workItem from="1773600485255" duration="9285000" />
-    </task>
-    <task id="LOCAL-00055" summary="Fixed double counting and fixed upRightMovesList being updated when not necessary">
-      <option name="closed" value="true" />
-      <created>1771609147662</created>
-      <option name="number" value="00055" />
-      <option name="presentableId" value="LOCAL-00055" />
-      <option name="project" value="LOCAL" />
-      <updated>1771609147662</updated>
-    </task>
-    <task id="LOCAL-00056" summary="fixed king not being able to move diagonally">
-      <option name="closed" value="true" />
-      <created>1771609174287</created>
-      <option name="number" value="00056" />
-      <option name="presentableId" value="LOCAL-00056" />
-      <option name="project" value="LOCAL" />
-      <updated>1771609174287</updated>
-    </task>
-    <task id="LOCAL-00057" summary="Fixed pawn not removing its move to 2 squares forward, when 1 the first in front is blocked and some bad if statements adding extra moves and checking wrong squares">
-      <option name="closed" value="true" />
-      <created>1771609270660</created>
-      <option name="number" value="00057" />
-      <option name="presentableId" value="LOCAL-00057" />
-      <option name="project" value="LOCAL" />
-      <updated>1771609270660</updated>
+      <workItem from="1773600485255" duration="12611000" />
     </task>
     <task id="LOCAL-00058" summary="added pawn promotion">
       <option name="closed" value="true" />
@@ -641,7 +627,31 @@
       <option name="project" value="LOCAL" />
       <updated>1773613345832</updated>
     </task>
-    <option name="localTasksCounter" value="104" />
+    <task id="LOCAL-00104" summary="fixing count logs">
+      <option name="closed" value="true" />
+      <created>1773614607343</created>
+      <option name="number" value="00104" />
+      <option name="presentableId" value="LOCAL-00104" />
+      <option name="project" value="LOCAL" />
+      <updated>1773614607343</updated>
+    </task>
+    <task id="LOCAL-00105" summary="fixing no castling">
+      <option name="closed" value="true" />
+      <created>1773614639722</created>
+      <option name="number" value="00105" />
+      <option name="presentableId" value="LOCAL-00105" />
+      <option name="project" value="LOCAL" />
+      <updated>1773614639722</updated>
+    </task>
+    <task id="LOCAL-00106" summary="changes">
+      <option name="closed" value="true" />
+      <created>1773614650506</created>
+      <option name="number" value="00106" />
+      <option name="presentableId" value="LOCAL-00106" />
+      <option name="project" value="LOCAL" />
+      <updated>1773614650507</updated>
+    </task>
+    <option name="localTasksCounter" value="107" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -659,9 +669,6 @@
     </option>
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="moved loading start position to Board class" />
-    <MESSAGE value="moved checkLegalMove to Board class" />
-    <MESSAGE value="added classes to create, load and use an opening book" />
     <MESSAGE value="added text files for openings book to git" />
     <MESSAGE value="cleanup debug code" />
     <MESSAGE value="fixed incorrect message" />
@@ -684,7 +691,28 @@
     <MESSAGE value="trying a linked list" />
     <MESSAGE value="using a hash set" />
     <MESSAGE value="improving sliding pieces" />
-    <option name="LAST_COMMIT_MESSAGE" value="improving sliding pieces" />
+    <MESSAGE value="fixing count logs" />
+    <MESSAGE value="fixing no castling" />
+    <MESSAGE value="changes" />
+    <option name="LAST_COMMIT_MESSAGE" value="changes" />
+  </component>
+  <component name="XDebuggerManager">
+    <breakpoint-manager>
+      <breakpoints>
+        <line-breakpoint type="java-line">
+          <url>file://$PROJECT_DIR$/src/main/java/com/example/chessengine/Board/Board.java</url>
+          <line>403</line>
+          <option name="timeStamp" value="5" />
+        </line-breakpoint>
+      </breakpoints>
+      <default-breakpoints>
+        <breakpoint enabled="true" type="java-exception">
+          <properties>
+            <option name="NOTIFY_CAUGHT" value="false" />
+          </properties>
+        </breakpoint>
+      </default-breakpoints>
+    </breakpoint-manager>
   </component>
   <component name="XSLT-Support.FileAssociations.UIState">
     <expand />

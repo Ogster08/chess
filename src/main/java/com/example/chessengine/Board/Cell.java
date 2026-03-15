@@ -24,6 +24,8 @@ public class Cell {
      */
     private final Set<CellListener> Listener = Collections.newSetFromMap(new IdentityHashMap<>());
 
+    private boolean hasPiece = false;
+
     /**
      * The constructor to create a new cell for a chessboard
      * @param row must be between 0 and 7 inclusive
@@ -51,6 +53,7 @@ public class Cell {
         if (oldPiece != null) oldPiece.removePiece();
         Colour oldColour = oldPiece != null ? oldPiece.getColour() : null;
         Colour newColour = newPiece != null ? newPiece.getColour() : null;
+        hasPiece = newPiece != null;
         notifyListeners(oldColour, newColour);
     }
 
@@ -112,5 +115,9 @@ public class Cell {
         if (o == null || getClass() != o.getClass()) return false;
         Cell cell = (Cell) o;
         return row == cell.row && col == cell.col && Objects.equals(piece, cell.piece) && Objects.equals(Listener, cell.Listener);
+    }
+
+    public boolean isHasPiece() {
+        return hasPiece;
     }
 }

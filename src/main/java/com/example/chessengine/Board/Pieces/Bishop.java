@@ -36,7 +36,7 @@ public class Bishop extends SlidingPiece {
      * @param colour The colour of the new piece
      */
     public Bishop(Board board, int row, int col, Colour colour) {
-        super(board, row, col, colour);
+        super(board, row, col, colour, 4);
         movesListsFromDirections.addAll(List.of(upLeftMovesList, upRightMovesList, downLeftMovesList, downRightMovesList));
         init();
     }
@@ -115,7 +115,7 @@ public class Bishop extends SlidingPiece {
      */
     private boolean hitPiece(int row, int col, List<Cell> cells) {
         Cell cell = getBoard().getCell(row, col);
-        if (cell.getPiece() == null){
+        if (!cell.isHasPiece()){
             cells.add(cell);
             return false;
         } else if (cell.getPiece().getColour() != getColour()) {

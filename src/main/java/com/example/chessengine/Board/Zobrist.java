@@ -77,7 +77,7 @@ public class Zobrist {
         long zobrist = 0;
         for (int i = 0; i < 8; i++) {
             for (int j = 0; j < 8; j++) {
-                if (board.getCell(i, j).getPiece() != null){
+                if (board.getCell(i, j).isHasPiece()){
                     Piece p = board.getCell(i, j).getPiece();
                     zobrist ^= pieces[pieceMap.get(p.getClass())][p.getColour() == Colour.WHITE ? 0: 1][i * 8 + j];
                 }

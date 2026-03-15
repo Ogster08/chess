@@ -41,7 +41,7 @@ public class Rook extends SlidingPiece {
      * @param colour The colour of the new piece
      */
     public Rook(Board board, int row, int col, Colour colour, boolean canCastle) {
-        super(board, row, col, colour);
+        super(board, row, col, colour, 2);
         this.canCastle = canCastle;
         movesListsFromDirections.addAll(List.of(upMovesList, downMovesList, leftMovesList, rightMovesList));
         init();
@@ -103,7 +103,7 @@ public class Rook extends SlidingPiece {
      */
     private boolean hitPiece(int row, int col, List<Cell> cells) {
         Cell cell = getBoard().getCell(row, col);
-        if (cell.getPiece() == null){
+        if (!cell.isHasPiece()){
             cells.add(cell);
             return false;
         } else if (cell.getPiece().getColour() != getColour()) {

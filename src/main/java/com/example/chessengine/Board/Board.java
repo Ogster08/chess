@@ -190,7 +190,7 @@ public class Board{
      * @param move The move containing the piece and cell it is moving to
      */
     public void movePiece(Move move, boolean inSearch){
-        boolean capture = move.cell().getPiece() != null;
+        boolean capture = move.cell().isHasPiece();
         Piece p = move.p();
         UndoMoveInfo undoMoveInfo = new UndoMoveInfo(move, enPassantMoves, fiftyMoveCounter, enPassantFile, castlingState.clone(), enPassantFileForFEN, zobristKey);
         undoMoveInfoList.add(undoMoveInfo);
@@ -248,6 +248,33 @@ public class Board{
             zobristKey ^= zobrist.castlingRights[getCastlingState()];
         }
 
+        if (capture && move.cell().getPiece().getClass() == Rook.class && ((Rook) move.cell().getPiece()).isCanCastle()){
+            Rook r = (Rook) move.cell().getPiece();
+            zobristKey ^= zobrist.castlingRights[getCastlingState()];
+            if (r.getRow() == 0){
+                if (r.getCol() == 0){
+                    if (castlingState[1]){
+                        castlingState[1] = false;
+                    }
+                } else if (r.getCol() == 7) {
+                    if (castlingState[0]) {
+                        castlingState[0] = false;
+                    }
+                }
+            } else if (r.getRow() == 7) {
+                if (r.getCol() == 0){
+                    if (castlingState[3]) {
+                        castlingState[3] = false;
+                    }
+                } else if (r.getCol() == 7) {
+                    if (castlingState[2]) {
+                        castlingState[2] = false;
+                    }
+                }
+            }
+            zobristKey ^= zobrist.castlingRights[getCastlingState()];
+        }
+
         fiftyMoveCounter++;
 
         enPassantMoves.clear();
@@ -260,7 +287,7 @@ public class Board{
                 if (Math.abs(p.getRow() - move.cell().getRow()) == 2) {
                     enPassantFileForFEN = p.getCol() + 1;
                     if (move.cell().getCol() >= 1 &&
-                            getCell(move.cell().getRow(), move.cell().getCol() - 1).getPiece() != null &&
+                            getCell(move.cell().getRow(), move.cell().getCol() - 1).isHasPiece() &&
                             getCell(move.cell().getRow(), move.cell().getCol() - 1).getPiece().getClass() == Pawn.class &&
                             getCell(move.cell().getRow(), move.cell().getCol() - 1).getPiece().getColour() != p.getColour()) {
                         enPassantMoves.add(new EnPassantMove((Pawn) getCell(move.cell().getRow(), move.cell().getCol() - 1).getPiece(),
@@ -270,7 +297,7 @@ public class Board{
                         zobristKey ^= zobrist.enPassantFile[enPassantFile];
                     }
                     if (move.cell().getCol() <= 6 &&
-                            getCell(move.cell().getRow(), move.cell().getCol() + 1).getPiece() != null &&
+                            getCell(move.cell().getRow(), move.cell().getCol() + 1).isHasPiece() &&
                             getCell(move.cell().getRow(), move.cell().getCol() + 1).getPiece().getClass() == Pawn.class &&
                             getCell(move.cell().getRow(), move.cell().getCol() + 1).getPiece().getColour() != p.getColour()){
                         enPassantMoves.add(new EnPassantMove((Pawn) getCell(move.cell().getRow(), move.cell().getCol() + 1).getPiece(),
@@ -285,7 +312,7 @@ public class Board{
             }
 
             zobristKey ^= zobrist.pieces[zobrist.pieceMap.get(p.getClass())][colourToMove == Colour.WHITE ? 0: 1][p.getRow() * 8 + p.getCol()];
-            if (move.cell().getPiece() != null) zobristKey ^= zobrist.pieces[zobrist.pieceMap.get(move.cell().getPiece().getClass())][colourToMove == Colour.WHITE ? 1: 0][move.cell().getRow() * 8 + move.cell().getCol()];
+            if (move.cell().isHasPiece()) zobristKey ^= zobrist.pieces[zobrist.pieceMap.get(move.cell().getPiece().getClass())][colourToMove == Colour.WHITE ? 1: 0][move.cell().getRow() * 8 + move.cell().getCol()];
             zobristKey ^= zobrist.pieces[zobrist.pieceMap.get(p.getClass())][colourToMove == Colour.WHITE ? 0: 1][move.cell().getRow() * 8 + move.cell().getCol()];
 
             move.cell().setPiece(p);
@@ -332,7 +359,7 @@ public class Board{
         List<Move> moves = new ArrayList<>(35);
         for (Cell[] row : cells) {
             for (Cell cell : row) {
-                if (cell.getPiece() != null && cell.getPiece().getColour() == getColourToMove()) {
+                if (cell.isHasPiece() && cell.getPiece().getColour() == getColourToMove()) {
                     Piece p = cell.getPiece();
                     if (p.getClass() == Pawn.class){
                         for (Cell moveCell: p.getMovesList()){
@@ -364,29 +391,29 @@ public class Board{
                             boolean checkedInCheck = false;
                             boolean inCheck = false;
                             if (king.getColour() == Colour.WHITE){
-                                if (castlingState[0]){
-                                    if (getCell(0, 1).getPiece() == null && getCell(0, 2).getPiece() == null && getCell(0, 3).getPiece() == null){
+                                if (castlingState[1]){
+                                    if (!getCell(0, 1).isHasPiece() && !getCell(0, 2).isHasPiece() && !getCell(0, 3).isHasPiece()){
                                         checkedInCheck = true;
                                         inCheck = isInCheck();
                                         if (!inCheck) moves.add(new CastlingMove(king, (Rook) getCell(0, 0).getPiece()));
                                     }
                                 }
-                                if (castlingState[1]){
-                                    if (getCell(0, 5).getPiece() == null && getCell(0, 6).getPiece() == null){
+                                if (castlingState[0]){
+                                    if (!getCell(0, 5).isHasPiece() && !getCell(0, 6).isHasPiece()){
                                         if (!checkedInCheck) inCheck = isInCheck();
                                         if (!inCheck) moves.add(new CastlingMove(king, (Rook) getCell(0, 7).getPiece()));
                                     }
                                 }
                             } else {
-                                if (castlingState[2]){
-                                    if (getCell(7, 1).getPiece() == null && getCell(7, 2).getPiece() == null && getCell(7, 3).getPiece() == null){
+                                if (castlingState[3]){
+                                    if (!getCell(7, 1).isHasPiece() && !getCell(7, 2).isHasPiece() && !getCell(7, 3).isHasPiece()){
                                         checkedInCheck = true;
                                         inCheck = isInCheck();
                                         if (!inCheck) moves.add(new CastlingMove(king, (Rook) getCell(7, 0).getPiece()));
                                     }
                                 }
-                                if (castlingState[3]){
-                                    if (getCell(7, 5).getPiece() == null && getCell(7, 6).getPiece() == null){
+                                if (castlingState[2]){
+                                    if (!getCell(7, 5).isHasPiece() && !getCell(7, 6).isHasPiece()){
                                         if (!checkedInCheck) inCheck = isInCheck();
                                         if (!inCheck) moves.add(new CastlingMove(king, (Rook) getCell(7, 7).getPiece()));
                                     }
@@ -487,7 +514,7 @@ public class Board{
 
         for (Cell[] row: cells){
             for (Cell cell: row){
-                if (cell.getPiece() != null && cell.getPiece().getClass() == King.class && cell.getPiece().getColour() == getColourToMove()){
+                if (cell.isHasPiece() && cell.getPiece().getClass() == King.class && cell.getPiece().getColour() == getColourToMove()){
                     kingCell = cell;
                     breakLoop = true;
                     break;
@@ -502,7 +529,7 @@ public class Board{
 
         for (Cell[] row: cells){
             for (Cell cell: row){
-                if (cell.getPiece() != null && cell.getPiece().getColour() != colourToMove){
+                if (cell.isHasPiece() && cell.getPiece().getColour() != colourToMove){
                     if (cell.getPiece().getMovesList().contains(kingCell)) {
                         return true;
                     }
@@ -530,7 +557,7 @@ public class Board{
         for (int i = 0; i < 8; i++) {
             for (int j = 0; j < 8; j++) {
                 Cell cell = cells[i][j];
-                if (cell.getPiece() != null && cell.getPiece().getClass() == King.class && cell.getPiece().getColour() != colourToMove){
+                if (cell.isHasPiece() && cell.getPiece().getClass() == King.class && cell.getPiece().getColour() != colourToMove){
                     kingCell = cell;
                     breakLoop = true;
                     break;
@@ -564,13 +591,13 @@ public class Board{
      */
     private void updateCastlingState(){
         castlingState = new boolean[4];
-        if (cells[0][4].getPiece() != null && cells[0][4].getPiece().getClass() == King.class && cells[0][4].getPiece().getColour() == Colour.WHITE){
-            if (cells[0][0].getPiece() != null && cells[0][0].getPiece().getClass() == Rook.class && cells[0][0].getPiece().getColour() == Colour.WHITE) castlingState[1] =  true;
-            if (cells[0][7].getPiece() != null && cells[0][7].getPiece().getClass() == Rook.class && cells[0][7].getPiece().getColour() == Colour.WHITE) castlingState[0] = true;
+        if (cells[0][4].isHasPiece() && cells[0][4].getPiece().getClass() == King.class && cells[0][4].getPiece().getColour() == Colour.WHITE){
+            if (cells[0][0].isHasPiece() && cells[0][0].getPiece().getClass() == Rook.class && cells[0][0].getPiece().getColour() == Colour.WHITE) castlingState[1] =  true;
+            if (cells[0][7].isHasPiece() && cells[0][7].getPiece().getClass() == Rook.class && cells[0][7].getPiece().getColour() == Colour.WHITE) castlingState[0] = true;
         }
-        if (cells[7][4].getPiece() != null && cells[7][4].getPiece().getClass() == King.class && cells[7][4].getPiece().getColour() == Colour.BLACK){
-            if (cells[7][0].getPiece() != null && cells[7][0].getPiece().getClass() == Rook.class && cells[7][0].getPiece().getColour() == Colour.BLACK) castlingState[3] = true;
-            if (cells[7][7].getPiece() != null && cells[7][7].getPiece().getClass() == Rook.class && cells[7][7].getPiece().getColour() == Colour.BLACK) castlingState[2] = true;
+        if (cells[7][4].isHasPiece() && cells[7][4].getPiece().getClass() == King.class && cells[7][4].getPiece().getColour() == Colour.BLACK){
+            if (cells[7][0].isHasPiece() && cells[7][0].getPiece().getClass() == Rook.class && cells[7][0].getPiece().getColour() == Colour.BLACK) castlingState[3] = true;
+            if (cells[7][7].isHasPiece() && cells[7][7].getPiece().getClass() == Rook.class && cells[7][7].getPiece().getColour() == Colour.BLACK) castlingState[2] = true;
         }
     }
 
@@ -600,7 +627,7 @@ public class Board{
         for (int i = cells.length - 1; i >= 0; i--) {
             int emptyCounter = 0;
             for (Cell cell: cells[i]){
-                if (cell.getPiece() == null) emptyCounter++;
+                if (!cell.isHasPiece()) emptyCounter++;
                 else {
                     if (emptyCounter != 0) fen.append(emptyCounter);
                     emptyCounter = 0;
@@ -710,7 +737,7 @@ public class Board{
         int count = 0;
         for (Cell[] row: cells){
             for (Cell cell: row){
-                if (cell.getPiece() != null) count++;
+                if (cell.isHasPiece()) count++;
             }
         }
         return count;

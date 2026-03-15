@@ -20,7 +20,7 @@ public class Knight extends Piece {
      * @param colour The colour of the new piece
      */
     public Knight(Board board, int row, int col, Colour colour) {
-        super(board, row, col, colour);
+        super(board, row, col, colour, 3);
         init();
     }
 
@@ -58,7 +58,7 @@ public class Knight extends Piece {
     protected void CalculateValidMoves() {
         movesList.clear();
         for (Cell cell : cellsList) {
-            if (cell.getPiece() == null || cell.getPiece().getColour() != getColour()) {
+            if (!cell.isHasPiece() || cell.getPiece().getColour() != getColour()) {
                 movesList.add(cell);
             }
         }

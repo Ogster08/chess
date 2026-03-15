@@ -25,7 +25,7 @@ public class King extends Piece {
      * @param castle if the king can castle (independent of the rooks)
      */
     public King(Board board, int row, int col, Colour colour, boolean castle) {
-        super(board, row, col, colour);
+        super(board, row, col, colour, 0);
         this.canCastle = castle;
         init();
     }
@@ -59,7 +59,7 @@ public class King extends Piece {
     protected void CalculateValidMoves() {
         movesList.clear();
         for (Cell cell : cellsList) {
-            if (cell.getPiece() == null || cell.getPiece().getColour() != getColour()) {
+            if (!cell.isHasPiece() || cell.getPiece().getColour() != getColour()) {
                 movesList.add(cell);
             }
         }

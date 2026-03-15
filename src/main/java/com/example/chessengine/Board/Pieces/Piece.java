@@ -40,17 +40,28 @@ public abstract class Piece implements CellListener {
     private final Colour colour;
 
     /**
+     * 0 King
+     * 1 Queen
+     * 2 Rook
+     * 3 Knight
+     * 4 Bishop
+     * 5 Pawn
+     */
+    public final int pieceNum;
+
+    /**
      * The constructor for a new piece being added to a chessboard
      * @param board The board the piece is being added to
      * @param row must be between 0 and 7 inclusive
      * @param col must be between 0 and 7 inclusive
      * @param colour The colour of the new piece
      */
-    public Piece(Board board, int row, int col, Colour colour){
+    public Piece(Board board, int row, int col, Colour colour, int pieceNum){
         this.board = board;
         this.row = row;
         this.col = col;
         this.colour = colour;
+        this.pieceNum = pieceNum;
     }
 
     protected void init(){
