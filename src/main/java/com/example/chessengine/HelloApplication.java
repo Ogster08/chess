@@ -13,6 +13,9 @@ import javafx.stage.Stage;
 
 import java.io.IOException;
 
+/**
+ * The main class used to run the JavaFX application
+ */
 public class HelloApplication extends Application implements SceneSwitcher {
     /**
      * The window that the pages are loaded onto.

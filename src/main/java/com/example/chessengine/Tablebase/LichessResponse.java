@@ -3,6 +3,7 @@ package com.example.chessengine.Tablebase;
 import java.util.List;
 
 /**
+ * Record to hold the information from the response when using the Lichess API
  * @param mainline dtz and precise dtz mainline (list of LichessMoveData objects) or empty if drawn
  * @param winner (w) white, (b) black, (null) draw
  * @param dtz moves until capture or pawn move

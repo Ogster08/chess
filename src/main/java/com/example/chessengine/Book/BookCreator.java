@@ -10,6 +10,7 @@ import java.io.*;
 import java.nio.charset.StandardCharsets;
 import java.util.Arrays;
 import java.util.HashMap;
+import java.util.Objects;
 
 /**
  * The BookCreator class is used for creating an openings book from a text file containing PGN games.
@@ -192,7 +193,7 @@ public class BookCreator {
      */
     public static Book LoadBook(){
         Book book = new Book();
-        try (BufferedReader bufferedReader = new BufferedReader(new FileReader("src/main/resources/book/book.txt"))) {
+        try (BufferedReader bufferedReader =  new BufferedReader(new InputStreamReader(Objects.requireNonNull(BookCreator.class.getResourceAsStream("/book/book.txt"))))){
             String line = bufferedReader.readLine();
             while (line != null){
                 long position = Long.parseLong(line.split(":")[0]);
