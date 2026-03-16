@@ -25,6 +25,7 @@ import javafx.scene.text.Text;
 
 import java.io.IOException;
 import java.util.*;
+import java.util.concurrent.atomic.AtomicBoolean;
 
 /**
  * The FXML controller class for the game page.
@@ -88,6 +89,8 @@ public class ChessController {
         this.sceneSwitcher = sceneSwitcher;
     }
 
+    private final StackPane[] engineSquares = new StackPane[2];
+
     /**
      * Initialises the page, with a board that automatically grows and shrinks, and prepares the ending message.
      * Sets the drag events relevant to the squares.
@@ -145,6 +148,25 @@ public class ChessController {
                     }
                     dragEvent.consume();
                 });
+
+                square.setOnDragDetected(mouseEvent -> {
+                    if (!(getPieceOnSquare(square) instanceof ImageView piece)) return;
+
+                    Dragboard dragboard = piece.startDragAndDrop(TransferMode.MOVE);
+                    ClipboardContent content = new ClipboardContent();
+                    content.putString(finalI + "," + finalJ);
+                    dragboard.setContent(content);
+
+                    Image img = piece.getImage();
+                    dragboard.setDragView(img, img.getWidth() / 2, img.getHeight() / 2);
+
+                    piece.setOpacity(0);
+
+                    if (!square.getStyleClass().contains("origin-square")) updateOriginSquare(square);
+                    if (moveHandler != null) updateShowMoveSquares(moveHandler.getLegalMoves(finalI, finalJ));
+
+                    mouseEvent.consume();
+                });
             }
         }
     }
@@ -165,18 +187,16 @@ public class ChessController {
         piece.fitHeightProperty().bind(square.heightProperty().multiply(0.9));
         piece.setPreserveRatio(true);
 
-        piece.setOnDragDetected(mouseEvent -> {
-            Dragboard dragboard = piece.startDragAndDrop(TransferMode.MOVE);
-            ClipboardContent content = new ClipboardContent();
-            content.putString(row + "," + col);
-            dragboard.setContent(content);
-            if (!square.getStyleClass().contains("origin-square")) updateOriginSquare(square);
-            if (moveHandler != null) updateShowMoveSquares(moveHandler.getLegalMoves(row, col));
-            mouseEvent.consume();
-        });
-
         square.getChildren().add(piece);
         StackPane.setAlignment(piece, Pos.CENTER);
+    }
+
+    private Object getPieceOnSquare(StackPane square) {
+        for (Node node : square.getChildren()) {
+            if (node instanceof ImageView && node.getUserData() == null) return (ImageView) node;
+        }
+
+        return null;
     }
 
     /**
@@ -361,5 +381,20 @@ public class ChessController {
     public void gameOverMessage(String message){
         text.setText(message);
         BoardContainer.getChildren().add(rect);
+    }
+
+    public void setEngineMoveSquares(int row, int col, int row1, int col1){
+        if (engineSquares[0] != null){
+            engineSquares[0].getStyleClass().remove("engine-square");
+            engineSquares[1].getStyleClass().remove("engine-square");
+        }
+
+        engineSquares[0] = getSquare(row, col);
+        engineSquares[1] = getSquare(row1, col1);
+
+        if (engineSquares[0] != null && engineSquares[1] != null){
+            engineSquares[0].getStyleClass().add("engine-square");
+            engineSquares[1].getStyleClass().add("engine-square");
+        }
     }
 }

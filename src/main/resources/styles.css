@@ -18,6 +18,10 @@
 }
 
 .dot{
-    -fx-background-color: rgba(100, 100, 100, 0.5);
+    -fx-background-color: rgba(73, 175, 58, 0.5);
     -fx-background-radius: 50%;
+}
+
+.engine-square{
+    -fx-background-color: #ff8863;
 }

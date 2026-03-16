@@ -84,6 +84,7 @@ public class EngineGameState extends GameState{
     private void doNextEngineMove(){
         engineThread.requestMove(move -> {
             if (move != null){
+                controller.setEngineMoveSquares(move.p().getRow(), move.p().getCol(), move.cell().getRow(), move.cell().getCol());
                 board.movePiece(move, false);
                 updateGUI();
                 if ((legalMoves.isEmpty() || board.getFiftyMoveCounter() >= 100 || board.positionHistory.containsValue((short) 3)) && !gameEnd) {
