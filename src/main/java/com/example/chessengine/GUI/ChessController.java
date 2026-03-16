@@ -170,6 +170,12 @@ public class ChessController {
 
                     mouseEvent.consume();
                 });
+
+                square.setOnDragDone(moveEvent ->{
+                    ImageView IV = getPieceOnSquare(square);
+                    if (IV != null) IV.setOpacity(1);
+                    moveEvent.consume();
+                });
             }
         }
     }
@@ -194,7 +200,11 @@ public class ChessController {
         StackPane.setAlignment(piece, Pos.CENTER);
     }
 
-    private Object getPieceOnSquare(StackPane square) {
+    /**
+     * @param square The square the piece needed is on
+     * @return null if no piece, and the ImageView object otherwise
+     */
+    private ImageView getPieceOnSquare(StackPane square) {
         for (Node node : square.getChildren()) {
             if (node instanceof ImageView && node.getUserData() == null) return (ImageView) node;
         }
