@@ -24,6 +24,9 @@ public class Cell {
      */
     private final Set<CellListener> Listener = Collections.newSetFromMap(new IdentityHashMap<>());
 
+    /**
+     * A boolean indicating if the piece in the cell isn't null
+     */
     private boolean hasPiece = false;
 
     /**
@@ -117,6 +120,9 @@ public class Cell {
         return row == cell.row && col == cell.col && Objects.equals(piece, cell.piece) && Objects.equals(Listener, cell.Listener);
     }
 
+    /**
+     * @return A boolean indicating if the piece in the cell isn't null
+     */
     public boolean isHasPiece() {
         return hasPiece;
     }

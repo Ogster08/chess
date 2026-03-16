@@ -544,6 +544,7 @@ public class Board{
      * Then it checks if any of the opposite colour pieces to the piece in the move can attack the king.
      * Also checks for the step over square if the move is a castling move.
      * @param move The move being checked if it is legal or not
+     * @param reset If the move should be undone after being made.
      * @return If the move is legal or not
      */
     public boolean checkLegalMoves(Move move, boolean reset){

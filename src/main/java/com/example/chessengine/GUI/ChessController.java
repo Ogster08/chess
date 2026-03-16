@@ -89,6 +89,9 @@ public class ChessController {
         this.sceneSwitcher = sceneSwitcher;
     }
 
+    /**
+     * The array to hold the squares currently coloured red to show the move by the engine
+     */
     private final StackPane[] engineSquares = new StackPane[2];
 
     /**
@@ -383,6 +386,13 @@ public class ChessController {
         BoardContainer.getChildren().add(rect);
     }
 
+    /**
+     * changes the square coloured as red to indicate the squares to show the engine move
+     * @param row for the first square
+     * @param col for the first square
+     * @param row1 for the second square
+     * @param col1 for the second square
+     */
     public void setEngineMoveSquares(int row, int col, int row1, int col1){
         if (engineSquares[0] != null){
             engineSquares[0].getStyleClass().remove("engine-square");

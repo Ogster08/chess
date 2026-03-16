@@ -55,6 +55,7 @@ public abstract class Piece implements CellListener {
      * @param row must be between 0 and 7 inclusive
      * @param col must be between 0 and 7 inclusive
      * @param colour The colour of the new piece
+     * @param pieceNum The number for the piece type
      */
     public Piece(Board board, int row, int col, Colour colour, int pieceNum){
         this.board = board;

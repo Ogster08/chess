@@ -80,6 +80,7 @@ public class EngineGameState extends GameState{
      * Requests the next move from the engine Thread.
      * If the move isn't null, then it performs the move, updates the GUI, and checks if the game is over.
      * If the move is null, then it calls GameEndMessage.
+     * It also colours squares in red to show the move performed
      */
     private void doNextEngineMove(){
         engineThread.requestMove(move -> {
