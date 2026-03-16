@@ -101,14 +101,12 @@ public class ToggleSwitch extends StackPane {
                 imageView.setImage(black);
                 StackPane.setAlignment(imageView, Pos.CENTER_RIGHT);
                 button.setStyle("-fx-background-radius:  100 0 0 100 ");
-                setStyle("-fx-background-color: grey; -fx-background-radius: 100;");
                 button.setTranslateX(-getWidth() / 2);
             }
             else {
                 imageView.setImage(white);
                 StackPane.setAlignment(imageView, Pos.CENTER_LEFT);
                 button.setStyle("-fx-background-radius: 0 100 100 0");
-                setStyle("-fx-background-color: grey; -fx-background-radius: 100;");
                 button.setTranslateX(0);
             }
         });
