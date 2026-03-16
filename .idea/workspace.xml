@@ -9,8 +9,7 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="5ecba770-62e4-41d3-b203-db736912793c" name="Changes" comment="updating javadocs">
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+    <list default="true" id="5ecba770-62e4-41d3-b203-db736912793c" name="Changes" comment="removing unnecessary styling">
       <change beforePath="$PROJECT_DIR$/src/main/java/com/example/chessengine/GUI/ToggleSwitch.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/chessengine/GUI/ToggleSwitch.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -247,15 +246,7 @@
       <workItem from="1773586008140" duration="673000" />
       <workItem from="1773599731831" duration="735000" />
       <workItem from="1773600485255" duration="16838000" />
-      <workItem from="1773655258579" duration="8156000" />
-    </task>
-    <task id="LOCAL-00064" summary="cleanup">
-      <option name="closed" value="true" />
-      <created>1771675892874</created>
-      <option name="number" value="00064" />
-      <option name="presentableId" value="LOCAL-00064" />
-      <option name="project" value="LOCAL" />
-      <updated>1771675892874</updated>
+      <workItem from="1773655258579" duration="8657000" />
     </task>
     <task id="LOCAL-00065" summary="The engine now runs on its own thread">
       <option name="closed" value="true" />
@@ -641,7 +632,15 @@
       <option name="project" value="LOCAL" />
       <updated>1773666580592</updated>
     </task>
-    <option name="localTasksCounter" value="113" />
+    <task id="LOCAL-00113" summary="removing unnecessary styling">
+      <option name="closed" value="true" />
+      <created>1773694600015</created>
+      <option name="number" value="00113" />
+      <option name="presentableId" value="LOCAL-00113" />
+      <option name="project" value="LOCAL" />
+      <updated>1773694600015</updated>
+    </task>
+    <option name="localTasksCounter" value="114" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -659,7 +658,6 @@
     </option>
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="improved evaluation to try to improve pawn structure in the opening" />
     <MESSAGE value="fixed not preventing castling while in check" />
     <MESSAGE value="improved colour switch styling" />
     <MESSAGE value="added environment variables for creating the openings book and logs - BUILD_BOOK &amp; LOGS" />
@@ -684,7 +682,8 @@
     <MESSAGE value="updated javadoc" />
     <MESSAGE value="fixing getting invisible pieces" />
     <MESSAGE value="updating javadocs" />
-    <option name="LAST_COMMIT_MESSAGE" value="updating javadocs" />
+    <MESSAGE value="removing unnecessary styling" />
+    <option name="LAST_COMMIT_MESSAGE" value="removing unnecessary styling" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>

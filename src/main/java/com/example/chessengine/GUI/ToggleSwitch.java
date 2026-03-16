@@ -1,15 +1,11 @@
 package com.example.chessengine.GUI;
 
-import com.example.chessengine.Board.Pieces.King;
 import javafx.beans.property.SimpleBooleanProperty;
 import javafx.geometry.Pos;
 import javafx.scene.control.Button;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
-import javafx.scene.layout.HBox;
 import javafx.scene.layout.StackPane;
-import javafx.scene.paint.Color;
-import javafx.scene.text.Font;
 
 import java.util.Objects;
 
