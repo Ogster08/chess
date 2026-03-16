@@ -7,6 +7,9 @@ import com.example.chessengine.Board.Colour;
 import java.util.ArrayList;
 import java.util.List;
 
+/**
+ * The abstract class to define every piece that slides across the chessboard
+ */
 public abstract class SlidingPiece extends Piece {
     /**
      * A list of every moves list for the sliding piece

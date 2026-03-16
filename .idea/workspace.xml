@@ -9,10 +9,9 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="5ecba770-62e4-41d3-b203-db736912793c" name="Changes" comment="updated javadoc">
+    <list default="true" id="5ecba770-62e4-41d3-b203-db736912793c" name="Changes" comment="fixing getting invisible pieces">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/chessengine/GUI/ChessController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/chessengine/GUI/ChessController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/chessengine/UCI/GameState.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/chessengine/UCI/GameState.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/chessengine/Board/Pieces/SlidingPiece.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/chessengine/Board/Pieces/SlidingPiece.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -248,15 +247,7 @@
       <workItem from="1773586008140" duration="673000" />
       <workItem from="1773599731831" duration="735000" />
       <workItem from="1773600485255" duration="16838000" />
-      <workItem from="1773655258579" duration="2029000" />
-    </task>
-    <task id="LOCAL-00062" summary="added menu to choose to play multiplayer or against the engine">
-      <option name="closed" value="true" />
-      <created>1771627417291</created>
-      <option name="number" value="00062" />
-      <option name="presentableId" value="LOCAL-00062" />
-      <option name="project" value="LOCAL" />
-      <updated>1771627417292</updated>
+      <workItem from="1773655258579" duration="6274000" />
     </task>
     <task id="LOCAL-00063" summary="code cleanup">
       <option name="closed" value="true" />
@@ -642,7 +633,15 @@
       <option name="project" value="LOCAL" />
       <updated>1773656064298</updated>
     </task>
-    <option name="localTasksCounter" value="111" />
+    <task id="LOCAL-00111" summary="fixing getting invisible pieces">
+      <option name="closed" value="true" />
+      <created>1773657672808</created>
+      <option name="number" value="00111" />
+      <option name="presentableId" value="LOCAL-00111" />
+      <option name="project" value="LOCAL" />
+      <updated>1773657672808</updated>
+    </task>
+    <option name="localTasksCounter" value="112" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -660,7 +659,6 @@
     </option>
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="fixed zobrist key issues, and corrected openings book" />
     <MESSAGE value="reorganised file structure" />
     <MESSAGE value="improved evaluation to try to improve pawn structure in the opening" />
     <MESSAGE value="fixed not preventing castling while in check" />
@@ -685,7 +683,8 @@
     <MESSAGE value="improved dragging and engine move feedback" />
     <MESSAGE value="improved toggle" />
     <MESSAGE value="updated javadoc" />
-    <option name="LAST_COMMIT_MESSAGE" value="updated javadoc" />
+    <MESSAGE value="fixing getting invisible pieces" />
+    <option name="LAST_COMMIT_MESSAGE" value="fixing getting invisible pieces" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
