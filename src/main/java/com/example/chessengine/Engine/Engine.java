@@ -2,6 +2,7 @@ package com.example.chessengine.Engine;
 
 import com.example.chessengine.Board.*;
 import com.example.chessengine.Board.Moves.Move;
+import com.example.chessengine.Board.Moves.PromotionMove;
 import com.example.chessengine.Board.Pieces.*;
 import com.example.chessengine.Book.Book;
 import com.example.chessengine.Book.BookCreator;
@@ -88,7 +89,6 @@ public class Engine{
             System.out.println(eval);
             System.out.println(count);
             System.out.println(pEval);
-            System.out.println(countMoves(4));
         }
         return bestMove;
     }
@@ -111,9 +111,11 @@ public class Engine{
         }
 
         boolean noMoves = true;
+        List<Move> moveList = board.getPseudolegalMoves();
+        orderMoves(moveList);
 
         if (maximising){
-            for (Move move: board.getPseudolegalMoves()){
+            for (Move move: moveList){
                 if (board.checkLegalMoves(move, false)){
                     noMoves = false;
                     count++;
@@ -142,7 +144,7 @@ public class Engine{
             return alpha;
         }
         else {
-            for (Move move: board.getPseudolegalMoves()){
+            for (Move move: moveList){
                 if (board.checkLegalMoves(move, false)){
                     noMoves = false;
                     count++;
@@ -200,16 +202,57 @@ public class Engine{
     /**
      * A hashmap of each piece class to its corresponding material value.
      */
-    private static final Map<Class<?>, Integer> pieceScores = new HashMap<>(){
-        {
-            put(Pawn.class, 100);
-            put(Knight.class, 325);
-            put(Bishop.class, 325);
-            put(Rook.class, 525);
-            put(Queen.class, 1000);
-            put(King.class, 0);
-        }
+    private static final int[] pieceScores = {
+        100,
+        325,
+        325,
+        525,
+        1000,
+        0
     };
+
+    private void orderMoves(List<Move> moveList){
+        int[] scores = new int[moveList.size()];
+        for (int i = 0; i < moveList.size(); i++) {
+            int score = 0;
+            Move move = moveList.get(i);
+            Cell cell = move.cell();
+            Piece p = move.p();
+
+            if (cell.isHasPiece()){
+                score = 10 * pieceScores[cell.getPiece().pieceNum] - pieceScores[p.pieceNum];
+            }
+
+            if (move instanceof PromotionMove){
+                Class<?> promotionClass = ((PromotionMove) move).promotionClass;
+                if (promotionClass == Knight.class) score += pieceScores[1];
+                else if (promotionClass == Bishop.class) score += pieceScores[2];
+                else if (promotionClass == Rook.class) score += pieceScores[3];
+                else if (promotionClass == Queen.class) score += pieceScores[4];
+            }
+            scores[i] = score;
+        }
+
+        sort(moveList, scores);
+    }
+    
+    private void sort(List<Move> moveList, int[] scores){
+        for (int i = 0; i < moveList.size(); i++) {
+            if (scores[i] > 0){
+                Move move = moveList.get(i);
+                int score = scores[i];
+                //perform insertion sort on this element
+                int j = i - 1;
+                while (j >= 0 && scores[j] < score){
+                    moveList.set(j + 1, moveList.get(j));
+                    scores[j + 1] = scores[j];
+                    j--;
+                }
+                moveList.set(j + 1, move);
+                scores[j + 1] = score;
+            }
+        }
+    }
 
     /**
      * Evaluates the current position, by taking into account the material value and position of the piece on each side.
@@ -223,7 +266,7 @@ public class Engine{
                 Piece p = board.getCell(i, j).getPiece();
                 if (p != null){
                     int score = 0;
-                    score += pieceScores.get(p.getClass());
+                    score += pieceScores[p.pieceNum];
                     if (p.getClass() == Pawn.class) {
                         score += readTable(pawnTable, p);
                     } else if (p.getClass() == Knight.class) {
