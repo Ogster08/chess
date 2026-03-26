@@ -101,8 +101,6 @@ public class GameState implements MoveHandler {
             }
         }
         controller.updatePosition(board);
-        System.out.println("-------------------------------");
-        System.out.println(board.getColourToMove());
     }
 
     /**
