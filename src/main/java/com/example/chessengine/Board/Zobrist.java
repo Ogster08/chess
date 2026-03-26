@@ -55,20 +55,6 @@ public class Zobrist {
     }
 
     /**
-     * A hashmap, mapping each piece class to its corresponding index in the pieces array.
-     */
-    public final Map<Class<?>, Integer> pieceMap = new HashMap<>(){
-        {
-            put(Pawn.class, 0);
-            put(Knight.class, 1);
-            put(Bishop.class, 2);
-            put(Rook.class, 3);
-            put(Queen.class, 4);
-            put(King.class, 5);
-        }
-    };
-
-    /**
      * Creates a new zobrist hash code from scratch from the board object passed in.
      * @param board The board object the zobrist hash code is being created for.
      * @return The zobrist hash code of the current position in the board.
@@ -79,7 +65,7 @@ public class Zobrist {
             for (int j = 0; j < 8; j++) {
                 if (board.getCell(i, j).isHasPiece()){
                     Piece p = board.getCell(i, j).getPiece();
-                    zobrist ^= pieces[pieceMap.get(p.getClass())][p.getColour() == Colour.WHITE ? 0: 1][i * 8 + j];
+                    zobrist ^= pieces[p.pieceNum][p.getColour() == Colour.WHITE ? 0: 1][i * 8 + j];
                 }
             }
         }

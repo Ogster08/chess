@@ -88,6 +88,7 @@ public class Engine{
             System.out.println(eval);
             System.out.println(count);
             System.out.println(pEval);
+            System.out.println(countMoves(4));
         }
         return bestMove;
     }
@@ -176,7 +177,20 @@ public class Engine{
         int count = 0;
         for (Move move: board.getPseudolegalMoves()){
             if (board.checkLegalMoves(move, false)){
-                count += countMoves(depth - 1);
+                count += countMovesX(depth - 1);
+                board.undoMove();
+            }
+        }
+        return count;
+    }
+
+    private int countMovesX(int depth){
+        if (depth == 0) return 1;
+
+        int count = 0;
+        for (Move move: board.getStoredPseudoLegalMoves()){
+            if (board.checkLegalMoves(move, false)){
+                count += countMovesX(depth - 1);
                 board.undoMove();
             }
         }

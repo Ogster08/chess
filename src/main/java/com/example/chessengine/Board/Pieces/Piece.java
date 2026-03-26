@@ -40,14 +40,16 @@ public abstract class Piece implements CellListener {
     private final Colour colour;
 
     /**
-     * 0 King
-     * 1 Queen
-     * 2 Rook
-     * 3 Knight
-     * 4 Bishop
-     * 5 Pawn
+     * 0 Pawn
+     * 1 Knight
+     * 2 Bishop
+     * 3 Rook
+     * 4 Queen
+     * 5 King
      */
     public final int pieceNum;
+
+    private boolean beingMoved = false;
 
     /**
      * The constructor for a new piece being added to a chessboard
@@ -83,10 +85,9 @@ public abstract class Piece implements CellListener {
         setRow(newRow);
         setCol(newCol);
 
-        for(Cell c : cellsList){
-            c.removeListener(this);
+        if (!board.pieces.contains(this)) {
+            board.pieces.add(this);
         }
-        cellsList.clear();
 
         for(Cell c : TheoreticalReachableCells()){
             c.addListener(this);
@@ -95,15 +96,18 @@ public abstract class Piece implements CellListener {
 
         CalculateValidMoves();
 
+        beingMoved = false;
     }
 
     /**
      * When the piece is being removed from the board this is called to remove it as a listener from all the cells it is subscribed to
      */
     public void removePiece(){
+        if (!beingMoved) board.pieces.remove(this);
         for(Cell c : cellsList){
             c.removeListener(this);
         }
+        cellsList.clear();
     }
 
     /**
@@ -198,5 +202,9 @@ public abstract class Piece implements CellListener {
         if (o == null || getClass() != o.getClass()) return false;
         Piece piece = (Piece) o;
         return row == piece.row && col == piece.col && Objects.equals(board, piece.board) && Objects.equals(cellsList, piece.cellsList) && Objects.equals(movesList, piece.movesList) && colour == piece.colour;
+    }
+
+    public void setBeingMoved(boolean beingMoved) {
+        this.beingMoved = beingMoved;
     }
 }

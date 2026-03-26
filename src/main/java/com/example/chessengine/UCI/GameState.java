@@ -4,6 +4,7 @@ import com.example.chessengine.Board.Board;
 import com.example.chessengine.Board.Colour;
 import com.example.chessengine.Board.Moves.Move;
 import com.example.chessengine.Board.Moves.PromotionMove;
+import com.example.chessengine.Engine.Engine;
 import com.example.chessengine.GUI.ChessController;
 import com.example.chessengine.GUI.MoveHandler;
 
@@ -35,6 +36,7 @@ public class GameState implements MoveHandler {
      * Also used to prevent multiple game end messages being sent to the controller.
      */
     protected boolean gameEnd = false;
+    private final Engine engine = new Engine(board, Colour.BLACK);
 
     /**
      * Constructor to create a new GameState object.
@@ -99,6 +101,8 @@ public class GameState implements MoveHandler {
             }
         }
         controller.updatePosition(board);
+        System.out.println("-------------------------------");
+        System.out.println(board.getColourToMove());
     }
 
     /**

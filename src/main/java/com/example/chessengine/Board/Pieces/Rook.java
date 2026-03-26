@@ -41,7 +41,7 @@ public class Rook extends SlidingPiece {
      * @param colour The colour of the new piece
      */
     public Rook(Board board, int row, int col, Colour colour, boolean canCastle) {
-        super(board, row, col, colour, 2);
+        super(board, row, col, colour, 3);
         this.canCastle = canCastle;
         movesListsFromDirections.addAll(List.of(upMovesList, downMovesList, leftMovesList, rightMovesList));
         init();

@@ -36,7 +36,7 @@ public class Bishop extends SlidingPiece {
      * @param colour The colour of the new piece
      */
     public Bishop(Board board, int row, int col, Colour colour) {
-        super(board, row, col, colour, 4);
+        super(board, row, col, colour, 2);
         movesListsFromDirections.addAll(List.of(upLeftMovesList, upRightMovesList, downLeftMovesList, downRightMovesList));
         init();
     }

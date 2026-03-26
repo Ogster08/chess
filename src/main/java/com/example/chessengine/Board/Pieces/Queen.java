@@ -53,7 +53,7 @@ public class Queen extends SlidingPiece{
      * @param colour The colour of the new piece
      */
     public Queen(Board board, int row, int col, Colour colour) {
-        super(board, row, col, colour, 1);
+        super(board, row, col, colour, 4);
         movesListsFromDirections.addAll(List.of(upMovesList, downMovesList, leftMovesList, rightMovesList, upLeftMovesList, upRightMovesList, downLeftMovesList, downRightMovesList));
         init();
     }

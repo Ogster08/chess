@@ -24,7 +24,7 @@ public class Pawn extends Piece {
      * @param colour The colour of the new piece
      */
     public Pawn(Board board, int row, int col, Colour colour) {
-        super(board, row, col, colour, 5);
+        super(board, row, col, colour, 0);
         firstRank = (colour == Colour.WHITE && row == 1) || (colour == Colour.BLACK && row == 6);
         init();
     }

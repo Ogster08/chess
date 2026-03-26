@@ -25,7 +25,7 @@ public class King extends Piece {
      * @param castle if the king can castle (independent of the rooks)
      */
     public King(Board board, int row, int col, Colour colour, boolean castle) {
-        super(board, row, col, colour, 0);
+        super(board, row, col, colour, 5);
         this.canCastle = castle;
         init();
     }
