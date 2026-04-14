@@ -285,7 +285,9 @@ public class Board{
 
         if (move.getClass() == PromotionMove.class){
             cells[p.getRow()][p.getCol()].setPiece(null);
-            move.cell().setPiece(((PromotionMove) move).getPromotionPiece());
+            Piece promotionPiece = ((PromotionMove) move).getPromotionPiece();
+            pieces.add(promotionPiece);
+            move.cell().setPiece(promotionPiece);
         } else {
             if (p.pieceNum == 0){
                 if (Math.abs(p.getRow() - move.cell().getRow()) == 2) {
