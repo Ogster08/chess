@@ -40,7 +40,7 @@ public final class LichessAPI {
             if (response.statusCode() != 200) return null;
 
             LichessResponse lichessResponse = getObjectFromJSON(response.body());
-            if (lichessResponse.winner() == null) return null;
+            if (lichessResponse.winner() == null || (lichessResponse.winner().equals("w") && board.getColourToMove() == Colour.WHITE) || (lichessResponse.winner().equals("b") && board.getColourToMove() == Colour.BLACK)) return null;
             else {
                 return getMoveFromUci(lichessResponse.mainline().getFirst().uci(), board);
             }
