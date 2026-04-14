@@ -33,7 +33,6 @@ public class Engine{
      * used for debug to see the number of positions looked at.
      */
     private int count = 0;
-    private int pEval = 0;
 
     /**
      * the score associated with a king being mated, being sufficiently higher than a position score ever could
@@ -49,6 +48,15 @@ public class Engine{
      * The openings book used to find moves.
      */
     private final Book book;
+
+    private boolean stopSearch = false;
+
+    private Move bestMoveInCurrentSearch;
+
+    private int bestEval;
+    private int bestEvalThisSearch;
+    private int fullCount = 0;
+    private int latestFinishedDepth;
 
     /**
      * Constructor to create a new engine
@@ -80,17 +88,45 @@ public class Engine{
                 return move;
             }
         }
-        count = 0;
-        pEval = 0;
-        bestMove = null;
-        if ("true".equals(System.getenv("LOGS"))) System.out.println("-----normal move-----");
-        int eval = search(4, 0, Integer.MIN_VALUE, Integer.MAX_VALUE, true);
+
+        iterativeDeepening();
         if ("true".equals(System.getenv("LOGS"))){
-            System.out.println(eval);
-            System.out.println(count);
-            System.out.println(pEval);
+            System.out.println("-----normal move-----");
+            System.out.println(bestEval);
+            System.out.println(fullCount);
+            System.out.println(latestFinishedDepth);
         }
         return bestMove;
+    }
+
+    private void iterativeDeepening(){
+        stopSearch = false;
+        bestMove = null;
+        bestEval = 0;
+        fullCount = 0;
+
+        int depth = 1;
+        while (!stopSearch){
+            count = 0;
+            bestMoveInCurrentSearch = null;
+            bestEvalThisSearch = search(depth, 0, Integer.MIN_VALUE, Integer.MAX_VALUE, true);
+
+            if (!stopSearch) {
+                bestMove = bestMoveInCurrentSearch;
+                bestEval = bestEvalThisSearch;
+                System.out.println(depth + ": " + bestEval + ", " + bestMove + ", " + count);
+                fullCount = count;
+                latestFinishedDepth = depth;
+            }
+
+            if (Math.abs(bestEval) + depth >= mateScore) return;
+
+            depth++;
+        }
+    }
+
+    public void stopCurrentSearch(){
+        stopSearch = true;
     }
 
     /**
@@ -105,14 +141,22 @@ public class Engine{
      * @return The score of the position the search is currently evaluating.
      */
     private int search(int maxDepth, int currentDepth, int alpha, int beta, boolean maximising){
+        if (stopSearch){
+            return 0;
+        }
+
         if (maxDepth == 0) {
-            pEval++;
-            return evaluatePosition();
+            return quiescenceSearch(alpha, beta, maximising);
         }
 
         boolean noMoves = true;
         List<Move> moveList = board.getPseudolegalMoves();
         orderMoves(moveList);
+        if (currentDepth == 0){
+            if (moveList.remove(bestMove)){
+                moveList.addFirst(bestMove);
+            }
+        }
 
         if (maximising){
             for (Move move: moveList){
@@ -125,7 +169,7 @@ public class Engine{
                     if (score > alpha){
                         alpha = score;
                         if (currentDepth == 0){
-                            bestMove = move;
+                            bestMoveInCurrentSearch = move;
                         }
                     }
 
@@ -163,6 +207,68 @@ public class Engine{
             if (noMoves){
                 if (board.isInCheck()) return mateScore - currentDepth;
                 else return 0;
+            }
+            return beta;
+        }
+    }
+
+    /**
+     * @param alpha The best score the current player can guarantee
+     * @param beta The lowest score the opponent can guarantee
+     * @return The score of the position the search is currently evaluating
+     */
+    private int quiescenceSearch(int alpha, int beta, boolean maximising){
+        int bestScore = evaluatePosition();
+
+
+        if (maximising) {
+            if (bestScore > alpha){
+                alpha = bestScore;
+            }
+        } else {
+            if (bestScore < beta){
+                beta = bestScore;
+            }
+        }
+
+        if (bestScore >= beta){
+            return bestScore; // The opponent won't allow this move
+        }
+
+        List<Move> moveList = board.getPseudolegalMoves().stream().filter(move -> move.cell().isHasPiece()).toList();
+        //orderMoves(moveList);
+
+        if (maximising) {
+            for (Move move: moveList){
+                if (board.checkLegalMoves(move, false)){
+                    count++;
+                    int score = quiescenceSearch(alpha, beta, false);
+                    board.undoMove();
+
+                    if (score >= beta){
+                        return score;
+                    }
+                    if (score > alpha){
+                        alpha = score;
+                    }
+                }
+            }
+            return alpha;
+        }
+        else {
+            for (Move move: moveList){
+                if (board.checkLegalMoves(move, false)){
+                    count++;
+                    int score = quiescenceSearch(alpha, beta, true);
+                    board.undoMove();
+
+                    if (score >= beta){
+                        return score;
+                    }
+                    if (score < beta){
+                        beta = score;
+                    }
+                }
             }
             return beta;
         }
@@ -259,7 +365,7 @@ public class Engine{
      * Tries to encourage structural improvements in the opening, to focus on pawn structure.
      * @return The evaluation score of the current position.
      */
-    private int evaluatePosition(){
+    public int evaluatePosition(){
         int evaluation = 0;
         for (int i = 0; i < 8; i++) {
             for (int j = 0; j < 8; j++) {
@@ -290,6 +396,7 @@ public class Engine{
             }
         }
 
+/*
         if (board.getFullMoveCounter() <= 8){
             Set<Piece> movedPieces = new HashSet<>(8);
             for (UndoMoveInfo umi: board.undoMoveInfoList){
@@ -304,6 +411,7 @@ public class Engine{
                 }
             }
         }
+*/
 
         return evaluation;
     }

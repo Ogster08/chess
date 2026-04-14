@@ -3,8 +3,7 @@ package com.example.chessengine.Engine;
 import com.example.chessengine.Board.Moves.Move;
 import javafx.application.Platform;
 
-import java.util.concurrent.BlockingQueue;
-import java.util.concurrent.LinkedBlockingQueue;
+import java.util.concurrent.*;
 import java.util.function.Consumer;
 
 /**
@@ -25,6 +24,9 @@ public class EngineThread extends Thread{
      * A boolean for if the thread is running.
      */
     private volatile boolean running = true;
+
+    private final ScheduledExecutorService schedular = Executors.newSingleThreadScheduledExecutor();
+    private ScheduledFuture<?> scheduledStop;
 
     /**
      * @param engine The engine to be run on a separate thread.
@@ -53,9 +55,11 @@ public class EngineThread extends Thread{
      * Adds a command to the queue to get the next engine move.
      * @param callBack The function run, when move is returned.
      */
-    public void requestMove(Consumer<Move> callBack){
+    public void requestMove(Consumer<Move> callBack, int time){
         commandQueue.offer(() -> {
+            scheduledStop = schedular.schedule(engine::stopCurrentSearch, time, TimeUnit.SECONDS);
             Move move = engine.getNextMove();
+            scheduledStop.cancel(false);
             Platform.runLater(() -> callBack.accept(move));
         });
     }
@@ -77,6 +81,7 @@ public class EngineThread extends Thread{
      */
     public void stopEngine(){
         running = false;
+        schedular.shutdownNow();
         interrupt();
     }
 

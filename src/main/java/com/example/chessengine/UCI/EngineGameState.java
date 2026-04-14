@@ -95,7 +95,7 @@ public class EngineGameState extends GameState{
             else if (!gameEnd){
                 gameEndMessage();
             }
-        });
+        }, 5);
     }
 
     /**

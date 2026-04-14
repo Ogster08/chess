@@ -9,10 +9,13 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="5ecba770-62e4-41d3-b203-db736912793c" name="Changes" comment="minor speed improvements">
+    <list default="true" id="5ecba770-62e4-41d3-b203-db736912793c" name="Changes" comment="implemented move ordering for captures">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/chessengine/Board/Board.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/chessengine/Board/Board.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/com/example/chessengine/Engine/Engine.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/chessengine/Engine/Engine.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/chessengine/UCI/GameState.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/chessengine/UCI/GameState.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/chessengine/Engine/EngineThread.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/chessengine/Engine/EngineThread.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/chessengine/Tablebase/LichessAPI.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/chessengine/Tablebase/LichessAPI.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/chessengine/UCI/EngineGameState.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/chessengine/UCI/EngineGameState.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -72,50 +75,50 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent"><![CDATA[{
-  "keyToString": {
-    "Application.HelloApplication.executor": "Run",
-    "Application.Launcher.executor": "Run",
-    "Application.Main.executor": "Run",
-    "Downloaded.Files.Path.Enabled": "false",
-    "JAR Application.ChessEngine-1.0-SNAPSHOT.jar.executor": "Run",
-    "JAR Application.ChessEngine.jar.executor": "Run",
-    "JAR Application.ChessEngine_jar.jar.executor": "Run",
-    "JUnit.Perft.countMoves.executor": "Run",
-    "Maven.ChessEngine [clean].executor": "Run",
-    "Maven.ChessEngine [compile].executor": "Run",
-    "Maven.ChessEngine [org.openjfx:javafx-maven-plugin:0.0.8:jlink].executor": "Run",
-    "Maven.ChessEngine [org.openjfx:javafx-maven-plugin:0.0.8:run].executor": "Run",
-    "Maven.ChessEngine [package].executor": "Run",
-    "Maven.ChessEngine [test].executor": "Run",
-    "Maven.ChessEngine [validate].executor": "Run",
-    "Maven.ChessEngine [verify].executor": "Run",
-    "OverrideImplement.generate.javadoc": "true",
-    "Repository.Attach.Annotations": "true",
-    "Repository.Attach.JavaDocs": "true",
-    "Repository.Attach.Sources": "false",
-    "RunOnceActivity.ShowReadmeOnStart": "true",
-    "RunOnceActivity.TerminalTabsStorage.copyFrom.TerminalArrangementManager.252": "true",
-    "RunOnceActivity.git.unshallow": "true",
-    "SHARE_PROJECT_CONFIGURATION_FILES": "true",
-    "com.intellij.testIntegration.createTest.CreateTestDialog.defaultLibrary": "JUnit5",
-    "com.intellij.testIntegration.createTest.CreateTestDialog.defaultLibrarySuperClass.JUnit5": "",
-    "git-widget-placeholder": "main",
-    "kotlin-language-version-configured": "true",
-    "list.type.of.created.stylesheet": "CSS",
-    "node.js.detected.package.eslint": "true",
-    "node.js.detected.package.tslint": "true",
-    "node.js.selected.package.eslint": "(autodetect)",
-    "node.js.selected.package.tslint": "(autodetect)",
-    "nodejs_package_manager_path": "npm",
-    "project.structure.last.edited": "Artifacts",
-    "project.structure.proportion": "0.15",
-    "project.structure.side.proportion": "0.2",
-    "run.code.analysis.last.selected.profile": "pProject Default",
-    "settings.editor.selected.configurable": "reference.projectsettings.compiler.javacompiler",
-    "vue.rearranger.settings.migration": "true"
+  <component name="PropertiesComponent">{
+  &quot;keyToString&quot;: {
+    &quot;Application.HelloApplication.executor&quot;: &quot;Run&quot;,
+    &quot;Application.Launcher.executor&quot;: &quot;Run&quot;,
+    &quot;Application.Main.executor&quot;: &quot;Run&quot;,
+    &quot;Downloaded.Files.Path.Enabled&quot;: &quot;false&quot;,
+    &quot;JAR Application.ChessEngine-1.0-SNAPSHOT.jar.executor&quot;: &quot;Run&quot;,
+    &quot;JAR Application.ChessEngine.jar.executor&quot;: &quot;Run&quot;,
+    &quot;JAR Application.ChessEngine_jar.jar.executor&quot;: &quot;Run&quot;,
+    &quot;JUnit.Perft.countMoves.executor&quot;: &quot;Run&quot;,
+    &quot;Maven.ChessEngine [clean].executor&quot;: &quot;Run&quot;,
+    &quot;Maven.ChessEngine [compile].executor&quot;: &quot;Run&quot;,
+    &quot;Maven.ChessEngine [org.openjfx:javafx-maven-plugin:0.0.8:jlink].executor&quot;: &quot;Run&quot;,
+    &quot;Maven.ChessEngine [org.openjfx:javafx-maven-plugin:0.0.8:run].executor&quot;: &quot;Run&quot;,
+    &quot;Maven.ChessEngine [package].executor&quot;: &quot;Run&quot;,
+    &quot;Maven.ChessEngine [test].executor&quot;: &quot;Run&quot;,
+    &quot;Maven.ChessEngine [validate].executor&quot;: &quot;Run&quot;,
+    &quot;Maven.ChessEngine [verify].executor&quot;: &quot;Run&quot;,
+    &quot;OverrideImplement.generate.javadoc&quot;: &quot;true&quot;,
+    &quot;Repository.Attach.Annotations&quot;: &quot;true&quot;,
+    &quot;Repository.Attach.JavaDocs&quot;: &quot;true&quot;,
+    &quot;Repository.Attach.Sources&quot;: &quot;false&quot;,
+    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.TerminalTabsStorage.copyFrom.TerminalArrangementManager.252&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.git.unshallow&quot;: &quot;true&quot;,
+    &quot;SHARE_PROJECT_CONFIGURATION_FILES&quot;: &quot;true&quot;,
+    &quot;com.intellij.testIntegration.createTest.CreateTestDialog.defaultLibrary&quot;: &quot;JUnit5&quot;,
+    &quot;com.intellij.testIntegration.createTest.CreateTestDialog.defaultLibrarySuperClass.JUnit5&quot;: &quot;&quot;,
+    &quot;git-widget-placeholder&quot;: &quot;main&quot;,
+    &quot;kotlin-language-version-configured&quot;: &quot;true&quot;,
+    &quot;list.type.of.created.stylesheet&quot;: &quot;CSS&quot;,
+    &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
+    &quot;node.js.detected.package.tslint&quot;: &quot;true&quot;,
+    &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
+    &quot;node.js.selected.package.tslint&quot;: &quot;(autodetect)&quot;,
+    &quot;nodejs_package_manager_path&quot;: &quot;npm&quot;,
+    &quot;project.structure.last.edited&quot;: &quot;Artifacts&quot;,
+    &quot;project.structure.proportion&quot;: &quot;0.15&quot;,
+    &quot;project.structure.side.proportion&quot;: &quot;0.2&quot;,
+    &quot;run.code.analysis.last.selected.profile&quot;: &quot;pProject Default&quot;,
+    &quot;settings.editor.selected.configurable&quot;: &quot;reference.projectsettings.compiler.javacompiler&quot;,
+    &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
   }
-}]]></component>
+}</component>
   <component name="RecentsManager">
     <key name="CreateClassDialog.RecentsKey">
       <recent name="com.example.chessengine.UCI" />
@@ -250,23 +253,11 @@
       <workItem from="1773600485255" duration="16838000" />
       <workItem from="1773655258579" duration="15507000" />
       <workItem from="1773739820124" duration="2048000" />
-      <workItem from="1774447553773" duration="31084000" />
-    </task>
-    <task id="LOCAL-00067" summary="fixed undoing a castling move, with the rook being moved to the wrong square sometimes">
-      <option name="closed" value="true" />
-      <created>1771793937730</created>
-      <option name="number" value="00067" />
-      <option name="presentableId" value="LOCAL-00067" />
-      <option name="project" value="LOCAL" />
-      <updated>1771793937730</updated>
-    </task>
-    <task id="LOCAL-00068" summary="added position evaluation">
-      <option name="closed" value="true" />
-      <created>1771800851525</created>
-      <option name="number" value="00068" />
-      <option name="presentableId" value="LOCAL-00068" />
-      <option name="project" value="LOCAL" />
-      <updated>1771800851525</updated>
+      <workItem from="1774447553773" duration="34966000" />
+      <workItem from="1774604260263" duration="2920000" />
+      <workItem from="1774610024661" duration="28381000" />
+      <workItem from="1776086941960" duration="2553000" />
+      <workItem from="1776161706663" duration="1147000" />
     </task>
     <task id="LOCAL-00069" summary="tuning depth, so the search doesn't take as long">
       <option name="closed" value="true" />
@@ -644,7 +635,23 @@
       <option name="project" value="LOCAL" />
       <updated>1774552161757</updated>
     </task>
-    <option name="localTasksCounter" value="116" />
+    <task id="LOCAL-00116" summary="removing debug">
+      <option name="closed" value="true" />
+      <created>1774562904735</created>
+      <option name="number" value="00116" />
+      <option name="presentableId" value="LOCAL-00116" />
+      <option name="project" value="LOCAL" />
+      <updated>1774562904735</updated>
+    </task>
+    <task id="LOCAL-00117" summary="implemented move ordering for captures">
+      <option name="closed" value="true" />
+      <created>1774562928186</created>
+      <option name="number" value="00117" />
+      <option name="presentableId" value="LOCAL-00117" />
+      <option name="project" value="LOCAL" />
+      <updated>1774562928186</updated>
+    </task>
+    <option name="localTasksCounter" value="118" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -662,8 +669,6 @@
     </option>
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="added environment variables for creating the openings book and logs - BUILD_BOOK &amp; LOGS" />
-    <MESSAGE value="fixed not closing engine thread when going back to the menu" />
     <MESSAGE value="updated JavaDoc" />
     <MESSAGE value="fixed logs" />
     <MESSAGE value="cleaned up evaluation function" />
@@ -687,7 +692,9 @@
     <MESSAGE value="removing unnecessary styling" />
     <MESSAGE value="removing unnecessary imports" />
     <MESSAGE value="minor speed improvements" />
-    <option name="LAST_COMMIT_MESSAGE" value="minor speed improvements" />
+    <MESSAGE value="removing debug" />
+    <MESSAGE value="implemented move ordering for captures" />
+    <option name="LAST_COMMIT_MESSAGE" value="implemented move ordering for captures" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
