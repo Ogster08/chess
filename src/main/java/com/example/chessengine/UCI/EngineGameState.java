@@ -68,7 +68,7 @@ public class EngineGameState extends GameState{
     @Override
     protected void gameEndMessage(){
         gameEnd = true;
-        if (board.isInCheck()){
+        if (board.isInCheck() && !board.positionHistory.containsValue((short) 3)){
             controller.gameOverMessage(board.getColourToMove() == playerColour ? "Engine wins": "Player wins");
         }
         else {

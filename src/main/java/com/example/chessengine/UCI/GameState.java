@@ -108,7 +108,7 @@ public class GameState implements MoveHandler {
      */
     protected void gameEndMessage(){
         gameEnd = true;
-        if (board.isInCheck()){
+        if (board.isInCheck() && !board.positionHistory.containsValue((short) 3)){
             controller.gameOverMessage(board.getColourToMove() == Colour.WHITE ? "Black wins": "White wins");
         }
         else {

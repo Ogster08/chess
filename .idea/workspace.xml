@@ -11,11 +11,8 @@
   <component name="ChangeListManager">
     <list default="true" id="5ecba770-62e4-41d3-b203-db736912793c" name="Changes" comment="implemented move ordering for captures">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/chessengine/Board/Board.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/chessengine/Board/Board.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/chessengine/Engine/Engine.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/chessengine/Engine/Engine.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/chessengine/Engine/EngineThread.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/chessengine/Engine/EngineThread.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/chessengine/Tablebase/LichessAPI.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/chessengine/Tablebase/LichessAPI.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/com/example/chessengine/UCI/EngineGameState.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/chessengine/UCI/EngineGameState.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/chessengine/UCI/GameState.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/chessengine/UCI/GameState.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -258,6 +255,8 @@
       <workItem from="1774610024661" duration="28381000" />
       <workItem from="1776086941960" duration="2553000" />
       <workItem from="1776161706663" duration="1147000" />
+      <workItem from="1776347060949" duration="1892000" />
+      <workItem from="1776763492132" duration="194000" />
     </task>
     <task id="LOCAL-00069" summary="tuning depth, so the search doesn't take as long">
       <option name="closed" value="true" />
