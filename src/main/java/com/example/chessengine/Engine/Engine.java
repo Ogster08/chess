@@ -367,51 +367,25 @@ public class Engine{
      */
     public int evaluatePosition(){
         int evaluation = 0;
-        for (int i = 0; i < 8; i++) {
-            for (int j = 0; j < 8; j++) {
-                Piece p = board.getCell(i, j).getPiece();
-                if (p != null){
-                    int score = 0;
-                    score += pieceScores[p.pieceNum];
-                    if (p.getClass() == Pawn.class) {
-                        score += readTable(pawnTable, p);
-                    } else if (p.getClass() == Knight.class) {
-                        score += readTable(knightTable, p);
-                    } else if (p.getClass() == Bishop.class) {
-                        score += readTable(bishopTable, p);
-                    } else if (p.getClass() == Rook.class) {
-                        score += readTable(rookTable, p);
-                    } else if (p.getClass() == Queen.class) {
-                        score += readTable(queenTable, p);
-                    } else if (p.getClass() == King.class) {
-                        score += readTable(kingMiddleTable, p);
-                    }
+        for (Piece p: board.pieces){
+            int score = 0;
+            score += pieceScores[p.pieceNum];
+            score += readTable(switch (p.pieceNum){
+                case 0 -> pawnTable;
+                case 1 -> knightTable;
+                case 2 -> bishopTable;
+                case 3 -> rookTable;
+                case 4 -> queenTable;
+                case 5 -> kingMiddleTable;
+                default -> pawnTable;
+            }, p);
 
-                    if (p.getColour() == engineColour) {
-                        evaluation += score;
-                    } else {
-                        evaluation -= score;
-                    }
-                }
+            if (p.getColour() == engineColour) {
+                evaluation += score;
+            } else {
+                evaluation -= score;
             }
         }
-
-/*
-        if (board.getFullMoveCounter() <= 8){
-            Set<Piece> movedPieces = new HashSet<>(8);
-            for (UndoMoveInfo umi: board.undoMoveInfoList){
-                Piece p = umi.move.p();
-                if (p.getColour() == engineColour){
-                    if (movedPieces.contains(p)) {
-                        evaluation -= 20;
-                        if (p.getClass() == Queen.class) evaluation -= 20;
-                    } else {
-                        movedPieces.add(p);
-                    }
-                }
-            }
-        }
-*/
 
         return evaluation;
     }

@@ -9,10 +9,9 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="5ecba770-62e4-41d3-b203-db736912793c" name="Changes" comment="implemented move ordering for captures">
+    <list default="true" id="5ecba770-62e4-41d3-b203-db736912793c" name="Changes" comment="fixing incorrect message during a 3-fold repetition while in check">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/chessengine/UCI/EngineGameState.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/chessengine/UCI/EngineGameState.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/chessengine/UCI/GameState.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/chessengine/UCI/GameState.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/chessengine/Engine/Engine.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/chessengine/Engine/Engine.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -76,7 +75,7 @@
   &quot;keyToString&quot;: {
     &quot;Application.HelloApplication.executor&quot;: &quot;Run&quot;,
     &quot;Application.Launcher.executor&quot;: &quot;Run&quot;,
-    &quot;Application.Main.executor&quot;: &quot;Run&quot;,
+    &quot;Application.Main.executor&quot;: &quot;Profiler#1&quot;,
     &quot;Downloaded.Files.Path.Enabled&quot;: &quot;false&quot;,
     &quot;JAR Application.ChessEngine-1.0-SNAPSHOT.jar.executor&quot;: &quot;Run&quot;,
     &quot;JAR Application.ChessEngine.jar.executor&quot;: &quot;Run&quot;,
@@ -256,15 +255,8 @@
       <workItem from="1776086941960" duration="2553000" />
       <workItem from="1776161706663" duration="1147000" />
       <workItem from="1776347060949" duration="1892000" />
-      <workItem from="1776763492132" duration="194000" />
-    </task>
-    <task id="LOCAL-00069" summary="tuning depth, so the search doesn't take as long">
-      <option name="closed" value="true" />
-      <created>1771803625457</created>
-      <option name="number" value="00069" />
-      <option name="presentableId" value="LOCAL-00069" />
-      <option name="project" value="LOCAL" />
-      <updated>1771803625457</updated>
+      <workItem from="1776763492132" duration="1713000" />
+      <workItem from="1776773348013" duration="1324000" />
     </task>
     <task id="LOCAL-00070" summary="removed commented out code">
       <option name="closed" value="true" />
@@ -650,7 +642,15 @@
       <option name="project" value="LOCAL" />
       <updated>1774562928186</updated>
     </task>
-    <option name="localTasksCounter" value="118" />
+    <task id="LOCAL-00118" summary="fixing incorrect message during a 3-fold repetition while in check">
+      <option name="closed" value="true" />
+      <created>1776763753358</created>
+      <option name="number" value="00118" />
+      <option name="presentableId" value="LOCAL-00118" />
+      <option name="project" value="LOCAL" />
+      <updated>1776763753358</updated>
+    </task>
+    <option name="localTasksCounter" value="119" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -668,7 +668,6 @@
     </option>
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="updated JavaDoc" />
     <MESSAGE value="fixed logs" />
     <MESSAGE value="cleaned up evaluation function" />
     <MESSAGE value="fixed memory leak caused by repeatedly loading images instead of using the cached version." />
@@ -693,7 +692,8 @@
     <MESSAGE value="minor speed improvements" />
     <MESSAGE value="removing debug" />
     <MESSAGE value="implemented move ordering for captures" />
-    <option name="LAST_COMMIT_MESSAGE" value="implemented move ordering for captures" />
+    <MESSAGE value="fixing incorrect message during a 3-fold repetition while in check" />
+    <option name="LAST_COMMIT_MESSAGE" value="fixing incorrect message during a 3-fold repetition while in check" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
