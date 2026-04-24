@@ -85,7 +85,7 @@ public abstract class Piece implements CellListener {
         setRow(newRow);
         setCol(newCol);
 
-        if (!board.pieces.contains(this)) {
+        if (!board.pieces.contains(this)) { // TODO: needs to be quicker, maybe a flag can be used instead
             board.pieces.add(this);
         }
 
