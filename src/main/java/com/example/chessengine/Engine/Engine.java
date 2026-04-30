@@ -262,7 +262,7 @@ public class Engine{
                     int score = quiescenceSearch(alpha, beta, true);
                     board.undoMove();
 
-                    if (score >= beta){
+                    if (score <= alpha){
                         return score;
                     }
                     if (score < beta){

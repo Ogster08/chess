@@ -9,9 +9,10 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="5ecba770-62e4-41d3-b203-db736912793c" name="Changes" comment="improving evaluation speed">
+    <list default="true" id="5ecba770-62e4-41d3-b203-db736912793c" name="Changes" comment="todo commend added for what to improve from profiling">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/chessengine/Board/Pieces/Piece.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/chessengine/Board/Pieces/Piece.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/chessengine/Engine/Engine.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/chessengine/Engine/Engine.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/chessengine/Tablebase/LichessAPI.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/chessengine/Tablebase/LichessAPI.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -257,15 +258,7 @@
       <workItem from="1776347060949" duration="1892000" />
       <workItem from="1776763492132" duration="1713000" />
       <workItem from="1776773348013" duration="5233000" />
-      <workItem from="1777017939498" duration="2698000" />
-    </task>
-    <task id="LOCAL-00071" summary="added checks for mate in the engine">
-      <option name="closed" value="true" />
-      <created>1771856929144</created>
-      <option name="number" value="00071" />
-      <option name="presentableId" value="LOCAL-00071" />
-      <option name="project" value="LOCAL" />
-      <updated>1771856929144</updated>
+      <workItem from="1777017939498" duration="3871000" />
     </task>
     <task id="LOCAL-00072" summary="collapsed lambda statement">
       <option name="closed" value="true" />
@@ -651,7 +644,15 @@
       <option name="project" value="LOCAL" />
       <updated>1776774869104</updated>
     </task>
-    <option name="localTasksCounter" value="120" />
+    <task id="LOCAL-00120" summary="todo commend added for what to improve from profiling">
+      <option name="closed" value="true" />
+      <created>1777033197638</created>
+      <option name="number" value="00120" />
+      <option name="presentableId" value="LOCAL-00120" />
+      <option name="project" value="LOCAL" />
+      <updated>1777033197638</updated>
+    </task>
+    <option name="localTasksCounter" value="121" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -669,7 +670,6 @@
     </option>
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="cleaned up evaluation function" />
     <MESSAGE value="fixed memory leak caused by repeatedly loading images instead of using the cached version." />
     <MESSAGE value="fixed standard of new line at end of file" />
     <MESSAGE value="cleanup and Javadoc fixes" />
@@ -694,7 +694,8 @@
     <MESSAGE value="implemented move ordering for captures" />
     <MESSAGE value="fixing incorrect message during a 3-fold repetition while in check" />
     <MESSAGE value="improving evaluation speed" />
-    <option name="LAST_COMMIT_MESSAGE" value="improving evaluation speed" />
+    <MESSAGE value="todo commend added for what to improve from profiling" />
+    <option name="LAST_COMMIT_MESSAGE" value="todo commend added for what to improve from profiling" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
