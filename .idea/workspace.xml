@@ -9,10 +9,9 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="5ecba770-62e4-41d3-b203-db736912793c" name="Changes" comment="todo commend added for what to improve from profiling">
+    <list default="true" id="5ecba770-62e4-41d3-b203-db736912793c" name="Changes" comment="fixed quiet search ending early">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/com/example/chessengine/Engine/Engine.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/chessengine/Engine/Engine.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/chessengine/Tablebase/LichessAPI.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/chessengine/Tablebase/LichessAPI.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -259,22 +258,7 @@
       <workItem from="1776763492132" duration="1713000" />
       <workItem from="1776773348013" duration="5233000" />
       <workItem from="1777017939498" duration="3871000" />
-    </task>
-    <task id="LOCAL-00072" summary="collapsed lambda statement">
-      <option name="closed" value="true" />
-      <created>1771925773984</created>
-      <option name="number" value="00072" />
-      <option name="presentableId" value="LOCAL-00072" />
-      <option name="project" value="LOCAL" />
-      <updated>1771925773984</updated>
-    </task>
-    <task id="LOCAL-00073" summary="improved menu, with better layout and toggle to choose your colour against the bot">
-      <option name="closed" value="true" />
-      <created>1771926056039</created>
-      <option name="number" value="00073" />
-      <option name="presentableId" value="LOCAL-00073" />
-      <option name="project" value="LOCAL" />
-      <updated>1771926056039</updated>
+      <workItem from="1777551704607" duration="1821000" />
     </task>
     <task id="LOCAL-00074" summary="fixed engine needs to prefer mates in less moves, so it actually mates">
       <option name="closed" value="true" />
@@ -652,7 +636,23 @@
       <option name="project" value="LOCAL" />
       <updated>1777033197638</updated>
     </task>
-    <option name="localTasksCounter" value="121" />
+    <task id="LOCAL-00121" summary="fixed error when request fails and now returns null">
+      <option name="closed" value="true" />
+      <created>1777551768298</created>
+      <option name="number" value="00121" />
+      <option name="presentableId" value="LOCAL-00121" />
+      <option name="project" value="LOCAL" />
+      <updated>1777551768298</updated>
+    </task>
+    <task id="LOCAL-00122" summary="fixed quiet search ending early">
+      <option name="closed" value="true" />
+      <created>1777551814151</created>
+      <option name="number" value="00122" />
+      <option name="presentableId" value="LOCAL-00122" />
+      <option name="project" value="LOCAL" />
+      <updated>1777551814151</updated>
+    </task>
+    <option name="localTasksCounter" value="123" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -670,8 +670,6 @@
     </option>
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="fixed memory leak caused by repeatedly loading images instead of using the cached version." />
-    <MESSAGE value="fixed standard of new line at end of file" />
     <MESSAGE value="cleanup and Javadoc fixes" />
     <MESSAGE value="added perft unit test" />
     <MESSAGE value="fixed unnecessary moving and unmoving caused by checking if a move is legal" />
@@ -695,7 +693,9 @@
     <MESSAGE value="fixing incorrect message during a 3-fold repetition while in check" />
     <MESSAGE value="improving evaluation speed" />
     <MESSAGE value="todo commend added for what to improve from profiling" />
-    <option name="LAST_COMMIT_MESSAGE" value="todo commend added for what to improve from profiling" />
+    <MESSAGE value="fixed error when request fails and now returns null" />
+    <MESSAGE value="fixed quiet search ending early" />
+    <option name="LAST_COMMIT_MESSAGE" value="fixed quiet search ending early" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>

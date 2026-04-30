@@ -231,7 +231,7 @@ public class Engine{
             }
         }
 
-        if (bestScore >= beta){
+        if (alpha >= beta){
             return bestScore; // The opponent won't allow this move
         }
 
