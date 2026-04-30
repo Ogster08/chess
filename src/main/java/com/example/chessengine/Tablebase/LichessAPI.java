@@ -46,7 +46,7 @@ public final class LichessAPI {
             }
 
         } catch (IOException | InterruptedException e) {
-            throw new RuntimeException(e);
+            return null;
         }
     }
 
